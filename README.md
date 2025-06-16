@@ -32,9 +32,5 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 
 ---
 
-## 🔧 Setup
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/SQLAIRefactor.git
-   cd SQLAIRefactor
+## 📄 License
+This project is licensed under the MIT License.
