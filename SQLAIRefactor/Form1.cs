@@ -121,9 +121,9 @@ namespace SQLAIRefactor
 
             // Get the response
             var response = await chatClient.CompleteChatAsync(messages, requestOptions);
-            string risposta = response.Value.Content[0].Text;
-            risposta = risposta.Replace("\n", "\r\n");
-            return risposta;
+            string answerC = response.Value.Content[0].Text;
+            answerC = answerC.Replace("\n", "\r\n");
+            return answerC;
         }
 
         private async void Form1_Load(object sender, EventArgs e)
