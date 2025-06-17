@@ -15,13 +15,6 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 
 ---
 
-## 🖥️ Screenshots
-
-| Input Query | Refactored Output |
-|-------------|-------------------|
-| ![input](docs/images/input-example.png) | ![output](docs/images/output-example.png) |
-
----
 
 ## 📦 Prerequisites
 
