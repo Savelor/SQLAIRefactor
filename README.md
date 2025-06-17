@@ -9,7 +9,6 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 - AI-powered SQL refactoring using GPT-4.1 or GPT-4o (Azure OpenAI)
 - Retrieves and injects full table/column data types in JSON
 - Identifies inefficiencies (e.g., implicit conversions, index scan vs. seek)
-- Closed-loop optimization for second-pass improvements
 - Supports both Windows and SQL Authentication
 - Renders results in an HTML-based view with syntax highlighting
 
