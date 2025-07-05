@@ -4,6 +4,22 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 
 **SQLAIRefactor** is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/17562648-a598-42ba-b090-a55c0645b6ce" alt="Architecture" width="600"/>
+</div>
+
+This solution is an AI-powered application to automating SQL Server code analysis and refactoring. The system intelligently identifies inefficiencies and common T-SQL anti-patterns, applying best practices through a set of formalized coding rules, using prompt-driven instructions. It not only automatically rewrites problematic and inefficient code but also delivers contextual recommendations to improve quality, security, and maintainability.
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="700"/>
+</div>
+Designed to address real-world use cases, this soltion enables organizations to modernize and optimize their SQL workloads more efficiently, accelerating migrations and reducing manual effort in scenarios with large SQL codebases. This technique can represent an advancement in SQL Server application development and maintenance, reducing manual effort and improving code quality and performance.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d89b924b-0726-4010-9cbe-d257d593b11d" alt="Example" width="600"/>
+</div>
+
+
+
 ## 🚀 Features
 
 - AI-powered SQL refactoring using GPT-4.1 or GPT-4o (Azure OpenAI)
