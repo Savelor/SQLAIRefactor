@@ -55,19 +55,19 @@ In this example in AdventureWorks2022 database, the ABS() function is used in th
 
 ## 6.  Arithmetic EXPRESSION 
 Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following example is on AdventurWorks2022. Since the SalesOrderID is multiplied, the condition SalesOrderID * 3 < 1200 may prevent SQL Server from effectively using the existing PK index. That’s because SQL Server evaluates the multiplication result and not the column data, ‘hiding’ the indexed data. It compares each single multiplication result to 1200, leading to a Scan on the column. This case shows a variation of Cost: -99%, CPU and elapsed time: -99%, I/O: -99%. [Rules 10.8/9]
-><
-equations like
+#### ><
+#### equations like
 
 ## 4.5  Time management functions 
 Some functions can be rewritten differently, avoiding applying the function to the column. In this scenario suppose that I have an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. To take advantage of it we must rewrite the WHERE condition as shown below. The cost variation is -99%, elapsed time -58%. [Rules 10.11/14]
-DATEDIFF
-DATEADD
-DATEPART
-YEAR
+#### DATEDIFF
+#### DATEADD
+#### DATEPART
+#### YEAR
 
 ## 8 Other functions
-LIKE
-ISNULL
+#### LIKE
+#### ISNULL
 
 ## 5. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. For example, if an index is built on a column of type INT, but a query compares it to a SQL_VARIANT value, this triggers an implicit column conversion and SQL Server cannot use the index with Seek and may execute a full scan. Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
