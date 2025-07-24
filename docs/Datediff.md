@@ -1,27 +1,34 @@
 
 <table>
-  <tr> <!-- Riga 1 -->
-    <td>
-      <h4>Query A – Utenti attivi</h4>
-      <pre><code class="language-sql">
-   
-SELECT id, nome, email
-FROM utenti
-WHERE attivo = 1
-ORDER BY nome;
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT UnitPrice, LineTotal
+FROM Sales.SalesOrderDetail
+WHERE DATEDIFF(DAY, ModifiedDate, GETDATE()) < 21
       </code></pre>
     </td>
-    <td>
-      <h4>Query B – Utenti attivi</h4>
-      <pre><code class="language-sql">
-
-SELECT nome, email
-FROM clienti
-WHERE iscritti = 1
-ORDER BY data_iscrizione DESC;
-</code></pre>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT UnitPrice, LineTotal
+FROM Sales.SalesOrderDetail 
+WHERE ModifiedDate >= DATEADD(DAY, -21, GETDATE()
+      </code></pre>
     </td>
   </tr>
 </table>
 
-![Time_1](https://github.com/user-attachments/assets/914fde7b-710f-4c92-87ba-3fbbbcbaa23e)
+<div style="text-align: left;">
+  <img src="https://github.com/user-attachments/assets/914fde7b-710f-4c92-87ba-3fbbbcbaa23e" alt="Time_1" style="width: 90%;">
+</div>
+
+
+<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
+Cost=0.496, CPU time=16 ms,  elapsed time=29 ms.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=12 ms
+</div>
+
+
+
+
