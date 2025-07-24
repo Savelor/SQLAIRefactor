@@ -60,7 +60,7 @@ Simple arithmetic expressions can be written differently to force the execution 
 
 ## 4.5  Time management functions 
 Some functions can be rewritten differently, avoiding applying the function to the column. In this scenario suppose that I have an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. To take advantage of it we must rewrite the WHERE condition as shown below. The cost variation is -99%, elapsed time -58%. [Rules 10.11/14]
-#### DATEDIFF
+#### DATEDIFF Questa è una guida. [Vai alla guida dettagliata](docs/guida.md)
 #### DATEADD
 #### DATEPART
 #### YEAR
