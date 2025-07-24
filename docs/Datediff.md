@@ -1,3 +1,5 @@
+## DATEDIFF()
+The DATEDIFF function in SQL Server calculates the difference between two dates based on a specified date part (such as days, months, or years). It can be refactored using DATEADD on the right side of the operator.
 
 <table>
   <tr>
@@ -29,6 +31,10 @@ WHERE ModifiedDate >= DATEADD(DAY, -21, GETDATE()
 Cost=0.496, CPU time=16 ms,  elapsed time=29 ms.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=12 ms
 </div>
 
+## DATEADD()
 
+## DATEPART()
+
+## YEAR()
 
 
