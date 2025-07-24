@@ -3,7 +3,7 @@
   <tr> <!-- Riga 1 -->
     <td>
       <h4>Query A – Utenti attivi</h4>
-      <pre><code>
+      <pre><code class="language-sql">
    
 SELECT id, nome, email
 FROM utenti
@@ -13,7 +13,7 @@ ORDER BY nome;
     </td>
     <td>
       <h4>Query B – Utenti attivi</h4>
-      <pre><code>
+      <pre><code class="language-sql">
 
 SELECT nome, email
 FROM clienti
