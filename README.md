@@ -30,17 +30,54 @@ Designed to address real-world use cases, this soltion enables organizations to 
 
 ---
 ## 📦 Theory
-**2. OLD JOIN syntax**
+
+## 1. SELECT *
+When writing SQL queries, using SELECT * should be avoided. This statement reads all columns, increasing I/O and memory usage due to potentially unnecessary data retrieval. Instead, only select the columns really needed in the code. This approach reduces data load, improves query performance, and keeps your code cleaner. In the example below, the query has been changed and the ‘*’ has been replaced with only the necessary columns: ProductID and LineTotal. 
+
+## 2. OLD JOIN syntax
+Old-style implicit joins combine join and filter conditions in the WHERE clause, making the query harder to read and maintain. The second version below uses explicit INNER JOIN syntax, which clearly separates join logic from filtering, enhancing clarity and structure. SQL Server process both with the same plan, but explicit JOINs are best practice because they make queries easier to understand, maintain, and extend.
    
-**3. ORDER BY / GROUP BY**
+## 3. ORDER BY / GROUP BY
 When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. Similar concept for GROUP BY. [Rules 10.3/4]
 
-**4. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN()**
+## 4. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. In the following example in WorldWideImportersDW database, the table City has a PK index on [City Key] column. Refactoring the WHERE condition shows a query cost, I/O, CPU and elapsed time decreases by 99%, changing the plan from an Index Scan to an Index Seek. [Rules 10.5/6]
-## CEILING()
-## FLOOR()
-## ROUND()
-## SIGN()
+#### CEILING()
+#### FLOOR()
+#### ROUND()
+#### SIGN()
+
+## 5.  Arithmetic functions
+In this example in AdventureWorks2022 database, the ABS() function is used in the WHERE condition, preventing the use of the existing index on ReferenceOrderID column. This function has been replaced by an equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK. [Rule 10.7]
+#### ABS()
+#### SQRT()
+#### POWER()
+
+## 6.  Arithmetic EXPRESSION 
+Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following example is on AdventurWorks2022. Since the SalesOrderID is multiplied, the condition SalesOrderID * 3 < 1200 may prevent SQL Server from effectively using the existing PK index. That’s because SQL Server evaluates the multiplication result and not the column data, ‘hiding’ the indexed data. It compares each single multiplication result to 1200, leading to a Scan on the column. This case shows a variation of Cost: -99%, CPU and elapsed time: -99%, I/O: -99%. [Rules 10.8/9]
+><
+equations like
+
+## 4.5  Time management functions 
+Some functions can be rewritten differently, avoiding applying the function to the column. In this scenario suppose that I have an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. To take advantage of it we must rewrite the WHERE condition as shown below. The cost variation is -99%, elapsed time -58%. [Rules 10.11/14]
+DATEDIFF
+DATEADD
+DATEPART
+YEAR
+
+## 8 Other functions
+LIKE
+ISNULL
+
+## 5. Prevent implicit conversions
+Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. For example, if an index is built on a column of type INT, but a query compares it to a SQL_VARIANT value, this triggers an implicit column conversion and SQL Server cannot use the index with Seek and may execute a full scan. Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
+
+If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
+If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
+
+
+
+
 
 
 
