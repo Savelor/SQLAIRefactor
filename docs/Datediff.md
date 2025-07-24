@@ -1,7 +1,24 @@
 
----NOT Sargable, Index Scan
-SELECT UnitPrice, LineTotal
-FROM Sales.SalesOrderDetail
-WHERE DATEDIFF(DAY, ModifiedDate, GETDATE()) < 21
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
 
-<pre> ```sql SELECT * FROM utenti WHERE attivo = 1; ``` </pre>
+  <div style="flex: 1; min-width: 300px;">
+    <h4>🔹 Query A – Utenti attivi</h4>
+    <pre><code class="language-sql">
+SELECT id, nome, email
+FROM utenti
+WHERE attivo = 1
+ORDER BY nome;
+    </code></pre>
+  </div>
+
+  <div style="flex: 1; min-width: 300px;">
+    <h4>🔹 Query B – Clienti iscritti</h4>
+    <pre><code class="language-sql">
+SELECT nome, email
+FROM clienti
+WHERE iscritti = 1
+ORDER BY data_iscrizione DESC;
+    </code></pre>
+  </div>
+
+</div>
