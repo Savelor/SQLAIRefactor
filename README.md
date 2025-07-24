@@ -42,10 +42,10 @@ When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use col
 
 ## 4. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. In the following example in WorldWideImportersDW database, the table City has a PK index on [City Key] column. Refactoring the WHERE condition shows a query cost, I/O, CPU and elapsed time decreases by 99%, changing the plan from an Index Scan to an Index Seek. [Rules 10.5/6]
-#### CEILING()
-#### FLOOR()
-#### ROUND()
-#### SIGN()
+#### see how to manage CEILING()
+#### see how to manage FLOOR()
+#### see how to manage ROUND()
+#### see how to manage SIGN()
 
 ## 5.  Arithmetic functions
 In this example in AdventureWorks2022 database, the ABS() function is used in the WHERE condition, preventing the use of the existing index on ReferenceOrderID column. This function has been replaced by an equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK. [Rule 10.7]
@@ -76,7 +76,11 @@ If we compare two table columns, we cannot change their data type, so we can use
 If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
 
 
+## 7. Remove Unused and Irrelevant code
+Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
 
+## 8. Generating a more secure code
+SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
 
 
 
