@@ -67,7 +67,35 @@ Cost=0.45, CPU time=16 ms,  elapsed time=7 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 
 
 ## ROUND()
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT [Valid From], [Valid To]
+FROM Dimension.City
+WHERE ROUND([City Key], 0) = 4
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT [Valid From], [Valid To]
+FROM Dimension.City
+WHERE [City Key] >= 3.5 AND [City Key] < 4.5
+      </code></pre>
+    </td>
+  </tr>
+</table>
 
+<div style="text-align: left;">
+<img width="2447" height="484" alt="ROUND" src="https://github.com/user-attachments/assets/666cf420-96da-4512-b73e-8f9c28e05127" />
+</div>
+
+
+<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
+Cost=0.45, CPU time=16 ms,  elapsed time=12 ms. LogicalReads=438 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.00, CPU time=0 ms,  elapsed time=41 ms LogicalReads=3
+</div>
 
 
 ## SIGN()
