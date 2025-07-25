@@ -63,3 +63,35 @@ WHERE UnitCost < POWER(10,2)
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
 Cost=3.00, CPU time=156 ms,  elapsed time=2059 ms. logicalReads=2647 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.32,  CPU time=62 ms,  elapsed time=1822 ms logicalReads=1549
 </div>
+
+
+## POWER()
+
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT [MovementDate] 
+FROM [dbo].[FactProductInventory] 
+WHERE POWER(UnitCost,2) < 400
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT [MovementDate] 
+FROM [dbo].[FactProductInventory] 
+WHERE UnitCost > -SQRT(400) AND UnitCost < SQRT(400)
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<div style="text-align: left;">
+<img width="2439" height="474" alt="Power" src="https://github.com/user-attachments/assets/b04b4b42-5260-45c5-82a0-f22f776bbe99" />
+</div>
+
+<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
+Cost=3.04, CPU time=156 ms,  elapsed time=1525 ms. logicalReads=2650 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=1.76,  CPU time=140 ms,  elapsed time=1540 ms logicalReads=1241
+</div>
