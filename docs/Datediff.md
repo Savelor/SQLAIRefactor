@@ -55,7 +55,7 @@ WHERE ModifiedDate >= DATEADD(DAY, 21, '2025-07-15')
 </table>
 
 <div style="text-align: left;">
-  <img src="https://github.com/user-attachments/assets/914fde7b-710f-4c92-87ba-3fbbbcbaa23e" alt="DateADD" style="width: 90%;">
+<img width="2353" height="462" alt="DateADD" src="https://github.com/user-attachments/assets/8abd1061-7fda-409e-8d8a-b06aff2b7f92" />
 </div>
 
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
