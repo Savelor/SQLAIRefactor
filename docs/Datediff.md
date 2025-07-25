@@ -94,7 +94,7 @@ Cost=0.496, CPU time=0 ms,  elapsed time=43ms logical reads 358.&nbsp;&nbsp;&nbs
 </div>
 
 ## YEAR()
-
+Using the YEAR() function in the WHERE clause of a SQL query may seem simple and intuitive, but it's not sargable—meaning SQL Server cannot use an index efficiently, leading to slower performance, especially on large tables.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
