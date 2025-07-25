@@ -34,6 +34,35 @@ Cost=0.45, CPU time=16 ms,  elapsed time=9 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 
 
 ## FLOOR()
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT [Valid From], [Valid To]
+FROM Dimension.City
+WHERE FLOOR([City Key]) = 714
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT [Valid From], [Valid To]
+FROM Dimension.City
+WHERE [City Key] >= 714 AND [City Key] < 714 + 1
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<div style="text-align: left;">
+<img width="2082" height="276" alt="FLOOR" src="https://github.com/user-attachments/assets/efabf352-6aa4-4c0b-bbbe-c81051982314" />
+</div>
+
+
+<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
+Cost=0.45, CPU time=16 ms,  elapsed time=7 ms. LogicalReads=438 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.00,  CPU time=0 ms,  elapsed time=0 ms LogicalReads=3
+</div>
 
 
 
