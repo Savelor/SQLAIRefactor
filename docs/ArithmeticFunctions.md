@@ -89,7 +89,7 @@ WHERE UnitCost > -SQRT(400) AND UnitCost < SQRT(400)
 </table>
 
 <div style="text-align: left;">
-<img width="2439" height="474" alt="Power" src="https://github.com/user-attachments/assets/55b3bef1-0f38-453b-ab65-994221537fef" />
+<img width="2439" height="474" alt="Power" src="https://github.com/user-attachments/assets/a9039508-be38-453d-a4e3-61cf62b5e907" />
 </div>
 
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
