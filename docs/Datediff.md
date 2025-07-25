@@ -86,7 +86,7 @@ WHERE ModifiedDate >= '2025-01-01' AND ModifiedDate < '2026-01-01'
 </table>
 
 <div style="text-align: left;">
-<img width="2339" height="454" alt="DatePART" src="https://github.com/user-attachments/assets/5fec02a3-11eb-4218-970c-caa1a83f38e3" />
+<img width="2339" height="454" alt="DatePART" src="https://github.com/user-attachments/assets/76be8db3-8a37-4e11-8642-831472e93146" />
 </div>
 
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
