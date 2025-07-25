@@ -59,7 +59,7 @@ WHERE ModifiedDate >= DATEADD(DAY, 21, '2025-07-15')
 </div>
 
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.496, CPU time=16 ms,  elapsed time=29 ms.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=12 ms
+Cost=0.496, CPU time=0 ms,  elapsed time=43ms logical reads 358.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=25 ms logical reads 3
 </div>
   
 ## DATEPART()
