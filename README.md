@@ -159,9 +159,60 @@ ORDER BY
     t.name, c.column_id
 FOR JSON PATH, ROOT('TablesColumns');
 ```
+For example, the following JSON provides a structured representation of the test table schema:
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 1</h4>
+      <pre><code>
+CREATE TABLE [dbo].[test](
+ [CultureID] [nchar](6) NOT NULL,
+ [Name] [nvarchar](128) NOT NULL,
+ [ModifiedDate] [datetime] NOT NULL
+)
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <pre><code>
+{
+  "TablesColumns": [
+    {
+      "Schema": "dbo",
+      "Table": "test",
+      "Column": "CultureID",
+      "DataType": "nchar(6)"
+    },
+    {
+      "Schema": "dbo",
+      "Table": "test",
+      "Column": "Name",
+      "DataType": "nvarchar(128)"
+    },
+    {
+      "Schema": "dbo",
+      "Table": "test",
+      "Column": "ModifiedDate",
+      "DataType": "datetime"
+    }
+  ]
+}
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+## 6. Replace deprecated Large Object Data Types
+TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features. [Rule 10.17]
 
 ## 7. Remove Unused and Irrelevant code
 Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
+
+<div style="text-align: left;">
+  <img 
+    src="https://github.com/user-attachments/assets/96219e8f-4d27-4cf4-9ae8-0ecef903dcbc"
+    alt="Convert_Implicit"
+    style="width: 70%;" />
+</div>
 
 ## 8. Generating a more secure code
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
