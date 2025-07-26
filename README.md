@@ -217,7 +217,137 @@ Unused code refers to portions of code that are written but never executed durin
 ## 8. Generating a more secure code
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
 
+```sql
+ CREATE PROCEDURE [dbo].[usp_testInj]
+@cityname [varchar](256)
+AS
+BEGIN
+DECLARE @query varchar(1024)
+SET @query = 
+'SELECT A.AddressID, A.AddressLine1, SP.Name
+FROM Person.Address A INNER JOIN Person.StateProvince SP 
+ON A.StateProvinceID = SP.StateProvinceID 
+WHERE A.City = ''' + @cityname + ''
+  
+EXEC (@query)
+END
+```
+The second line below shows how it is possible to drop a table TabX, just passing an executable string as a malicious parameter value.
 
+EXEC dbo.usp_testInj 'Bothell'''  --OK
+
+EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
+
+- **Solution 1**: A safe option is input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
+- **Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code. [Rule 10.20]
+
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 1</h4>
+      <pre><code>
+--SOLUTION 1
+CREATE PROCEDURE [dbo].[usp_testInj1]
+@cityname [varchar](256)
+AS
+BEGIN
+  DECLARE @query varchar(1024)
+  -- Check for dangerous keywords in @cityname 
+  IF CHARINDEX('DROP', @cityname) > 0 OR 
+  CHARINDEX('DELETE', @cityname) > 0 OR
+  CHARINDEX(';', @cityname) > 0 OR
+  CHARINDEX('UPDATE', @cityname) > 0 OR
+  CHARINDEX('TRUNCATE', @cityname) > 0 OR
+  CHARINDEX('GRANT', @cityname) > 0
+  BEGIN
+    RAISERROR('Invalid input detected.', 16, 1)
+  RETURN
+END
+
+SET @query =
+'SELECT A.AddressID, A.AddressLine1, SP.Name
+ FROM Person.Address A
+ INNER JOIN Person.StateProvince SP
+ ON A.StateProvinceID = SP.StateProvinceID
+ WHERE A.City = ''' + @cityname + ''
+
+EXEC (@query)
+END
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 2</h4>
+      <pre><code>
+--SOLUTION 2
+CREATE PROCEDURE [dbo].[usp_testInj2]
+@cityname [varchar](256)
+AS
+BEGIN
+  DECLARE @query nvarchar(256)
+  SET @query = 
+  'SELECT A.AddressID, A.AddressLine1, SP.Name
+   FROM Person.Address A 
+   INNER JOIN Person.StateProvince SP 
+   ON A.StateProvinceID = SP.StateProvinceID 
+   WHERE A.City = @cityParam'
+
+  EXEC sp_executesql @query,
+  N'@CityParam VARCHAR(256)',
+  @CityParam = @cityname
+END
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+## 9. Refactoring SQL with GPT-4o via Azure OpenAI and C#
+To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with Azure AI Foundry and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
+
+Here is a simple example to start:
+
+```csharp
+// Import namespaces for using OpenAI chat functionality and Azure resources
+using OpenAI.Chat;
+using Azure;
+using Azure.AI.OpenAI;
+
+var endpoint = new Uri("https://resource.openai.azure.com/");
+var apiKey = "d601113d574940538109ee*********";
+var deploymentName = "gpt-4o";
+ChatCompletionOptions requestOptions = null;
+
+requestOptions = new ChatCompletionOptions()
+     {
+        MaxOutputTokenCount = 8192,
+        Temperature = 0.4f,
+        TopP = 1.0f
+     };
+
+var azureClient = new AzureOpenAIClient(endpoint, new AzureKeyCredential(apiKey));
+var chatClient = azureClient.GetChatClient(deploymentName);
+
+// Create chat messages
+string RuleSet = <file content containing the prompt rules>
+string SQLQueryToOptimize = <SQL query text to refactor>
+string SchemaInfo = <JSON format of database schema information>
+string Context = "You are a SQL Server developer who refactors code. Read and analyze all the provided T-SQL batch and rewrite it applying the following rules:"
+
+List<ChatMessage> messages = new List<ChatMessage>()
+     {
+       new SystemChatMessage(Context),
+       new UserChatMessage(SQLQueryToOptimize),
+       new UserChatMessage(RuleSet),
+       new UserChatMessage(SchemaInfo),
+     };
+
+// Send the chat messages to the model and get the response asynchronously
+var response = await chatClient.CompleteChatAsync(messages, requestOptions);
+string answer = response.Value.Content[0].Text;
+answer = answer.Replace("\n", "\r\n");
+```
+
+## 10. Prompt ruleset
+Below are some example prompt rules supplied to the model. These rules guide the AI in identifying specific cases described and refactoring the code according to the provided instructions. This content should be provided to the model through a prompt, encapsulated in the RuleSet variable as shown in the code example above.
 
 
 ## 📦 Prerequisites
