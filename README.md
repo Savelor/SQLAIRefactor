@@ -3,14 +3,8 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 # SQLAIRefactor
 The following section presents a curated set of real-world SQL optimization use cases where AI can effectively intervene. Each scenario represents a recurring challenge in T-SQL development—ranging from anti-patterns and performance bottlenecks to security vulnerabilities and code inefficiencies. For each case, the AI model can be explicitly guided through structured prompts to recognize and refactor problematic constructs, aligning them with best practices. This catalog serves both as documentation of what is possible and as a practical reference for developers seeking to automate SQL code improvements at scale.
 
-## 1. SELECT *
-When writing SQL queries, using SELECT * should be avoided. This statement reads all columns, increasing I/O and memory usage due to potentially unnecessary data retrieval. Instead, only select the columns really needed in the code. This approach reduces data load, improves query performance, and keeps your code cleaner. In the example below, the query has been changed and the ‘*’ has been replaced with only the necessary columns: ProductID and LineTotal. 
+## Consistent Syntax
 
-## 2. OLD JOIN syntax
-Old-style implicit joins combine join and filter conditions in the WHERE clause, making the query harder to read and maintain. The second version below uses explicit INNER JOIN syntax, which clearly separates join logic from filtering, enhancing clarity and structure. SQL Server process both with the same plan, but explicit JOINs are best practice because they make queries easier to understand, maintain, and extend.
-   
-## 3. ORDER BY / GROUP BY
-When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. Similar concept for GROUP BY. [Rules 10.3/4]
 
 ## 4. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. In the following example in WorldWideImportersDW database, the table City has a PK index on [City Key] column. Refactoring the WHERE condition shows a query cost, I/O, CPU and elapsed time decreases by 99%, changing the plan from an Index Scan to an Index Seek. [Rules 10.5/6]
