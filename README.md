@@ -4,7 +4,9 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 The following section presents a curated set of real-world SQL optimization use cases where AI can effectively intervene. Each scenario represents a recurring challenge in T-SQL development—ranging from anti-patterns and performance bottlenecks to security vulnerabilities and code inefficiencies. For each case, the AI model can be explicitly guided through structured prompts to recognize and refactor problematic constructs, aligning them with best practices. This catalog serves both as documentation of what is possible and as a practical reference for developers seeking to automate SQL code improvements at scale.
 
 ## Consistent Syntax
-
+#### SELECT * (https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)
+#### Old join style
+#### ORDER BY / GROUP BY
 
 ## 4. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. In the following example in WorldWideImportersDW database, the table City has a PK index on [City Key] column. Refactoring the WHERE condition shows a query cost, I/O, CPU and elapsed time decreases by 99%, changing the plan from an Index Scan to an Index Seek. [Rules 10.5/6]
