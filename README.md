@@ -87,7 +87,7 @@ FROM Sales.SalesOrderDetail
 WHERE ModifiedDate >= @Salesday
 ```
 <div style="text-align: left;">
-<img width="1721" height="542" alt="Convert_Implicit" src="https://github.com/user-attachments/assets/af1f0905-01cb-44c3-a7bf-bcb21112f7ff" />
+<img width="1385" height="523" alt="Convert_Implicit" src="https://github.com/user-attachments/assets/bf65f224-3d43-4ea7-b5ff-ae72850a0125" />
 </div>
 
 ## 7. Remove Unused and Irrelevant code
