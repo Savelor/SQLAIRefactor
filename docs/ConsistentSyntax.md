@@ -3,7 +3,7 @@ When writing SQL queries, using SELECT * should be avoided. This statement reads
 
 <table>
   <tr>
-    <td style="vertical-align: top; padding: 10px;">
+    <td style="vertical-align: top; ">
       <h4 style = "margin: 2 px;">🔹 Not optimized</h4>
       <pre><code>
 --discouraged
@@ -16,7 +16,7 @@ SELECT ProductID, LineTotal
 FROM Alpha
       </code></pre>
     </td>
-    <td style="vertical-align: top; padding: 10px;">
+    <td style="vertical-align: top;">
       <h4 style = "margin: 2 px;">🔹 Optimized</h4>
       <pre><code>
 --good practice
