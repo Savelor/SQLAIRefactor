@@ -35,11 +35,11 @@ Simple arithmetic expressions can be written differently to force the execution 
 
 
 
-## 8 Other functions
-#### LIKE
-#### ISNULL
+## 6 Other functions
+- [LIKE]()
+- [ISNULL()]()
 
-## 5. Prevent implicit conversions
+## 7. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. For example, if an index is built on a column of type INT, but a query compares it to a SQL_VARIANT value, this triggers an implicit column conversion and SQL Server cannot use the index with Seek and may execute a full scan. Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
 
 - If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
@@ -171,11 +171,11 @@ CREATE TABLE [dbo].[test](
   </tr>
 </table>
 
-## 6. Replace deprecated Large Object Data Types
-TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features. [Rule 10.17]
+## 8. Replace deprecated Large Object Data Types
+TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features.
 
-## 7. Remove Unused and Irrelevant code
-Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
+## 9. Remove Unused and Irrelevant code
+Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. 
 
 <div style="text-align: left;">
   <img 
@@ -184,7 +184,7 @@ Unused code refers to portions of code that are written but never executed durin
     style="width: 70%;" />
 </div>
 
-## 8. Generating a more secure code
+## 10. Generating a more secure code
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
 
 ```sql
@@ -270,7 +270,7 @@ END
   </tr>
 </table>
 
-## 9. Refactoring SQL with GPT-4o via Azure OpenAI and C#
+## 11. Refactoring SQL with GPT-4o via Azure OpenAI and C#
 To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with Azure AI Foundry and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
 
 Here is a simple example to start:
@@ -316,10 +316,11 @@ string answer = response.Value.Content[0].Text;
 answer = answer.Replace("\n", "\r\n");
 ```
 
-## 10. Prompt ruleset
+## 12. Prompt ruleset
 Below are some example prompt rules supplied to the model. These rules guide the AI in identifying specific cases described and refactoring the code according to the provided instructions. This content should be provided to the model through a prompt, encapsulated in the RuleSet variable as shown in the code example above.
 
-**SQLAIRefactor** is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
+## 13. SQLAIRefactor as a Windows application
+SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/17562648-a598-42ba-b090-a55c0645b6ce" alt="Architecture" width="600"/>
