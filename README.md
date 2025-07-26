@@ -90,7 +90,7 @@ WHERE ModifiedDate >= @Salesday
   <img 
     src="https://github.com/user-attachments/assets/bf65f224-3d43-4ea7-b5ff-ae72850a0125" 
     alt="Convert_Implicit"
-    style="width: 70%;" />
+    style="width: 60%;" />
 </div>
 
 Given the code above, we can implement two different solutions: the first is to declare the @Salesday variable with the same data type as ModifiedDate. The second is to explicitly convert the @Salesday variable to the same data type as ModifiedDate. Both solutions isolate the column preventing functions or implicit conversions applied on it.
@@ -126,10 +126,40 @@ WHERE ModifiedDate >= CONVERT(datetime,@Salesday)
   <img 
     src="https://github.com/user-attachments/assets/14b75c76-6ac8-4def-b4d4-7f393a87e4b7"
     alt="Convert_Implicit"
-    style="width: 70%;" />
+    style="width: 60%;" />
 </div>
 
-  
+This scenario assumes that the AI model has complete knowledge of the data type of every column in each table. This allows the model to identify the correct data type for declaring the @Salesday variable or to apply the correct conversions to constant values. How can this information be ingested into the AI model via prompt? One possible solution is to use JSON format. JSON is an efficient, human-readable format that organizes data in a clear structure, making it easy for AI models to parse and interpret. Its flexibility, compactness, and widespread compatibility make it ideal for providing complex data in prompts. The following SQL query retrieves the columns data types in JSON format of all tables, preparing the information for inclusion in the AI prompt:
+```sql
+--retrieves the columns data types in JSON format
+SELECT 
+    SCHEMA_NAME(t.schema_id) AS [Schema],
+    t.name AS [Table],
+    c.name AS [Column],
+    CASE 
+        WHEN ty.name IN ('char', 'varchar', 'nchar', 'nvarchar', 'binary', 'varbinary') THEN 
+            ty.name + 
+            CASE 
+                WHEN c.max_length = -1 THEN '(MAX)'
+                ELSE '(' + CAST(c.max_length / 
+                    CASE 
+                        WHEN ty.name IN ('nchar', 'nvarchar') THEN 2 
+                        ELSE 1 
+                    END AS VARCHAR) + ')'
+            END
+        WHEN ty.name IN ('decimal', 'numeric') THEN 
+            ty.name + '(' + CAST(c.precision AS VARCHAR) + ',' + CAST(c.scale AS VARCHAR) + ')'
+        ELSE ty.name
+    END AS DataType
+FROM 
+    sys.tables t
+    INNER JOIN sys.columns c ON t.object_id = c.object_id
+    INNER JOIN sys.types ty ON c.user_type_id = ty.user_type_id
+ORDER BY 
+    t.name, c.column_id
+FOR JSON PATH, ROOT('TablesColumns');
+```
+
 ## 7. Remove Unused and Irrelevant code
 Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
 
