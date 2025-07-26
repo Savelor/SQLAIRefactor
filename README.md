@@ -4,34 +4,34 @@ This repository is the accompanying code for the "AI-based T-SQL Refactoring: an
 The following section presents a curated set of real-world SQL optimization use cases where AI can effectively intervene. Each scenario represents a recurring challenge in T-SQL development—ranging from anti-patterns and performance bottlenecks to security vulnerabilities and code inefficiencies. For each case, the AI model can be explicitly guided through structured prompts to recognize and refactor problematic constructs, aligning them with best practices. This catalog serves both as documentation of what is possible and as a practical reference for developers seeking to automate SQL code improvements at scale.
 
 ## ⚙️1. Consistent Syntax
-- #### [SELECT *](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
-- #### [Old join style](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#2-old-join-syntax)  
-- #### [ORDER BY / GROUP BY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#3-order-by--group-by)  
+-  [SELECT *](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
+-  [Old join style](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#2-old-join-syntax)  
+-  [ORDER BY / GROUP BY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#3-order-by--group-by)  
 
 ## ⚙️2. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. In the following example in WorldWideImportersDW database, the table City has a PK index on [City Key] column. Refactoring the WHERE condition shows a query cost, I/O, CPU and elapsed time decreases by 99%, changing the plan from an Index Scan to an Index Seek. 
-- #### [CEILING()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#ceiling)  
-- #### [FLOOR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#floor)  
-- #### [ROUND()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#round)  
-- #### [SIGN()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
+-  [CEILING()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#ceiling)  
+-  [FLOOR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#floor)  
+-  [ROUND()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#round)  
+-  [SIGN()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
 
 ## ⚙️ 3.  Arithmetic functions
 In this example in AdventureWorks2022 database, the ABS() function is used in the WHERE condition, preventing the use of the existing index on ReferenceOrderID column. This function has been replaced by an equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK.
-- #### [ABS()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
-- #### [SQRT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
-- #### [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
+-  [ABS()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
+-  [SQRT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
+-  [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
 
 ## ⚙️4. Time management functions 
 Some functions can be rewritten differently, avoiding applying the function to the column. In this scenario suppose that I have an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. To take advantage of it we must rewrite the WHERE condition as shown below. The cost variation is -99%, elapsed time -58%. [Rules 10.11/14]
-- #### [DATEDIFF()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datediff) 
-- #### [DATEADD()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#dateadd)
-- #### [DATEPART()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datepart)
-- #### [YEAR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#year)
+-  [DATEDIFF()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datediff) 
+-  [DATEADD()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#dateadd)
+-  [DATEPART()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datepart)
+-  [YEAR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#year)
 
 ## ⚙️5. Arithmetic EXPRESSION 
 Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following example is on AdventurWorks2022. Since the SalesOrderID is multiplied, the condition SalesOrderID * 3 < 1200 may prevent SQL Server from effectively using the existing PK index. That’s because SQL Server evaluates the multiplication result and not the column data, ‘hiding’ the indexed data. It compares each single multiplication result to 1200, leading to a Scan on the column. This case shows a variation of Cost: -99%, CPU and elapsed time: -99%, I/O: -99%. [Rules 10.8/9]
-- #### ><
-- #### equations like
+-  ><
+-  equations like
 
 
 
