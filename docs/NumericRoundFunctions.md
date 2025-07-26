@@ -125,5 +125,5 @@ WHERE [ActualCost] > 0
 
 
 <div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.34, CPU time=15 ms, elapsed time=363 ms. LogicalReads=274 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.23, CPU time=16 ms, elapsed time=347 ms LogicalReads=201
+Cost=0.34, CPU time=15 ms, elapsed time=363 ms. LogicalReads=274 &nbsp;&nbsp;&nbsp;&nbsp;Cost=0.23, CPU time=16 ms, elapsed time=347 ms LogicalReads=201
 </div>
