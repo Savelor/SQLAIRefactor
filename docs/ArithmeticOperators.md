@@ -38,3 +38,7 @@ Cost=0.42, CPU time=16 ms,  elapsed time=43 ms, LogicalReads=276 &nbsp;&nbsp;&nb
 | WHERE SalesOrderID – 3 < 1200     | WHERE SalesOrderID < 1200 + 3       |
 
 
+## Simple equations
+
+
+
