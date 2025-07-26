@@ -99,3 +99,32 @@ Cost=0.45, CPU time=16 ms,  elapsed time=12 ms. LogicalReads=438 &nbsp;&nbsp;&nb
 
 
 ## SIGN()
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT [TransactionID]
+FROM Production.TransactionHistory
+WHERE SIGN([ActualCost]) = 1
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT [TransactionID]
+FROM Production.TransactionHistory
+WHERE [ActualCost] > 0
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<div style="text-align: left;">
+<img width="2186" height="283" alt="SIGN" src="https://github.com/user-attachments/assets/e41b425a-02fe-4d54-a238-016af8976110" />
+</div>
+
+
+<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
+Cost=0.34, CPU time=15 ms,  elapsed time=363 ms. LogicalReads=274 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.23,  CPU time=16 ms,  elapsed time=347 ms LogicalReads=201
+</div>
