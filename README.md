@@ -87,7 +87,7 @@ FROM Sales.SalesOrderDetail
 WHERE ModifiedDate >= @Salesday
 ```
 <div style="text-align: left;">
-![Uploading Convert_Implicit.png…]()
+<img width="1721" height="542" alt="Convert_Implicit" src="https://github.com/user-attachments/assets/af1f0905-01cb-44c3-a7bf-bcb21112f7ff" />
 </div>
 
 ## 7. Remove Unused and Irrelevant code
