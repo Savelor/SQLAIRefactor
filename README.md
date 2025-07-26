@@ -325,8 +325,6 @@ This solution is an AI-powered application to automating SQL Server code analysi
 <div align="center">
   <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="650"/>
 </div>
-Designed to address real-world use cases, this soltion enables organizations to modernize and optimize their SQL workloads more efficiently, accelerating migrations and reducing manual effort in scenarios with large SQL codebases. This technique can represent an advancement in SQL Server application development and maintenance, reducing manual effort and improving code quality and performance.
-
 
 ### How to use the tool
 
@@ -341,7 +339,6 @@ Designed to address real-world use cases, this soltion enables organizations to 
 
 - **4. Review Results**  
   The AI returns the optimized T-SQL code, along with the applied refactoring rules and additional insights or considerations.
-
 
 <div align="center">
 <img width="650" height="1801" alt="howtouse" src="https://github.com/user-attachments/assets/b27dd7a9-4466-4dcc-ba84-e566b16f285c" />
