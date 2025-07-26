@@ -61,9 +61,9 @@ ON P.ProductModelID = PM.ProductModelID
 ## 3. ORDER BY / GROUP BY
 When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. Similar concept for GROUP BY. 
 
-<table>
+<table style="vertical-align: top;">
   <tr>
-    <td style="vertical-align: top; padding: 5px;">
+    <td style="vertical-align: top;">
       <h4>🔹 Discouraged</h4>
       <pre><code>
 SELECT
@@ -79,7 +79,7 @@ ORDER BY
 1, 2, 4 DESC
       </code></pre>
     </td>
-    <td style="vertical-align: top; padding: 0px;">
+    <td style="vertical-align: top;">
       <h4>🔹 Recommended</h4>
       <pre><code>
 SELECT
