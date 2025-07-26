@@ -70,19 +70,36 @@ When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use col
       <h4>🔹 Old syntax</h4>
       <pre><code>
 --discouraged
-SELECT P.Name, P.ProductNumber, PM.ModifiedDate
-FROM Production.Product P, Production.ProductModel PM
-WHERE P.ProductModelID = PM.ProductModelID
+SELECT
+ SOD.SalesOrderID,
+ SOH.CustomerID,
+ SOD.UnitPrice,
+ SOH.OrderDate,
+ SOD.OrderQty
+FROM Sales.SalesOrderDetail SOD
+INNER JOIN Sales.SalesOrderHeader SOH 
+ON SOD.SalesOrderID = SOH.SalesOrderID
+ORDER BY 
+1, 2, 4 DESC
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Modern Syntax</h4>
       <pre><code>
 --good practice
-SELECT P.Name, P.ProductNumber, PM.ModifiedDate
-FROM Production.Product P
-INNER JOIN Production.ProductModel PM
-ON P.ProductModelID = PM.ProductModelID
+SELECT
+ SOD.SalesOrderID,
+ SOH.CustomerID,
+ SOD.UnitPrice,
+ SOH.OrderDate,
+ SOD.OrderQty
+FROM Sales.SalesOrderDetail SOD
+INNER JOIN Sales.SalesOrderHeader SOH 
+ON SOD.SalesOrderID = SOH.SalesOrderID
+ORDER BY 
+ SOD.SalesOrderID,
+ SOH.CustomerID,
+ SOH.OrderDate DESC
       </code></pre>
     </td>
   </tr>
