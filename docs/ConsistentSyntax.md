@@ -30,40 +30,6 @@ FROM Alpha
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td style="vertical-align: top; padding: 0;">
-      <h4 style="margin: 4px 0;">🔹 Discouraged</h4>
-      <div style="margin: 0; padding: 0;">
-        <pre style="margin: 0 !important; padding: 4px !important; line-height: 1.0;"><code style="margin: 0 !important; padding: 0 !important;">
-WITH alpha AS (
-SELECT *
-FROM Sales.SalesOrderDetail
-WHERE SalesOrderID > 1500
-)
-SELECT ProductID, LineTotal
-FROM Alpha
-        </code></pre>
-      </div>
-    </td>
-    <td style="vertical-align: top; padding: 0;">
-      <h4 style="margin: 4px 0;">🔹 Good practice</h4>
-      <div style="margin: 0; padding: 0;">
-        <pre style="margin: 0 !important; padding: 4px !important; line-height: 1.1;"><code style="margin: 0 !important; padding: 0 !important;">
-WITH alpha AS (
-SELECT ProductID, LineTotal
-FROM Sales.SalesOrderDetail
-WHERE SalesOrderID > 1500
-)
-SELECT ProductID, LineTotal
-FROM Alpha
-        </code></pre>
-      </div>
-    </td>
-  </tr>
-</table>
-
-
 
 ## 2. OLD JOIN syntax
 Old-style implicit joins combine join and filter conditions in the WHERE clause, making the query harder to read and maintain. The second version below uses explicit INNER JOIN syntax, which clearly separates join logic from filtering, enhancing clarity and structure. SQL Server process both with the same plan, but explicit JOINs are best practice because they make queries easier to understand, maintain, and extend.
@@ -99,7 +65,7 @@ When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use col
 <table>
   <tr>
     <td style="vertical-align: top; padding: 5px;">
-      <h4>🔹 Old syntax</h4>
+      <h4>🔹 Discouraged</h4>
       <pre><code>
 --discouraged
 SELECT
@@ -116,7 +82,7 @@ ORDER BY
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 5px;">
-      <h4>🔹 Modern Syntax</h4>
+      <h4>🔹 Recommended</h4>
       <pre><code>
 --good practice
 SELECT
