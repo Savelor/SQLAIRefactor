@@ -79,7 +79,7 @@ ORDER BY
 1, 2, 4 DESC
       </code></pre>
     </td>
-    <td style="vertical-align: top; padding: 5px;">
+    <td style="vertical-align: top; padding: 0px;">
       <h4>🔹 Recommended</h4>
       <pre><code>
 SELECT
