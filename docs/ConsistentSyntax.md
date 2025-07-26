@@ -39,7 +39,6 @@ Old-style implicit joins combine join and filter conditions in the WHERE clause,
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Old syntax</h4>
       <pre><code>
---discouraged
 SELECT P.Name, P.ProductNumber, PM.ModifiedDate
 FROM Production.Product P, Production.ProductModel PM
 WHERE P.ProductModelID = PM.ProductModelID
