@@ -122,6 +122,13 @@ WHERE ModifiedDate >= CONVERT(datetime,@Salesday)
   </tr>
 </table>
 
+<div style="text-align: left;">
+  <img 
+    src="https://github.com/user-attachments/assets/14b75c76-6ac8-4def-b4d4-7f393a87e4b7"
+    alt="Convert_Implicit"
+    style="width: 70%;" />
+</div>
+
   
 ## 7. Remove Unused and Irrelevant code
 Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
