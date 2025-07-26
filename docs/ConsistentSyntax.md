@@ -4,7 +4,7 @@ When writing SQL queries, using SELECT * should be avoided. This statement reads
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
-      <h4 style = "margin-bottom: 4px;">🔹 Not optimized</h4>
+      <h4 style = "margin: 2 px;">🔹 Not optimized</h4>
       <pre><code>
 --discouraged
 WITH alpha AS (
@@ -17,7 +17,7 @@ FROM Alpha
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 Optimized</h4>
+      <h4 style = "margin: 2 px;">🔹 Optimized</h4>
       <pre><code>
 --good practice
 WITH alpha AS (
