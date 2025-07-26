@@ -72,8 +72,20 @@ Some functions can be rewritten differently, avoiding applying the function to t
 ## 5. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. For example, if an index is built on a column of type INT, but a query compares it to a SQL_VARIANT value, this triggers an implicit column conversion and SQL Server cannot use the index with Seek and may execute a full scan. Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
 
-If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
-If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
+- If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
+- If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
+
+In the case below in AdventureWorks2022, suppose to have an index on ModifiedDate column. Column ModifiedDate and variable @Salesday have different data types (datetime and sql_variant respectively). The comparison within the WHERE condition ( ModifiedDate >= @Salesday) leads to an implicit conversion of the column which prevents the use of index.
+CREATE NONCLUSTERED INDEX AI_index ON [Sales].[SalesOrderDetail] ([ModifiedDate]) INCLUDE ([SalesOrderID])
+
+```sql
+DECLARE @Salesday sql_variant 
+SET @Salesday = '20130731'
+
+SELECT UnitPrice, LineTotal
+FROM Sales.SalesOrderDetail
+WHERE ModifiedDate >= @Salesday
+```
 
 
 ## 7. Remove Unused and Irrelevant code
