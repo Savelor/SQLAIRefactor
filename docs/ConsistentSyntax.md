@@ -33,8 +33,9 @@ FROM Alpha
 <table>
   <tr>
     <td style="vertical-align: top; padding: 0;">
-      <h4 style="margin: 0 0 4px 0;">🔹 Discouraged</h4>
-      <pre style="margin: 0 !important; padding: 0 !important; line-height: 1.3;"><code style="margin: 0 !important; padding: 0 !important;">
+      <h4 style="margin: 4px 0;">🔹 Discouraged</h4>
+      <div style="margin: 0; padding: 0;">
+        <pre style="margin: 0 !important; padding: 4px !important; line-height: 1.0;"><code style="margin: 0 !important; padding: 0 !important;">
 WITH alpha AS (
 SELECT *
 FROM Sales.SalesOrderDetail
@@ -42,11 +43,13 @@ WHERE SalesOrderID > 1500
 )
 SELECT ProductID, LineTotal
 FROM Alpha
-      </code></pre>
+        </code></pre>
+      </div>
     </td>
     <td style="vertical-align: top; padding: 0;">
-      <h4 style="margin: 0 0 4px 0;">🔹 Good practice</h4>
-      <pre style="margin: 0 !important; padding: 0 !important; line-height: 1.3;"><code style="margin: 0 !important; padding: 0 !important;">
+      <h4 style="margin: 4px 0;">🔹 Good practice</h4>
+      <div style="margin: 0; padding: 0;">
+        <pre style="margin: 0 !important; padding: 4px !important; line-height: 1.1;"><code style="margin: 0 !important; padding: 0 !important;">
 WITH alpha AS (
 SELECT ProductID, LineTotal
 FROM Sales.SalesOrderDetail
@@ -54,10 +57,12 @@ WHERE SalesOrderID > 1500
 )
 SELECT ProductID, LineTotal
 FROM Alpha
-      </code></pre>
+        </code></pre>
+      </div>
     </td>
   </tr>
 </table>
+
 
 
 ## 2. OLD JOIN syntax
