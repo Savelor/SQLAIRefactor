@@ -46,9 +46,8 @@ WHERE P.ProductModelID = PM.ProductModelID
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 Modern Syntax</h4>
+      <h4>🔹 Good pratice</h4>
       <pre><code>
---good practice
 SELECT P.Name, P.ProductNumber, PM.ModifiedDate
 FROM Production.Product P
 INNER JOIN Production.ProductModel PM
@@ -60,14 +59,13 @@ ON P.ProductModelID = PM.ProductModelID
 
 
 ## 3. ORDER BY / GROUP BY
-When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. Similar concept for GROUP BY. [Rules 10.3/4]
+When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. Similar concept for GROUP BY. 
 
 <table>
   <tr>
     <td style="vertical-align: top; padding: 5px;">
       <h4>🔹 Discouraged</h4>
       <pre><code>
---discouraged
 SELECT
  SOD.SalesOrderID,
  SOH.CustomerID,
@@ -84,7 +82,6 @@ ORDER BY
     <td style="vertical-align: top; padding: 5px;">
       <h4>🔹 Recommended</h4>
       <pre><code>
---good practice
 SELECT
  SOD.SalesOrderID,
  SOH.CustomerID,
