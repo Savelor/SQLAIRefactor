@@ -66,7 +66,7 @@ When using ORDER BY or GROUP BY clauses, it is recommended to explicitly use col
 
 <table>
   <tr>
-    <td style="vertical-align: top; padding: 10px;">
+    <td style="vertical-align: top; padding: 5px;">
       <h4>🔹 Old syntax</h4>
       <pre><code>
 --discouraged
@@ -83,7 +83,7 @@ ORDER BY
 1, 2, 4 DESC
       </code></pre>
     </td>
-    <td style="vertical-align: top; padding: 10px;">
+    <td style="vertical-align: top; padding: 5px;">
       <h4>🔹 Modern Syntax</h4>
       <pre><code>
 --good practice
