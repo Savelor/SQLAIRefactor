@@ -30,7 +30,35 @@ FROM Alpha
   </tr>
 </table>
 
-   
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 4px;">
+      <h4 style="margin: 2px 0 4px 0;">🔹 Discouraged</h4>
+      <pre style="margin: 0;"><code style="margin: 0; padding: 0;">
+WITH alpha AS (
+SELECT *
+FROM Sales.SalesOrderDetail
+WHERE SalesOrderID > 1500
+)
+SELECT ProductID, LineTotal
+FROM Alpha
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 4px;">
+      <h4 style="margin: 2px 0 4px 0;">🔹 Good practice</h4>
+      <pre style="margin: 0;"><code style="margin: 0; padding: 0;">
+WITH alpha AS (
+SELECT ProductID, LineTotal
+FROM Sales.SalesOrderDetail
+WHERE SalesOrderID > 1500
+)
+SELECT ProductID, LineTotal
+FROM Alpha
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
 ## 2. OLD JOIN syntax
 Old-style implicit joins combine join and filter conditions in the WHERE clause, making the query harder to read and maintain. The second version below uses explicit INNER JOIN syntax, which clearly separates join logic from filtering, enhancing clarity and structure. SQL Server process both with the same plan, but explicit JOINs are best practice because they make queries easier to understand, maintain, and extend.
 
