@@ -27,10 +27,9 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 </div>
 
 
-<div style="background: white; font-family: Verdana; padding: 10px; margin: 0;">
-Cost=0.45, CPU time=16 ms,  elapsed time=9 ms. LogicalReads=438 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.00,  CPU time=0 ms,  elapsed time=0 ms LogicalReads=3
+<div style="background: white; padding: 10px; margin: 0;">
+Cost=0.45, CPU time=16 ms,  elapsed time=9 ms. LogicalReads=438 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.00,  CPU time=0 ms,  elapsed time=0 ms LogicalReads=3
 </div>
-
 
 
 ## FLOOR()
