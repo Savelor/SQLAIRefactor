@@ -95,6 +95,34 @@ WHERE ModifiedDate >= @Salesday
 
 Given the code above, we can implement two different solutions: the first is to declare the @Salesday variable with the same data type as ModifiedDate. The second is to explicitly convert the @Salesday variable to the same data type as ModifiedDate. Both solutions isolate the column preventing functions or implicit conversions applied on it.
 
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 1</h4>
+      <pre><code>
+DECLARE @Salesday datetime 
+SET @Salesday = '20130731'
+
+SELECT SalesOrderID, ModifiedDate
+FROM Sales.SalesOrderDetail
+WHERE ModifiedDate >= @Salesday
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 2</h4>
+      <pre><code>
+DECLARE @Salesday sql_variant 
+SET @Salesday = '20130731'
+
+SELECT SalesOrderID, ModifiedDate 
+FROM Sales.SalesOrderDetail
+WHERE ModifiedDate >= CONVERT(datetime,@Salesday)
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+  
 ## 7. Remove Unused and Irrelevant code
 Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. [Rules 10.15/16]
 
