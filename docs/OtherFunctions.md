@@ -90,4 +90,53 @@ Cost=0.18, CPU time=16 ms,  elapsed time=110 ms, LogicalReads=216 &nbsp;&nbsp;&n
 </div>
 
 ## ISNULL
+The first example is almost an error:
+Supponiamo che qui essita un indice sulla colonna:
+CREATE NONCLUSTERED INDEX IX1_CarrierTrackingNumber ON [Sales].[SalesOrderDetail] ([CarrierTrackingNumber])
+**Primo esempio** 
 
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT * from [Sales].[SalesOrderDetail]
+where ISNULL(CarrierTrackingNumber, '') = '4911-403C-98'
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable, but better performance</h4>
+      <pre><code>
+SELECT * from [Sales].[SalesOrderDetail]
+where CarrierTrackingNumber = '4911-403C-98'
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<img width="2413" height="465" alt="ISNULL1" src="https://github.com/user-attachments/assets/8519fc9d-70c7-4e29-9d24-03d2a8fa856e" />
+
+<div style="background: white; padding: 10px; margin: 0;">
+Cost=0.60, CPU time=15 ms,  elapsed time=74 ms, LogicalReads=492 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.05, CPU time=0 ms, elapsed time=70 ms LogicalReads=39
+</div>
+
+**Secondo esempio** molto più generico
+
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT * from [Sales].[SalesOrderDetail]
+where ISNULL(CarrierTrackingNumber, '') = '4911-403C-98'
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable, but better performance</h4>
+      <pre><code>
+SELECT * from [Sales].[SalesOrderDetail]
+where CarrierTrackingNumber = '4911-403C-98'
+      </code></pre>
+    </td>
+  </tr>
+</table>
