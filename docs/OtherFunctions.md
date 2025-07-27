@@ -50,6 +50,11 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 <div style="text-align: left;">
 <img width="1278"  alt="LIKE2" src="https://github.com/user-attachments/assets/217506dc-baa3-4c01-b6b3-679aab64b290" />
 </div>
+
+<div style="background: white; padding: 10px; margin: 0;">
+Cost=0.18, CPU time=32 ms,  elapsed time=75 ms, LogicalReads=216 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.18,  CPU time=0 ms, elapsed time=56 ms LogicalReads=216
+</div>
+
 <p>&nbsp;</p>
 
 
@@ -80,5 +85,7 @@ WHERE CHARINDEX('way', AddressLine1) > 0
 
 <img src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" alt="LIKE3" width="1049" height="191" />
 
-
+<div style="background: white; padding: 10px; margin: 0;">
+Cost=0.18, CPU time=16 ms,  elapsed time=110 ms, LogicalReads=216 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.18,  CPU time=31 ms, elapsed time=91 ms LogicalReads=216
+</div>
 
