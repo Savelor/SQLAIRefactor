@@ -50,6 +50,7 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 </div>
 
 3. Wildcard on both sides:
+   it is possible to refactor using PATHINDEX function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time. Here some examples on AdventureWorks2022
    
 <table>
   <tr>
@@ -72,5 +73,10 @@ WHERE CHARINDEX('way', AddressLine1) > 0
     </td>
   </tr>
 </table>
-   
+
+<div style="text-align: left;">
+<img width="1865" height="278" alt="LIKE2" src="https://github.com/user-attachments/assets/6518eb12-dc7c-4a86-b2f4-abd26647b7e1" />
+</div>
+
+
 
