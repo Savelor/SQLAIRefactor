@@ -89,3 +89,5 @@ WHERE CHARINDEX('way', AddressLine1) > 0
 Cost=0.18, CPU time=16 ms,  elapsed time=110 ms, LogicalReads=216 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.18, CPU time=31 ms, elapsed time=91 ms LogicalReads=216
 </div>
 
+## ISNULL
+
