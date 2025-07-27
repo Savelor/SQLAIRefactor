@@ -128,7 +128,7 @@ Cost=0.60, CPU time=15 ms,  elapsed time=74 ms, LogicalReads=492 &nbsp;&nbsp;&nb
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 NOT Sargable - Index Scan</h4>
       <pre><code>
-SELECT BusinessEntityID, FirstName, MiddleName, LastName
+SELECT BusinessEntityID, FirstName, MiddleName
 FROM Person.Person
 WHERE COALESCE(LastName, FirstName) = 'James';
       </code></pre>
@@ -136,7 +136,7 @@ WHERE COALESCE(LastName, FirstName) = 'James';
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 NOT Sargable, but better performance</h4>
       <pre><code>
-SELECT BusinessEntityID, FirstName, MiddleName, LastName
+SELECT BusinessEntityID, FirstName, MiddleName 
 FROM Person.Person
 WHERE LastName = 'James'
    OR (LastName IS NULL AND FirstName = 'James');
