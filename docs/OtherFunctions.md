@@ -1,7 +1,7 @@
 ## LIKE
 WHERE predicates that include a LIKE clause typically result in execution plans that are difficult to optimize. However, rewriting the LIKE condition using functions such as RIGHT and PATINDEX can lead to significantly more efficient execution plans. Tests show that this approach can reduce I/O operations, especially as table size increases.
 
-1. Wildcard on right, the plan is good enough:
+1. **Wildcard on right:**, the plan is good enough, no need to rewrite it.
 
 <table>
   <tr>
@@ -16,13 +16,14 @@ WHERE AddressLine1 Like 'way%'
   </tr>
 </table>
 
+<img src="https://github.com/user-attachments/assets/64dacae3-ce39-42b4-8f8c-4d464932b5f9" alt="LIKE1" width="239" height="121" />
 
-<img src="https://github.com/user-attachments/assets/64dacae3-ce39-42b4-8f8c-4d464932b5f9" alt="LIKE1" width="259" height="121" />
+<div style="background: white; padding: 10px; margin: 0; margin-bottom: 20px">
+Cost=0.00, CPU time=0 ms,  elapsed time=0 ms, LogicalReads=3 
+</div>
+<p>&nbsp;</p>
 
-
-
-
-2. Wildcard on left: it is possible to refactor using RIGHT function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time
+2. **Wildcard on left:** it is possible to refactor using RIGHT function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time
 
 <table>
   <tr>
@@ -45,11 +46,14 @@ WHERE RIGHT(AddressLine1,3) = 'way'
   </tr>
 </table>
 
-<div style="text-align: left;">
-<img width="1865" height="278" alt="LIKE2" src="https://github.com/user-attachments/assets/6518eb12-dc7c-4a86-b2f4-abd26647b7e1" />
-</div>
 
-3. Wildcard on both sides:
+<div style="text-align: left;">
+<img width="1278"  alt="LIKE2" src="https://github.com/user-attachments/assets/217506dc-baa3-4c01-b6b3-679aab64b290" />
+</div>
+<p>&nbsp;</p>
+
+
+3. **Wildcard on both sides:**
    it is possible to refactor using PATHINDEX function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time. Here some examples on AdventureWorks2022
    
 <table>
@@ -74,7 +78,7 @@ WHERE CHARINDEX('way', AddressLine1) > 0
   </tr>
 </table>
 
-<img src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" alt="LIKE3" width="1249" height="191" />
+<img src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" alt="LIKE3" width="1049" height="191" />
 
 
 
