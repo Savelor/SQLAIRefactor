@@ -120,23 +120,6 @@ where CarrierTrackingNumber = '4911-403C-98'
 Cost=0.60, CPU time=15 ms,  elapsed time=74 ms, LogicalReads=492 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.05, CPU time=0 ms, elapsed time=70 ms LogicalReads=39
 </div>
 
-**Secondo esempio** molto più generico
 
-<table>
-  <tr>
-    <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 NOT Sargable - Index Scan</h4>
-      <pre><code>
-SELECT * from [Sales].[SalesOrderDetail]
-where ISNULL(CarrierTrackingNumber, '') = '4911-403C-98'
-      </code></pre>
-    </td>
-    <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 NOT Sargable, but better performance</h4>
-      <pre><code>
-SELECT * from [Sales].[SalesOrderDetail]
-where CarrierTrackingNumber = '4911-403C-98'
-      </code></pre>
-    </td>
-  </tr>
-</table>
+## COALESCE
+
