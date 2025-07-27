@@ -75,7 +75,7 @@ WHERE CHARINDEX('way', AddressLine1) > 0
 </table>
 
 <div style="text-align: left;">
-<img width="1865" height="278" alt="LIKE2" src="https://github.com/user-attachments/assets/6518eb12-dc7c-4a86-b2f4-abd26647b7e1" />
+<img width="1784" height="273" alt="LIKE3" src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" />
 </div>
 
 
