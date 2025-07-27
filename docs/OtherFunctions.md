@@ -145,4 +145,7 @@ WHERE LastName = 'James'
   </tr>
 </table>
 
+<img width="1958" height="273" alt="COALESCE" src="https://github.com/user-attachments/assets/1268050e-a559-4609-b0b6-0d256a40f97d" />
+
+
 
