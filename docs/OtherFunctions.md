@@ -49,4 +49,28 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 <img width="1865" height="278" alt="LIKE2" src="https://github.com/user-attachments/assets/6518eb12-dc7c-4a86-b2f4-abd26647b7e1" />
 </div>
 
+3. Wildcard on both sides:
+   
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT AddressId, PostalCode, City
+FROM Person.Address
+WHERE AddressLine1 Like '%way%'
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable, but better performance</h4>
+      <pre><code>
+SELECT AddressId, PostalCode, City
+FROM Person.Address
+WHERE CHARINDEX('way', AddressLine1) > 0
+--Alternatively: WHERE PATINDEX('%way%', AddressLine1) > 0
+      </code></pre>
+    </td>
+  </tr>
+</table>
+   
 
