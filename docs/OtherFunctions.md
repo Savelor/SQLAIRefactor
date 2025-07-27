@@ -16,9 +16,9 @@ WHERE AddressLine1 Like 'way%'
   </tr>
 </table>
 
-<div style="text-align: left;">
-<img width="432" height="202" alt="LIKE1" src="https://github.com/user-attachments/assets/64dacae3-ce39-42b4-8f8c-4d464932b5f9" />
-</div>
+
+<img src="https://github.com/user-attachments/assets/64dacae3-ce39-42b4-8f8c-4d464932b5f9" alt="LIKE1" width="259" height="121" />
+
 
 
 
@@ -74,9 +74,7 @@ WHERE CHARINDEX('way', AddressLine1) > 0
   </tr>
 </table>
 
-<div style="text-align: left;">
-<img width="1784" height="273" alt="LIKE3" src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" />
-</div>
+<img src="https://github.com/user-attachments/assets/e0d6afcf-7c74-4f3a-ae0d-bfb595eae779" alt="LIKE3" width="1249" height="191" />
 
 
 
