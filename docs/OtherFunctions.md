@@ -164,20 +164,22 @@ INSERT INTO SalesOrderDetailX
 SELECT CarrierTrackingNumber, ProductId 
 FROM Sales.SalesOrderDetail
 
---This stmt cost=0.51 and has convert warning
+-----------------------
 SELECT CarrierTrackingNumber FROM dbo.SalesOrderDetailX
 WHERE convert(INT,ProductId) = 21222000
-
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 NOT Sargable, but better performance</h4>
+      <h4>🔹Sargable</h4>
       <pre><code>
 SELECT CarrierTrackingNumber 
 FROM dbo.SalesOrderDetailX
-WHERE ProductId = CONVERT(nvarchar(8), 21222000);
-   OR (LastName IS NULL AND FirstName = 'James');
+WHERE ProductId = CONVERT(nvarchar(8), 21222000)
       </code></pre>
     </td>
   </tr>
 </table>
+
+<img width="2317" height="461" alt="CONVERT" src="https://github.com/user-attachments/assets/55aac427-2e69-4b17-b2b5-319de0b62d5f" />
+
+
