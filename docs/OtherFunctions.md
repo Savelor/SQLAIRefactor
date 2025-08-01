@@ -182,4 +182,41 @@ WHERE ProductId = CONVERT(nvarchar(8), 21222000)
 
 <img width="2317" height="461" alt="CONVERT" src="https://github.com/user-attachments/assets/55aac427-2e69-4b17-b2b5-319de0b62d5f" />
 
+## CAST
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+USE AdventureWorks2019
+CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
+ ProductId NVARCHAR(8))
+
+CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId 
+ON SalesOrderDetailX (ProductId)
+
+INSERT INTO SalesOrderDetailX  
+SELECT CarrierTrackingNumber, ProductId 
+FROM Sales.SalesOrderDetail
+
+-----------------------
+SELECT CarrierTrackingNumber
+FROM dbo.SalesOrderDetailX
+WHERE CAST(ProductId AS INT) = 21222000;
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹Sargable</h4>
+      <pre><code>
+SELECT CarrierTrackingNumber
+FROM dbo.SalesOrderDetailX
+WHERE ProductId = CONVERT(nvarchar(8), 21222000);
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<img width="2305" height="460" alt="CAST" src="https://github.com/user-attachments/assets/9199b041-4cfd-43c1-9fa6-9ab74fe9e4e6" />
+
+## OUTER APPLY
 
