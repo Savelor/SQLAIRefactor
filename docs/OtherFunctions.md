@@ -222,6 +222,7 @@ WHERE ProductId = CONVERT(nvarchar(8), 21222000);
 
 
 ## EXISTS
+The following example is on a 25 M table
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
