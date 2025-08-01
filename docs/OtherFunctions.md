@@ -147,5 +147,37 @@ WHERE LastName = 'James'
 
 <img width="1958" height="273" alt="COALESCE" src="https://github.com/user-attachments/assets/1268050e-a559-4609-b0b6-0d256a40f97d" />
 
+## CONVERT
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+USE AdventureWorks2019
+CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
+ ProductId NVARCHAR(8))
 
+CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId 
+ON SalesOrderDetailX (ProductId)
 
+INSERT INTO SalesOrderDetailX  
+SELECT CarrierTrackingNumber, ProductId 
+FROM Sales.SalesOrderDetail
+
+--This stmt cost=0.51 and has convert warning
+SELECT CarrierTrackingNumber FROM dbo.SalesOrderDetailX
+WHERE convert(INT,ProductId) = 21222000
+
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable, but better performance</h4>
+      <pre><code>
+SELECT CarrierTrackingNumber 
+FROM dbo.SalesOrderDetailX
+WHERE ProductId = CONVERT(nvarchar(8), 21222000);
+   OR (LastName IS NULL AND FirstName = 'James');
+      </code></pre>
+    </td>
+  </tr>
+</table>
