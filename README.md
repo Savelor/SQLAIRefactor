@@ -31,13 +31,12 @@ Some functions can be rewritten differently, avoiding applying the function to t
 
 ## ⚙️5. Arithmetic Operators 
 Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following example is on AdventurWorks2022. Since the SalesOrderID is multiplied, the condition SalesOrderID * 3 < 1200 may prevent SQL Server from effectively using the existing PK index. That’s because SQL Server evaluates the multiplication result and not the column data, ‘hiding’ the indexed data. It compares each single multiplication result to 1200, leading to a Scan on the column. This case shows a variation of Cost: -99%, CPU and elapsed time: -99%, I/O: -99%. [Rules 10.8/9]
--  [*, /, +, -]()
--  equations like
+-  [*, /, +, -](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#arithmetic-operators)
+-  [Simple equations](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#simple-equations)
 
 
-
-## 6 Other functions
-- [LIKE]()
+## ⚙️6. Other functions
+- [LIKE](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#like)
 - [ISNULL()]()
 - [COALESCE()]
 - [CONVERT()]
