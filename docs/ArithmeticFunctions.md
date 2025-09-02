@@ -1,6 +1,5 @@
 ## ABS()
-
-
+The ABS() function returns the absolute value of a number, but applying it to an indexed column makes the query non-SARGable, since SQL Server must compute the function on every row. To make the query SARGable, rewrite the condition using equivalent range predicates (e.g., Column >= -value AND Column <= value), allowing the optimizer to use an Index Seek.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
