@@ -37,11 +37,11 @@ Simple arithmetic expressions can be written differently to force the execution 
 
 ## ⚙️6. Other functions
 - [LIKE](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#like)
-- [ISNULL()]()
-- [COALESCE()]
-- [CONVERT()]
-- [CAST()]
-- [OUTER APPLY]
+- [ISNULL()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#isnull)
+- [COALESCE()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#coalesce)
+- [CONVERT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#convert)
+- [CAST()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#cast)
+- [OUTER APPLY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#outer-apply)
 
 ## 7. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. For example, if an index is built on a column of type INT, but a query compares it to a SQL_VARIANT value, this triggers an implicit column conversion and SQL Server cannot use the index with Seek and may execute a full scan. Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
