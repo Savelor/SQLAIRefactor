@@ -33,6 +33,8 @@ Cost=0.45, CPU time=16 ms,  elapsed time=9 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 
 
 ## FLOOR()
+The FLOOR() function rounds numeric values down, but applying it directly to an indexed column prevents SQL Server from using the index efficiently, resulting in a non-SARGable query. To make it SARGable, rewrite the condition by shifting the arithmetic to the constant side, so the column remains untouched and eligible for an Index Seek.
+
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -64,8 +66,8 @@ Cost=0.45, CPU time=16 ms,  elapsed time=7 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 </div>
 
 
-
 ## ROUND()
+The ROUND() function is often used to normalize numeric values, but applying it directly to an indexed column makes the query non-SARGable, forcing SQL Server to scan instead of seek. To keep the query SARGable, rewrite the condition so the rounding operation is applied to the constant, leaving the indexed column untouched for efficient index usage.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -98,6 +100,7 @@ Cost=0.45, CPU time=16 ms,  elapsed time=12 ms. LogicalReads=438 &nbsp;&nbsp;&nb
 
 
 ## SIGN()
+The SIGN() function returns the sign of a numeric expression, but when applied directly to an indexed column it makes the query non-SARGable, blocking efficient index seeks. A better approach is to rewrite the condition with explicit ranges (e.g., < 0, = 0, > 0), so SQL Server can leverage the index properly.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
