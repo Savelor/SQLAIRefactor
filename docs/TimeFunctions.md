@@ -32,7 +32,7 @@ Cost=0.496, CPU time=16 ms,  elapsed time=29 ms.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 </div>
 
 ## DATEADD()
-
+The DATEADD() function is often used to shift dates when filtering, but applying it directly to an indexed date column makes the query non-SARGable, since SQL Server must evaluate the function on every row. To keep the query SARGable, apply DATEADD() to the constant instead of the column, so the column can be searched directly with an Index Seek.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -63,7 +63,7 @@ Cost=0.496, CPU time=0 ms,  elapsed time=43ms logical reads 358.&nbsp;&nbsp;&nbs
 </div>
   
 ## DATEPART()
-
+The DATEPART() function extracts a part of a date (such as year or month), but applying it directly to an indexed column makes the query non-SARGable, preventing index seeks. To make the query SARGable, rewrite the condition using a date range that corresponds to the desired part, so SQL Server can efficiently use the index.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
