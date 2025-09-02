@@ -32,7 +32,7 @@ Cost=0.32, CPU time=15 ms,  elapsed time=454 ms. logicalReads=262 &nbsp;&nbsp;&n
 
 
 ## SQRT()
-
+The SQRT() function calculates the square root of a number, but when applied to an indexed column it makes the query non-SARGable, preventing the use of efficient index seeks. To keep it SARGable, rewrite the condition by squaring the constant value instead of applying SQRT() to the column, leaving the indexed column untouched.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -65,7 +65,7 @@ Cost=3.00, CPU time=156 ms,  elapsed time=2059 ms. logicalReads=2647 &nbsp;&nbsp
 
 
 ## POWER()
-
+The POWER() function raises a number to a given exponent, but using it directly on an indexed column makes the query non-SARGable, forcing SQL Server to scan the index. To make the query SARGable, rewrite the predicate by applying the exponent to the constant side instead, keeping the indexed column untouched and enabling an Index Seek.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
