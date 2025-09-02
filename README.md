@@ -1,6 +1,7 @@
-This repository is the accompanying code for the **"AI-based T-SQL Refactoring: an automatic intelligent code optimization with Azure OpenAI"** article. Make sure that check that out at https://devblogs.microsoft.com/azure-sql/?p=4778&preview=true.
-
 # SQLAIRefactor
+SQLAIRefactor is a solution based on OpenAI which analyzes all SQL Server application code and identifies inefficiencies and anti-patterns, reporting evidence to the developer and proposing solutions and alternatives aligned with current best practices. This repository is the accompanying code for the **"AI-based T-SQL Refactoring: an automatic intelligent code optimization with Azure OpenAI"** article. Make sure that check that out at https://devblogs.microsoft.com/azure-sql/?p=4778&preview=true.
+
+# Refactoring use cases
 The following section showcases a curated collection of real-world SQL optimization use cases where AI can make a meaningful impact. Each scenario highlights common challenges in T-SQL development—from anti-patterns and performance bottlenecks to security flaws and inefficient code structures. In every case, the AI model can be guided using structured prompts to identify and refactor problematic code, improving performances, the execution plan, clarity and best practice alignment. This catalog can serve both as a demonstration of what’s achievable with AI and as a practical reference for developers aiming to automate large-scale SQL code improvements.
 
 ## ⚙️1. Consistent Syntax
