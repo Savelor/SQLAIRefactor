@@ -151,6 +151,14 @@ WHERE [ActualCost] > 0
 </div>
 
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.34, CPU time=15 ms, elapsed time=363 ms. LogicalReads=274 &nbsp;&nbsp;&nbsp;&nbsp;Cost=0.23, CPU time=16 ms, elapsed time=347 ms LogicalReads=201
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.34           | 0.23                | **-32.35%**  |
+| CPU Time [ms]     | 15             | 16                  | **+6.67%**   |
+| Elapsed Time [ms] | 363            | 347                 | **-4.41%**   |
+| Logical Reads     | 274            | 201                 | **-26.64%**  |
+
+</small>
+
