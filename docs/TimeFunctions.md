@@ -25,7 +25,7 @@ WHERE ModifiedDate >= DATEADD(DAY, -21, GETDATE()
 <div style="text-align: left;">
   <img src="https://github.com/user-attachments/assets/914fde7b-710f-4c92-87ba-3fbbbcbaa23e" alt="Time_1" style="width: 90%;">
 </div>
-
+The comparison between the two actual execution plans shows exceptional reduction in all execution metrics:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
