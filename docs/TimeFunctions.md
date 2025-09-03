@@ -105,9 +105,17 @@ WHERE ModifiedDate >= '2025-01-01' AND ModifiedDate < '2026-01-01'
 <img width="2339" height="454" alt="DatePART" src="https://github.com/user-attachments/assets/76be8db3-8a37-4e11-8642-831472e93146" />
 </div>
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.496, CPU time=0 ms,  elapsed time=43ms logical reads 358.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=25 ms logical reads 3
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.483          | 0.006               | **-98.76%**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 12             | 0                   | **-100.00%** |
+| Logical Reads     | 358            | 3                   | **-99.16%**  |
+
+</small>
+
 
 ## YEAR()
 Using the YEAR() function in the WHERE clause of a SQL query may seem simple and intuitive, but it's not sargable—meaning SQL Server cannot use an index efficiently, leading to slower performance, especially on large tables.
