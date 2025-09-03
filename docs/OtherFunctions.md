@@ -185,7 +185,7 @@ WHERE LastName = 'James'
 ## CONVERT
 To test this use case before let's create the table:
 ```sql
-  USE AdventureWorks2019
+  USE AdventureWorks2022
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
    ProductId NVARCHAR(8))
   CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId
@@ -201,18 +201,6 @@ To test this use case before let's create the table:
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 NOT Sargable - Index Scan</h4>
       <pre><code>
-USE AdventureWorks2019
-CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
- ProductId NVARCHAR(8))
-
-CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId 
-ON SalesOrderDetailX (ProductId)
-
-INSERT INTO SalesOrderDetailX  
-SELECT CarrierTrackingNumber, ProductId 
-FROM Sales.SalesOrderDetail
-
------------------------
 SELECT CarrierTrackingNumber FROM dbo.SalesOrderDetailX
 WHERE convert(INT,ProductId) = 21222000
       </code></pre>
