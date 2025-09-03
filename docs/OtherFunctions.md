@@ -184,6 +184,7 @@ WHERE LastName = 'James'
 
 ## CONVERT
 To test this use case before let's create the table:
+```sql
   USE AdventureWorks2019
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
    ProductId NVARCHAR(8))
