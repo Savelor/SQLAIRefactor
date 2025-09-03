@@ -71,4 +71,19 @@ WHERE SalesOrderID < ((1200 + 10.0) / 3.0)
   </tr>
 </table>
 
+<img width="1851" height="469" alt="LinearEquations" src="https://github.com/user-attachments/assets/30f99eaa-0ca5-4c7c-a8b4-8f52086761e8" />
+
+The comparison between the two actual execution plans shows exceptional improvements on the AI optimized code on all execution metrics:
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.446          | 0.003               | **-99.33%**  |
+| CPU Time [ms]     | 31             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 22             | 0                   | **-100.00%** |
+| Logical Reads     | 273            | 3                   | **-98.90%**  |
+
+</small>
+
+
 
