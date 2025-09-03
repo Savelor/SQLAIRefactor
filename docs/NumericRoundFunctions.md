@@ -27,7 +27,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 </div>
 
 
-<div style="font-size:75%">
+<div style="font-size:50%">
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
