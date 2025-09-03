@@ -1,4 +1,4 @@
-## 1. SELECT *
+## SELECT *
 When writing SQL queries, using SELECT * should be avoided. This statement reads all columns, increasing I/O and memory usage due to potentially unnecessary data retrieval. Instead, only select the columns really needed in the code. This approach reduces data load, improves query performance, and keeps your code cleaner. In the example below, the ‘*’ has been replaced with only the necessary columns: ProductID and LineTotal. 
 
 <table>
@@ -31,7 +31,7 @@ FROM Alpha
 </table>
 
 
-## 2. OLD JOIN syntax
+## OLD JOIN syntax
 Old-style implicit joins combine join and filter conditions in the WHERE clause, making the query harder to read and maintain. The second version below uses explicit INNER JOIN syntax, which clearly separates join logic from filtering, enhancing clarity and structure. SQL Server process both with the same plan, but explicit JOINs are best practice because they make queries easier to understand, maintain, and extend.
 
 <table>
@@ -57,7 +57,7 @@ ON P.ProductModelID = PM.ProductModelID
 </table>
 
 
-## 3. ORDER BY 
+## ORDER BY 
 When using ORDER BY clause it is recommended to explicitly use column names instead of column position numbers. In ORDER BY, relying on numeric positions can lead to errors if the SELECT clause is later modified, changing the order of selected columns without updating the ORDER BY clause. This sorts the results set by unintended columns, potentially resulting in incorrect results and silent bug. 
 
 <table style="vertical-align: top;">
