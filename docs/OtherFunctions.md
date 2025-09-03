@@ -51,9 +51,17 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 <img width="1278"  alt="LIKE2" src="https://github.com/user-attachments/assets/217506dc-baa3-4c01-b6b3-679aab64b290" />
 </div>
 
-<div style="background: white; padding: 10px; margin: 0;">
-Cost=0.18, CPU time=32 ms,  elapsed time=75 ms, LogicalReads=216 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.18,  CPU time=0 ms, elapsed time=56 ms LogicalReads=216
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.18           | 0.18                | **0.00%**    |
+| CPU Time [ms]     | 31             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 74             | 61                  | **-17.57%**  |
+| Logical Reads     | 217            | 217                 | **0.00%**    |
+
+</small>
+
 
 <p>&nbsp;</p>
 
