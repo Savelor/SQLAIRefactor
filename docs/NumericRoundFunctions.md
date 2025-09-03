@@ -67,7 +67,7 @@ Cost=0.45, CPU time=16 ms,  elapsed time=7 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 
 
 ## ROUND()
-The ROUND() function is often used to normalize numeric values, but applying it directly to an indexed column makes the query non-SARGable, forcing SQL Server to scan instead of seek. To keep the query SARGable, rewrite the predicate using an interval condition so the rounding operation is applied to the constant, leaving the indexed column untouched for efficient index usage.
+The ROUND() function is often used to normalize numeric values, but applying it directly to an indexed column makes the query non-SARGable, forcing SQL Server to scan instead of seek. To keep the query SARGable, rewrite the predicate using an equivalent interval condition, leaving the indexed column untouched for efficient index usage.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
