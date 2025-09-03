@@ -107,6 +107,14 @@ WHERE UnitCost > -SQRT(400) AND UnitCost < SQRT(400)
 <img width="2439" height="474" alt="Power" src="https://github.com/user-attachments/assets/a9039508-be38-453d-a4e3-61cf62b5e907" />
 </div>
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=3.04, CPU time=156 ms,  elapsed time=1525 ms. logicalReads=2650 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=1.76,  CPU time=140 ms,  elapsed time=1540 ms logicalReads=1241
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 3.04           | 1.76                | **-42.11%**  |
+| CPU Time [ms]     | 156            | 140                 | **-10.26%**  |
+| Elapsed Time [ms] | 1525           | 1540                | **+0.98%**   |
+| Logical Reads     | 2650           | 1241                | **-53.17%**  |
+
+</small>
+
