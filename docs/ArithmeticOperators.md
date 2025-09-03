@@ -48,6 +48,27 @@ This use case also addresses the following conditions in WHERE clauses:
 
 
 ## Simple equations
+In cases where the WHERE predicate is a linear combination of an indexed column and numeric constants, the predicate can be rewritten by applying the basic principles of linear equations: isolating the column on the left-hand side and moving the constant terms to the right-hand side.
 
+<table style="width: 100%;">
+  <tr>
+    <td style="width: 60%; vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT UnitPrice, OrderQty 
+FROM Sales.SalesOrderDetail
+WHERE SalesOrderID * 3 - 10 < 1200
+      </code></pre>
+    </td>
+    <td style="width: 40%; vertical-align: top; padding: 10px;">
+      <h4>🔹 Sargable - Index Seek</h4>
+      <pre><code>
+SELECT UnitPrice, OrderQty
+FROM Sales.SalesOrderDetail
+WHERE SalesOrderID < ((1200 + 10.0) / 3.0)
+      </code></pre>
+    </td>
+  </tr>
+</table>
 
 
