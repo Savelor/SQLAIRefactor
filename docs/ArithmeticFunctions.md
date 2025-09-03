@@ -26,9 +26,17 @@ WHERE ReferenceOrderID > 50 OR ReferenceOrderID < -50
 </div>
 
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.32, CPU time=15 ms,  elapsed time=454 ms. logicalReads=262 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.32,  CPU time=16 ms,  elapsed time=452 ms logicalReads=262
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.32           | 0.32                | **0.00%**    |
+| CPU Time [ms]     | 31             | 25                  | **-19.35%**  |
+| Elapsed Time [ms] | 461            | 453                 | **-1.74%**   |
+| Logical Reads     | 255            | 258                 | **+1.18%**   |
+
+</small>
+
 
 
 ## SQRT()
