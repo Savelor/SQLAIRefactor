@@ -26,15 +26,20 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 <img width="2122" height="279" alt="CEILING" src="https://github.com/user-attachments/assets/207018fb-84a5-40a5-ae14-d23ff6de3def" />
 </div>
 
+<sub>
+
+<div align="left">
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | <sub>0.45</sub> | <sub>0.00</sub>     | <sub>-100.00%</sub> |
-| CPU Time [ms]     | <sub>16</sub>   | <sub>0</sub>        | <sub>-100.00%</sub> |
-| Elapsed Time [ms] | <sub>9</sub>    | <sub>0</sub>        | <sub>-100.00%</sub> |
-| Logical Reads     | <sub>438</sub>  | <sub>3</sub>        | <sub>-99.32%</sub> |
+| Cost              | 0.45           | 0.00                | -100.00%      |
+| CPU Time [ms]     | 16             | 0                   | -100.00%      |
+| Elapsed Time [ms] | 9              | 0                   | -100.00%      |
+| Logical Reads     | 438            | 3                   | -99.32%       |
 
+</div>
 
+</sub>
 
 
 ## FLOOR()
