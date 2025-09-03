@@ -26,10 +26,17 @@ WHERE ModifiedDate >= DATEADD(DAY, -21, GETDATE()
   <img src="https://github.com/user-attachments/assets/914fde7b-710f-4c92-87ba-3fbbbcbaa23e" alt="Time_1" style="width: 90%;">
 </div>
 
+<small>
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.496, CPU time=16 ms,  elapsed time=29 ms.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.006,  CPU time=0 ms,  elapsed time=12 ms
-</div>
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.496          | 0.006               | **-98.79%**  |
+| CPU Time [ms]     | 15             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 36             | 27                  | **-25.00%**  |
+| Logical Reads     | 358            | 3                   | **-99.16%**  |
+
+</small>
+
 
 ## DATEADD()
 The DATEADD() function is often used to shift dates when filtering, but applying it directly to an indexed date column makes the query non-SARGable, since SQL Server must evaluate the function on every row. To keep the query SARGable, apply DATEADD() to the constant instead of the column, so the column can be searched directly with an Index Seek.
