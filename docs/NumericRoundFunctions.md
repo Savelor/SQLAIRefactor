@@ -27,7 +27,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 </div>
 
 
-<small> 
+<sub> 
   
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
@@ -36,7 +36,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 | Elapsed Time [ms] |              9 |                   0 |      -100.00% |
 | Logical Reads     |            438 |                   3 |       -99.32% |
 
-</small>
+</sub>
 
 
 ## FLOOR()
