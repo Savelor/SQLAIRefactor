@@ -70,9 +70,16 @@ WHERE [City Key] >= 714 AND [City Key] < 714 + 1
 </div>
 
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=0.45, CPU time=16 ms,  elapsed time=7 ms. LogicalReads=438 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.00,  CPU time=0 ms,  elapsed time=0 ms LogicalReads=3
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.45           | 0.00                | **-100.00%** |
+| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 7              | 0                   | **-100.00%** |
+| Logical Reads     | 438            | 3                   | **-99.32%**  |
+
+</small>
 
 
 ## ROUND()
