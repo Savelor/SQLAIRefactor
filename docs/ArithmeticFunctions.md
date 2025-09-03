@@ -107,6 +107,7 @@ WHERE UnitCost > -SQRT(400) AND UnitCost < SQRT(400)
 <img width="2439" height="474" alt="Power" src="https://github.com/user-attachments/assets/a9039508-be38-453d-a4e3-61cf62b5e907" />
 </div>
 
+The actual plan comparison shows a great reduction in cost and I/O:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
