@@ -171,6 +171,17 @@ WHERE LastName = 'James'
 
 <img width="1958" height="273" alt="COALESCE" src="https://github.com/user-attachments/assets/1268050e-a559-4609-b0b6-0d256a40f97d" />
 
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 2.85           | 0.321               | **-88.72%**  |
+| CPU Time [ms]     | 0              | 0                   | **0.00%**    |
+| Elapsed Time [ms] | 10             | 0                   | **-100.00%** |
+| Logical Reads     | 4004           | 305                 | **-92.38%**  |
+
+</small>
+
 ## CONVERT
 <table>
   <tr>
