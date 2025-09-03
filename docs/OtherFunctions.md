@@ -132,9 +132,17 @@ where CarrierTrackingNumber = '4911-403C-98'
 
 <img width="2413" height="465" alt="ISNULL1" src="https://github.com/user-attachments/assets/8519fc9d-70c7-4e29-9d24-03d2a8fa856e" />
 
-<div style="background: white; padding: 10px; margin: 0;">
-Cost=0.60, CPU time=15 ms,  elapsed time=74 ms, LogicalReads=492 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.05, CPU time=0 ms, elapsed time=70 ms LogicalReads=39
-</div>
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.60           | 0.05                | **-91.67%**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 11             | 0                   | **-100.00%** |
+| Logical Reads     | 500            | 39                  | **-92.20%**  |
+
+</small>
+
 
 
 ## COALESCE
