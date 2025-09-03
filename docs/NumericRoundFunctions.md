@@ -40,7 +40,6 @@ The actual execution plan metrics show a great improvement replacing CEILING wit
 
 
 
-
 ## FLOOR()
 The FLOOR() function rounds numeric values down, but applying it directly to an indexed column prevents SQL Server from using the index efficiently, resulting in a non-SARGable query. To make it SARGable, rewrite the condition by shifting the arithmetic to the constant side, so the column remains untouched and eligible for an Index Seek.
 
@@ -69,7 +68,7 @@ WHERE [City Key] >= 714 AND [City Key] < 714 + 1
 <img width="2082" height="276" alt="FLOOR" src="https://github.com/user-attachments/assets/efabf352-6aa4-4c0b-bbbe-c81051982314" />
 </div>
 
-
+The actual execution plan metrics show a great improvement in this use case:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
