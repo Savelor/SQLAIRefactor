@@ -17,7 +17,7 @@ When used in a WHERE clause, these functions can prevent the SQL Server engine f
 -  [SIGN()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
 
 ## ⚙️ 3.  Arithmetic functions
-In this example in AdventureWorks2022 database, the ABS() function is used in the WHERE condition, preventing the use of the existing index on ReferenceOrderID column. This function has been replaced by an equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK.
+In this example in **AdventureWorks2022** database, the ABS() function is used in the WHERE condition, preventing the use of the existing index on ReferenceOrderID column. This function has been replaced by an equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK.
 -  [ABS()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
 -  [SQRT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
 -  [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
