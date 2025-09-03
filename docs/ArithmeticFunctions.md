@@ -66,10 +66,18 @@ WHERE UnitCost < POWER(10,2)
 <img width="2108" height="277" alt="SQRT" src="https://github.com/user-attachments/assets/ae01d0f0-8a1e-4c73-b4ab-d2f1b47f6408" />
 </div>
 
+The actual plan comparison shows a great improvement in this use case on all execution metrics:
+<small>
 
-<div style="background: white; font-family: Courier; padding: 10px; margin: 0;">
-Cost=3.00, CPU time=156 ms,  elapsed time=2059 ms. logicalReads=2647 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost=0.32,  CPU time=62 ms,  elapsed time=1822 ms logicalReads=1549
-</div>
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 3.00           | 0.32                | **-89.33%**  |
+| CPU Time [ms]     | 156            | 62                  | **-60.26%**  |
+| Elapsed Time [ms] | 2059           | 1822                | **-11.52%**  |
+| Logical Reads     | 2647           | 1549                | **-41.48%**  |
+
+</small>
+
 
 
 ## POWER()
