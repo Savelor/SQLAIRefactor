@@ -23,7 +23,7 @@ In this list in **AdventureWorks2022** database, these arithmetic functions used
 -  [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
 
 ## ⚙️4. Time management functions 
-The following time functions can be replaced in WHERE predicate, avoiding applying the function to the column. In this scenario in **AdventureWorks2022** database suppose that there is an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. To take advantage of it we must rewrite the WHERE condition as documented. 
+The following time functions can be replaced in WHERE predicate, avoiding applying the function to the column. In this scenario in **AdventureWorks2022** database suppose that there is an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. The following tests show exceptional reduction in all execution metrics of the AI generated code: 
 -  [DATEDIFF()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datediff) 
 -  [DATEADD()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#dateadd)
 -  [DATEPART()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datepart)
