@@ -36,7 +36,10 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 | Elapsed Time [ms] |              9 |                   0 |      -100.00% |
 | Logical Reads     |            438 |                   3 |       -99.32% |
 </sup></small>
-
+wwewewwewewewew
+we
+w
+w
 <small> 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
