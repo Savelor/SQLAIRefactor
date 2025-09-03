@@ -195,7 +195,7 @@ To test this use case before let's create the table:
   INSERT INTO SalesOrderDetailX
   SELECT CarrierTrackingNumber, ProductId
   FROM Sales.SalesOrderDetail
-
+```
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
