@@ -30,7 +30,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.45           | 0.00                | -100.00%      |
+| Cost              | 0.45           | 0.00                | *-100.00%*      |
 | CPU Time [ms]     | 16             | 0                   | -100.00%      |
 | Elapsed Time [ms] | 9              | 0                   | -100.00%      |
 | Logical Reads     | 438            | 3                   | -99.32%       |
