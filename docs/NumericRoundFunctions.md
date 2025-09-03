@@ -32,17 +32,22 @@ Cost=0.45, CPU time=16 ms,  elapsed time=9 ms. LogicalReads=438 &nbsp;&nbsp;&nbs
 </div>
 
 <small><sup>
-
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              |           0.45 |                0.00 |      -100.00% |
 | CPU Time [ms]     |             16 |                   0 |      -100.00% |
 | Elapsed Time [ms] |              9 |                   0 |      -100.00% |
 | Logical Reads     |            438 |                   3 |       -99.32% |
-
 </sup></small>
 
-
+<small> 
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              |           0.45 |                0.00 |      -100.00% |
+| CPU Time [ms]     |             16 |                   0 |      -100.00% |
+| Elapsed Time [ms] |              9 |                   0 |      -100.00% |
+| Logical Reads     |            438 |                   3 |       -99.32% |
+</small>
 
 ## FLOOR()
 The FLOOR() function rounds numeric values down, but applying it directly to an indexed column prevents SQL Server from using the index efficiently, resulting in a non-SARGable query. To make it SARGable, rewrite the condition by shifting the arithmetic to the constant side, so the column remains untouched and eligible for an Index Seek.
