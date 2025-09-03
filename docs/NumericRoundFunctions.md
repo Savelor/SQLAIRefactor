@@ -26,9 +26,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 <img width="2122" height="279" alt="CEILING" src="https://github.com/user-attachments/assets/207018fb-84a5-40a5-ae14-d23ff6de3def" />
 </div>
 
-<sub>
-
-<div align="left">
+<small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
@@ -37,9 +35,8 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 | Elapsed Time [ms] | 9              | 0                   | -100.00%      |
 | Logical Reads     | 438            | 3                   | -99.32%       |
 
-</div>
+</small>
 
-</sub>
 
 
 ## FLOOR()
