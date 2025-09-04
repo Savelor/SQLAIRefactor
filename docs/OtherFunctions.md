@@ -183,14 +183,11 @@ WHERE LastName = 'James'
 </small>
 
 ## CONVERT
-To test this use case before let's create the table:
+To test this use case before let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
-  CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
-   ProductId NVARCHAR(8))
-  CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId
-  ON SalesOrderDetailX (ProductId)
-
+  CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
+  CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId ON SalesOrderDetailX (ProductId)
 
   INSERT INTO SalesOrderDetailX
   SELECT CarrierTrackingNumber, ProductId
