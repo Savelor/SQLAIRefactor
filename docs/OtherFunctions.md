@@ -300,10 +300,9 @@ SELECT
     c.CustomerID,
     soh.LastOrderDate
 FROM Sales.Customer c
-LEFT JOIN (
-    SELECT
-        CustomerID,
-        MAX(OrderDate) AS LastOrderDate
+LEFT JOIN ( SELECT
+            CustomerID,
+            MAX(OrderDate) AS LastOrderDate
     FROM Sales.SalesOrderHeader
     GROUP BY CustomerID
 ) soh ON soh.CustomerID = c.CustomerID
@@ -311,6 +310,8 @@ LEFT JOIN (
     </td>
   </tr>
 </table>
+
+<img width="2682" height="478" alt="OuterApply" src="https://github.com/user-attachments/assets/0897c2b8-2f64-4c4e-851e-c39e63cbc256" />
 
 <small>
 
