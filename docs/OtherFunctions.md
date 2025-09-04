@@ -183,7 +183,7 @@ WHERE LastName = 'James'
 </small>
 
 ## CONVERT
-To test this use case before let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
+To test this use case, let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
@@ -198,7 +198,8 @@ To test this use case before let's create the table SalesOrderDetailX having two
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 NOT Sargable - Index Scan</h4>
       <pre><code>
-SELECT CarrierTrackingNumber FROM dbo.SalesOrderDetailX
+SELECT CarrierTrackingNumber 
+FROM dbo.SalesOrderDetailX
 WHERE convert(INT,ProductId) = 21222000
       </code></pre>
     </td>
