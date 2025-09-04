@@ -276,6 +276,52 @@ The AI optimized code generates a plan without Conversion Warning. Moreover, exe
 </small>
 
 ## OUTER APPLY
+When an OUTER APPLY subquery is simple—returning zero or more rows per outer row, with no TOP, ORDER BY, aggregates, window functions, or nested subqueries, and using only equality conditions for correlation—it can be safely rewritten as a LEFT JOIN. Just move the correlation conditions into the ON clause and replace references to the OUTER APPLY alias with the new join alias.
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 NOT Sargable - Index Scan</h4>
+      <pre><code>
+SELECT
+    c.CustomerID,
+    oa.LastOrderDate
+FROM Sales.Customer c
+OUTER APPLY (
+    SELECT MAX(OrderDate) AS LastOrderDate
+    FROM Sales.SalesOrderHeader
+    WHERE CustomerID = c.CustomerID
+) oa
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹Sargable</h4>
+      <pre><code>
+SELECT
+    c.CustomerID,
+    soh.LastOrderDate
+FROM Sales.Customer c
+LEFT JOIN (
+    SELECT
+        CustomerID,
+        MAX(OrderDate) AS LastOrderDate
+    FROM Sales.SalesOrderHeader
+    GROUP BY CustomerID
+) soh ON soh.CustomerID = c.CustomerID
+      </code></pre>
+    </td>
+  </tr>
+</table>
+
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 6.92           | 1.34                | **-80.64%**  |
+| CPU Time [ms]     | 94             | 16                  | **-82.98%**  |
+| Elapsed Time [ms] | 195            | 172                 | **-11.79%**  |
+| Logical Reads     | 104345         | 726                 | **-99.30%**  |
+
+</small>
 
 
 ## EXISTS
