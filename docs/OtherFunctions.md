@@ -229,23 +229,23 @@ The AI optimized code generates a plan without Conversion Warning. Moreover, exe
 </small>
 
 ## CAST
+To test this use case, let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
+```sql
+  USE AdventureWorks2022
+  CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
+  CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId ON SalesOrderDetailX (ProductId)
+
+  INSERT INTO SalesOrderDetailX
+  SELECT CarrierTrackingNumber, ProductId
+  FROM Sales.SalesOrderDetail
+```
+The following queries have WHERE predicates with numeric values: they manage the comparison differently, using CONVERT() function on different sides of the condition.
+
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 NOT Sargable - Index Scan</h4>
       <pre><code>
-USE AdventureWorks2019
-CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25),
- ProductId NVARCHAR(8))
-
-CREATE NONCLUSTERED INDEX IX_SalesOrderDetailX_ProductId 
-ON SalesOrderDetailX (ProductId)
-
-INSERT INTO SalesOrderDetailX  
-SELECT CarrierTrackingNumber, ProductId 
-FROM Sales.SalesOrderDetail
-
------------------------
 SELECT CarrierTrackingNumber
 FROM dbo.SalesOrderDetailX
 WHERE CAST(ProductId AS INT) = 21222000;
