@@ -193,6 +193,7 @@ To test this use case, let's create the table SalesOrderDetailX having two colum
   SELECT CarrierTrackingNumber, ProductId
   FROM Sales.SalesOrderDetail
 ```
+The following queries have WHERE predicates with numeric values: they manage the comparison differently, using CONVERT() function on different sides of the condition.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -200,7 +201,7 @@ To test this use case, let's create the table SalesOrderDetailX having two colum
       <pre><code>
 SELECT CarrierTrackingNumber 
 FROM dbo.SalesOrderDetailX
-WHERE convert(INT,ProductId) = 21222000
+WHERE CONVERT(INT,ProductId) = 21222000
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
