@@ -263,6 +263,17 @@ WHERE ProductId = CONVERT(nvarchar(8), 21222000);
 </table>
 
 <img width="2305" height="460" alt="CAST" src="https://github.com/user-attachments/assets/9199b041-4cfd-43c1-9fa6-9ab74fe9e4e6" />
+The AI optimized code generates a plan without Conversion Warning. Moreover, executin metrics below show a huge improvement:
+<small>
+
+| Metric            | Original Query | AI Refactored Query | Variation (%) |
+|:------------------|---------------:|--------------------:|--------------:|
+| Cost              | 0.517          | 0.006               | **-98.84%**  |
+| CPU Time [ms]     | 0              | 0                   | **0.00%**    |
+| Elapsed Time [ms] | 12             | 0                   | **-100.00%** |
+| Logical Reads     | 498            | 3                   | **-99.40%**  |
+
+</small>
 
 ## OUTER APPLY
 
