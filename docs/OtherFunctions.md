@@ -181,7 +181,7 @@ WHERE LastName = 'James'
 
 ## CONVERT
 Applying CONVERT() to an indexed column inside a WHERE clause makes the predicate non-sargable, so indexes are often ignored and scans occur. The trick is to rewrite the predicate by applying CONVERT() to the comparison value instead of the column.
-To test this use case, let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
+To test this use case, let's create the table SalesOrderDetailX having two columns with nvarchar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
@@ -227,7 +227,7 @@ The AI optimized code generates a plan without Conversion Warning. Moreover, exe
 </small>
 
 ## CAST
-To test this use case, let's create the table SalesOrderDetailX having two columns with nvachar data type containing numeric values:
+Applying CAST to an indexed column inside a WHERE clause makes the predicate non-sargable, so indexes are often ignored and scans occur. One trick is to rewrite the predicate by applying the CONVERT() function to the comparison value instead of the column. To test this use case, let's create the table SalesOrderDetailX having two columns with nvarchar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
