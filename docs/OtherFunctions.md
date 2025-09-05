@@ -130,9 +130,10 @@ where CarrierTrackingNumber = '4911-403C-98'
 </table>
 
 <img width="2413" height="465" alt="ISNULL1" src="https://github.com/user-attachments/assets/8519fc9d-70c7-4e29-9d24-03d2a8fa856e" />
+Tests show some improvements, especially in I/O.
 
 <small>
-Tests show some improvements, especially in I/O.
+
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.60           | 0.05                | **-91.67%**  |
