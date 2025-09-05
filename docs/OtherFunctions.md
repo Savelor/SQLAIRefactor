@@ -312,6 +312,7 @@ LEFT JOIN ( SELECT
 
 <img width="2682" height="478" alt="OuterApply" src="https://github.com/user-attachments/assets/0897c2b8-2f64-4c4e-851e-c39e63cbc256" />
 
+Tests show great improvements in all execution metrics, as shown below:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
