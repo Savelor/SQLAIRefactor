@@ -1,7 +1,8 @@
 ## LIKE
-WHERE predicates that include a LIKE clause typically result in execution plans that are difficult to optimize. However, rewriting the LIKE condition using functions such as RIGHT and PATINDEX can lead to significantly more efficient execution plans. Tests show that this approach can reduce I/O operations, especially as table size increases.
+WHERE predicates that include a LIKE clause often produce execution plans that are hard for the optimizer to handle efficiently. In many cases, this leads to higher I/O costs and slower performance as data volumes grow.
+One effective technique is to rewrite the LIKE condition using functions such as RIGHT or PATINDEX. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories:
 
-1. **Wildcard on right:**, the plan is good enough, no need to rewrite it.
+**1. Wildcard on right:**, the plan is good enough, no need to rewrite it.
 
 <table>
   <tr>
@@ -23,7 +24,7 @@ Cost=0.00, CPU time=0 ms,  elapsed time=0 ms, LogicalReads=3
 </div>
 <p>&nbsp;</p>
 
-2. **Wildcard on left:** it is possible to refactor using RIGHT function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time
+**2. Wildcard on left:** it is possible to refactor using RIGHT function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time.
 
 <table>
   <tr>
@@ -56,18 +57,18 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.18           | 0.18                | **0.00%**    |
-| CPU Time [ms]     | 31             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 74             | 61                  | **-17.57%**  |
-| Logical Reads     | 217            | 217                 | **0.00%**    |
+| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
+| Elapsed Time [ms] | 122            | 94                  | **-22.95%**  |
+| Logical Reads     | 216            | 216                 | **0.00%**    |
 
 </small>
+
 
 
 <p>&nbsp;</p>
 
 
-3. **Wildcard on both sides:**
-   it is possible to refactor using PATHINDEX function. Tests show the same execution plan in both versions, but the refactored code always shows better CPU performance and elapsed time. Here some examples on AdventureWorks2022
+**3. Wildcard on both sides:** it is possible to refactor using PATHINDEX function. Tests show the same execution plan in both versions, and the refactored code has almost the same performance values. In this case, no significant improvement.
    
 <table>
   <tr>
