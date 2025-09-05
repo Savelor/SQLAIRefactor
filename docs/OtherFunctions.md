@@ -1,6 +1,6 @@
 ## LIKE
 WHERE predicates that include a LIKE clause often produce execution plans that are hard for the optimizer to handle efficiently. In many cases, this leads to higher I/O costs and slower performance as data volumes grow.
-One effective technique is to rewrite the LIKE condition using functions such as RIGHT or PATINDEX. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories (all tests executed in **AdventureWorks2022** database):
+One effective technique is to rewrite the LIKE condition using functions such as RIGHT. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories (all tests executed in **AdventureWorks2022** database):
 
 **1. Wildcard on right:**, the plan is good enough, no need to rewrite it.
 
@@ -132,7 +132,7 @@ where CarrierTrackingNumber = '4911-403C-98'
 <img width="2413" height="465" alt="ISNULL1" src="https://github.com/user-attachments/assets/8519fc9d-70c7-4e29-9d24-03d2a8fa856e" />
 
 <small>
-
+Tests show some improvements, especially in I/O.
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.60           | 0.05                | **-91.67%**  |
@@ -213,7 +213,7 @@ WHERE ProductId = CONVERT(nvarchar(8), 21222000)
 </table>
 
 <img width="2317" height="461" alt="CONVERT" src="https://github.com/user-attachments/assets/55aac427-2e69-4b17-b2b5-319de0b62d5f" />
-The AI optimized code generates a plan without Conversion Warning. Moreover, executin metrics below show a huge improvement:
+The AI optimized code generates a plan without Conversion Warning. Moreover, execution metrics below show a huge improvement:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
@@ -260,7 +260,7 @@ WHERE ProductId = CONVERT(nvarchar(8), 21222000);
 </table>
 
 <img width="2305" height="460" alt="CAST" src="https://github.com/user-attachments/assets/9199b041-4cfd-43c1-9fa6-9ab74fe9e4e6" />
-The AI optimized code generates a plan without Conversion Warning. Moreover, executin metrics below show a huge improvement:
+The AI optimized code generates a plan without Conversion Warning. Moreover, execution metrics below show a huge improvement:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
