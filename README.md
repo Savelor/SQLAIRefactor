@@ -49,7 +49,7 @@ Implicit conversions occur when the engine automatically converts one data type 
 - If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
 - If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
 
-In the case below in AdventureWorks2022, suppose to have an index on ModifiedDate column. Column ModifiedDate and variable @Salesday have different data types (datetime and sql_variant respectively). The comparison within the WHERE condition ( ModifiedDate >= @Salesday) leads to an implicit conversion of the column which prevents the use of index.
+In the case below in AdventureWorks2022, suppose to have an index on SalesOrderDetail.ModifiedDate column. Column ModifiedDate and variable @Salesday have different data types (datetime and sql_variant respectively). The comparison within the WHERE condition ( ModifiedDate >= @Salesday) leads to an implicit conversion of the column which prevents the use of index.
 CREATE NONCLUSTERED INDEX AI_index ON [Sales].[SalesOrderDetail] ([ModifiedDate]) INCLUDE ([SalesOrderID])
 
 ```sql
