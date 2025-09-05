@@ -107,10 +107,8 @@ WHERE CHARINDEX('way', AddressLine1) > 0
 
 
 ## ISNULL
-The first example is almost an error:
-Supponiamo che qui essita un indice sulla colonna:
+When ISNULL is applied to a column, and used with constant parameter, it is possible to rewrite it. For our test, suppose that there's the following index in **AdventureWorks2022** database:
 CREATE NONCLUSTERED INDEX IX1_CarrierTrackingNumber ON [Sales].[SalesOrderDetail] ([CarrierTrackingNumber])
-**Primo esempio** 
 
 <table>
   <tr>
@@ -144,10 +142,8 @@ where CarrierTrackingNumber = '4911-403C-98'
 
 </small>
 
-
-
 ## COALESCE
-
+The COALESCE function in SQL is used to handle NULL values by returning the first non-NULL expression from a list of arguments. It’s especially useful when dealing with incomplete data or when you want to provide default values in query results. Using COALESCE(LastName, FirstName) is concise but usually non-sargable, so indexes can’t be used effectively. The OR version is more verbose but typically leads to better execution plans and performance on large tables.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
