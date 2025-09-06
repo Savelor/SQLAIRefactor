@@ -102,7 +102,7 @@ ciao ciao
        @cityname VARCHAR(256)
        AS
        BEGIN
-           DECLARE @query NVARCHAR(MAX);
+           DECLARE @query NVARCHAR(MAX)
        
            SET @query = 
            'SELECT A.AddressID, A.AddressLine1, SP.Name
