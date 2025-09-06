@@ -1,5 +1,8 @@
 ## Avoiding SQL injection
-SQL Injection (SQLi) is a type of security vulnerability that happens when an application allows untrusted input (like form fields, URL parameters, or API inputs) to be directly included in SQL queries without proper handling.
+SQL Injection (SQLi) is a type of security vulnerability that happens when an application allows untrusted input (like form fields, URL parameters, or API inputs) to be directly included in SQL queries without proper handling. Typically, SQL injection cases are characterized by the following scenarios:
+- User input (e.g., @cityname) is directly concatenated into the query string.
+- Attackers can inject arbitrary SQL code (for example: '; DROP TABLE dbo.TabX;--).
+- Root cause: the application mixes code and data within a single SQL string.
  
 ```sql
  CREATE PROCEDURE [dbo].[usp_testInj]
