@@ -27,9 +27,10 @@ EXEC dbo.usp_testInj 'Bothell'''  --OK
 
 EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
 
-- **Solution 1**: A safe option is input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
-- **Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code. [Rule 10.20]
-- **Solution 3**: QUOTENAME
+- **Solution 1**: A safe option is to introduce input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
+- **Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code.
+- **Solution 3**: Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
+- **Solution 4**: When the query structure is fixed a static SQL statement can be a good option, since there's no string concatenation.
 
 <table>
   <tr>
