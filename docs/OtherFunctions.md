@@ -1,6 +1,6 @@
 ## LIKE
-WHERE predicates that include a LIKE clause often produce execution plans that are hard for the optimizer to handle efficiently. In many cases, this leads to higher I/O costs and slower performance as data volumes grow.
-One effective technique is to rewrite the LIKE condition using functions such as RIGHT. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories (all tests executed in **AdventureWorks2022** database):
+WHERE predicates that include a LIKE clause often produce execution plans that are hard to improve. In many cases, this leads to higher I/O costs and slower performance as data volumes grow.
+In some specific cases it is possible to rewrite the LIKE condition using functions such as RIGHT. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories (all tests executed in **AdventureWorks2022** database):
 
 **1. Wildcard on right:**, the plan is good enough, no need to rewrite it.
 
