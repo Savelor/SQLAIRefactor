@@ -112,6 +112,26 @@ BEGIN
 END
       </code></pre>
     </td>
+        <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 3</h4>
+      <pre><code>
+CREATE PROCEDURE [dbo].[usp_testInj_Quotename]
+@cityname VARCHAR(256)
+AS
+BEGIN
+    DECLARE @query NVARCHAR(MAX)
+
+    SET @query = 
+    'SELECT A.AddressID, A.AddressLine1, SP.Name 
+     FROM Person.Address A
+     INNER JOIN Person.StateProvince SP 
+       ON A.StateProvinceID = SP.StateProvinceID
+     WHERE A.City = ' + QUOTENAME(@cityname, '''');
+
+    EXEC (@query);
+END
+      </code></pre>
+    </td>
   </tr>
 </table>
 
