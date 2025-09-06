@@ -102,7 +102,7 @@ BEGIN
     DECLARE @query NVARCHAR(MAX)
 
     SET @query = 
-    'SELECT A.AddressID, A.AddressLine1, SP.Name
+    'SELECT A.AddressID, A.AddressLine1, SP.Name 
      FROM Person.Address A
      INNER JOIN Person.StateProvince SP 
        ON A.StateProvinceID = SP.StateProvinceID
