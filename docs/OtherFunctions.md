@@ -145,6 +145,7 @@ Tests show some improvements, especially in I/O.
 
 ## COALESCE
 The COALESCE function in SQL is used to handle NULL values by returning the first non-NULL expression from a list of arguments. It’s especially useful when dealing with incomplete data or when you want to provide default values in query results. Using COALESCE(LastName, FirstName) is concise but usually non-sargable, so indexes can’t be used effectively. The OR version is more verbose but typically leads to better execution plans and performance on large tables.
+In the example below, index IX_Person_LastName_FirstName_MiddleName already exists on Person.Person table in **AdventuraWorks2022** database.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
