@@ -325,24 +325,3 @@ Tests show great improvements in all execution metrics, as shown below:
 
 </small>
 
-
-## EXISTS
-The following example is on a 25 M table
-<table>
-  <tr>
-    <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 NOT Sargable - Index Scan</h4>
-      <pre><code>
-IF (Select count(*) from [Fact].[OrderHistoryExtended] where [Stock Item Key] = 777) > 1  select 1
-      </code></pre>
-    </td>
-    <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 NOT Sargable, but better performance</h4>
-      <pre><code>
-IF EXISTS (Select 1 from [Fact].[OrderHistoryExtended] where [Stock Item Key] = 777) select 1
-      </code></pre>
-    </td>
-  </tr>
-</table>
-
-<img width="2595" height="478" alt="EXISTS" src="https://github.com/user-attachments/assets/64cabaac-4c0b-4bb9-9696-1e08eccae2a9" />
