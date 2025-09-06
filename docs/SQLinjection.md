@@ -90,3 +90,55 @@ END
     </td>
   </tr>
 </table>
+
+<table>
+  <tr>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 1</h4>
+      <pre><code>
+       --SOLUTION 3
+       CREATE PROCEDURE [dbo].[usp_testInj1]
+       @cityname [varchar](256)
+       AS
+       BEGIN
+       CREATE PROCEDURE [dbo].[usp_testInj_Quotename]
+       @cityname VARCHAR(256)
+       AS
+       BEGIN
+           DECLARE @query NVARCHAR(MAX);
+       
+           -- QUOTENAME safely wraps the input in single quotes and escapes internal quotes
+           SET @query = 
+           'SELECT A.AddressID, A.AddressLine1, SP.Name
+            FROM Person.Address A
+            INNER JOIN Person.StateProvince SP 
+              ON A.StateProvinceID = SP.StateProvinceID
+            WHERE A.City = ' + QUOTENAME(@cityname, '''');
+       
+           EXEC (@query);
+       END
+      </code></pre>
+    </td>
+    <td style="vertical-align: top; padding: 10px;">
+      <h4>🔹 Solution 2</h4>
+      <pre><code>
+      
+--SOLUTION 4
+CREATE PROCEDURE [dbo].[usp_testInj_Static]
+@cityname VARCHAR(256)
+AS
+BEGIN
+    SELECT 
+        A.AddressID, 
+        A.AddressLine1, 
+        SP.Name
+    FROM Person.Address A
+    INNER JOIN Person.StateProvince SP 
+        ON A.StateProvinceID = SP.StateProvinceID
+    WHERE A.City = @cityname;
+END
+
+      </code></pre>
+    </td>
+  </tr>
+</table>
