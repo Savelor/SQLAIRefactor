@@ -94,7 +94,7 @@ END
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 Solution 1</h4>
+      <h4>🔹 Solution 3</h4>
       <pre><code>
        --SOLUTION 3
        CREATE PROCEDURE [dbo].[usp_testInj1]
@@ -120,7 +120,7 @@ END
       </code></pre>
     </td>
     <td style="vertical-align: top; padding: 10px;">
-      <h4>🔹 Solution 2</h4>
+      <h4>🔹 Solution 4</h4>
       <pre><code> 
        --SOLUTION 4
        CREATE PROCEDURE [dbo].[usp_testInj_Static]
