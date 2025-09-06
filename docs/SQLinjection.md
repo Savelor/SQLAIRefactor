@@ -121,23 +121,21 @@ END
     </td>
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Solution 2</h4>
-      <pre><code>
-      
---SOLUTION 4
-CREATE PROCEDURE [dbo].[usp_testInj_Static]
-@cityname VARCHAR(256)
-AS
-BEGIN
-    SELECT 
-        A.AddressID, 
-        A.AddressLine1, 
-        SP.Name
-    FROM Person.Address A
-    INNER JOIN Person.StateProvince SP 
-        ON A.StateProvinceID = SP.StateProvinceID
-    WHERE A.City = @cityname;
-END
-
+      <pre><code> 
+       --SOLUTION 4
+       CREATE PROCEDURE [dbo].[usp_testInj_Static]
+       @cityname VARCHAR(256)
+       AS
+       BEGIN
+           SELECT 
+               A.AddressID, 
+               A.AddressLine1, 
+               SP.Name
+           FROM Person.Address A
+           INNER JOIN Person.StateProvince SP 
+               ON A.StateProvinceID = SP.StateProvinceID
+           WHERE A.City = @cityname;
+       END
       </code></pre>
     </td>
   </tr>
