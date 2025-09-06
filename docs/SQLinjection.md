@@ -104,7 +104,6 @@ ciao ciao
        BEGIN
            DECLARE @query NVARCHAR(MAX);
        
-           -- QUOTENAME safely wraps the input in single quotes and escapes internal quotes
            SET @query = 
            'SELECT A.AddressID, A.AddressLine1, SP.Name
             FROM Person.Address A
