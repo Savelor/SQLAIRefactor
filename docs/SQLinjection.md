@@ -37,7 +37,6 @@ EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Solution 1</h4>
       <pre><code>
---SOLUTION 1
 CREATE PROCEDURE [dbo].[usp_testInj1]
 @cityname [varchar](256)
 AS
@@ -69,7 +68,6 @@ END
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Solution 2</h4>
       <pre><code>
---SOLUTION 2
 CREATE PROCEDURE [dbo].[usp_testInj2]
 @cityname [varchar](256)
 AS
@@ -96,7 +94,6 @@ ciao ciao
     <td style="vertical-align: top; padding: 10px;">
       <h4>🔹 Solution 3</h4>
       <pre><code>
-       --SOLUTION 3
        CREATE PROCEDURE [dbo].[usp_testInj1]
        @cityname [varchar](256)
        AS
