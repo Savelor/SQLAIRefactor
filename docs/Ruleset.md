@@ -1,8 +1,8 @@
 Read and analyze all the provided T-SQL batch and apply the following rules:
 
-1. `When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
+1. <sub>`When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
 Replace the “*” in the SELECT with only the columns you found as really used. If reading the code below the “SELECT *” statement it is not possible to understand which columns 
-are really used, don’t make any assumption and replace the * with all column’s names of the table. You have the list of columns of all tables provided to you in JSON format.`
+are really used, don’t make any assumption and replace the * with all column’s names of the table. You have the list of columns of all tables provided to you in JSON format.`<7sub>
 
 2. Identify the SELECT statements that uses old syntax implicit joins, meaning that multiple tables are specified in the FROM clause separated by commas and the join columns in the WHERE clause. Rewrite these statements and use explicit join syntax with proper ‘JOIN’ keyword and specify the join columns with keyword ‘ON’.
 Ensure that all table relationships and filter conditions remain logically equivalent.
