@@ -46,11 +46,11 @@ Simple arithmetic expressions can be written differently to force the execution 
 ## 🧩7. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. 
 
-Analyze the details about how to avoid implicit conversione in you code here: [Avoiding implicit conversions](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#avoiding-implicit-conversions)
+Analyze the details about how to avoid implicit conversione in you code here: [**Avoiding implicit conversions**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#avoiding-implicit-conversions)
 
 ## 🛡️8. Generating a more secure code (avoiding SQL injection)
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. It has been one of the OWASP Top 10 vulnerabilities for over a decade. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
-Look at the details of the problem and examine possible solutions which can be implemented automatically in [Avoiding SQL injection](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/SQLinjection.md#avoiding-sql-injection)
+Look at the details of the problem and examine possible solutions which can be implemented automatically in [**Avoiding SQL injection**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/SQLinjection.md#avoiding-sql-injection)
 
 ## 🐌9. Refactoring cursors
 The inefficiency of cursors is a classic pain point in SQL Server performance. Cursors allow you to iterate through rows one by one, similar to a loop in procedural languages. While this might feel intuitive for developers coming from imperative programming backgrounds, cursors are usually inefficient for several reasons: 
@@ -58,6 +58,7 @@ The inefficiency of cursors is a classic pain point in SQL Server performance. C
 - Row-by-row processing: SQL Server is optimized for set-based operations. Cursors break this model.
 - Resource intensive: They require memory and locks, and often spill to tempdb.
 - Slow performance: For large result sets, performance degrades dramatically compared to set-based
+  
 See the details about how to refactor cursors here: [**Avoiding cursors**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
 
 ## ✂️10. Remove Unused and Irrelevant code
