@@ -12,9 +12,9 @@ You can often refactor cursor-based code by rewriting it without explicitly defi
 DECLARE @CustomerID INT, @OrderDate DATE, @TotalDue MONEY, @PrevCustomerID INT = NULL, @RunningTotal MONEY = 0;
 DECLARE @Results TABLE ( CustomerID INT, OrderDate DATE, TotalDue MONEY, RunningTotal MONEY);
 DECLARE order_cursor CURSOR FOR
-    SELECT CustomerID, OrderDate, SubTotal AS TotalDue
+    SELECT TOP 100 CustomerID, OrderDate, SubTotal AS TotalDue
     FROM Sales.SalesOrderHeader
-    WHERE SubTotal > 1000
+    WHERE SubTotal > 400
     ORDER BY CustomerID, OrderDate;
 
 OPEN order_cursor;
@@ -48,7 +48,7 @@ SELECT  CustomerID, OrderDate, SubTotal AS TotalDue,
         ROWS UNBOUNDED PRECEDING
     ) AS RunningTotal
 FROM Sales.SalesOrderHeader
-WHERE SubTotal > 1000
+WHERE SubTotal > 400
 ORDER BY CustomerID, OrderDate;
 ```
 
