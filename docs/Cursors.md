@@ -134,6 +134,14 @@ FROM RunningTotals;
 -- Return result set
 SELECT * FROM @Results;
 ```
+<small>
+
+| Metric            | Original Query | Refactored Query | Variation (%) |
+|:------------------|---------------:|-----------------:|--------------:|
+| Cost              | 1.03           | 1.96             | **+90.29%**   |
+| Elapsed Time [ms] | 3145           | 138              | **-95.61%**   |
+
+</small>
 
 
 
