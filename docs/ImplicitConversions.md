@@ -31,7 +31,7 @@ Given the code above, we can implement two different solutions: both isolate the
       <h4>🔹 Solution 1</h4>
       <pre><code>
 DECLARE @Salesday datetime 
-SET @Salesday = '20130731'
+SET @Salesday = '20130731' 
 
 SELECT SalesOrderID, ModifiedDate
 FROM Sales.SalesOrderDetail
@@ -42,7 +42,7 @@ WHERE ModifiedDate >= @Salesday
       <h4>🔹 Solution 2</h4>
       <pre><code>
 DECLARE @Salesday sql_variant 
-SET @Salesday = '20130731'
+SET @Salesday = '20130731' 
 
 SELECT SalesOrderID, ModifiedDate 
 FROM Sales.SalesOrderDetail
