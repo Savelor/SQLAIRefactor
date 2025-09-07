@@ -68,10 +68,10 @@ The table below shows the great improvement of the query execution with the plan
 
 | Metric            | Original Query | Solution 1 | Variation (%) | Solution 2 | Variation (%) |
 |:------------------|---------------:|-----------:|--------------:|-----------:|--------------:|
-| Cost              | 0.99           | 0.12       | **-87.9%  ✅**     | 0.12       | **-87.9%**     |
-| CPU Time [ms]     | 108            | 15         | **-86.11%**   | 16         | **-85.19%**   |
-| Elapsed Time [ms] | 651            | 391        | **-39.94%**   | 411        | **-36.71%**   |
-| Logical Reads     | 1313           | 224        | **-82.94%**   | 224        | **-82.94%**   |
+| Cost              | 0.99           | 0.12       | **-87.9%  ✅**     | 0.12       | **-87.9%  ✅**     |
+| CPU Time [ms]     | 108            | 15         | **-86.11%  ✅**   | 16         | **-85.19%  ✅**   |
+| Elapsed Time [ms] | 651            | 391        | **-39.94%  ✅**   | 411        | **-36.71  ✅%**   |
+| Logical Reads     | 1313           | 224        | **-82.94%  ✅**   | 224        | **-82.94  ✅%**   |
 
 </small>
 
