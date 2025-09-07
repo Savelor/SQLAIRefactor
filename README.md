@@ -52,7 +52,7 @@ Analyze the details about how to avoid implicit conversione in you code here: [A
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. It has been one of the OWASP Top 10 vulnerabilities for over a decade. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
 Look at the details of the problem and examine possible solutions which can be implemented automatically in [Avoiding SQL injection](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/SQLinjection.md#avoiding-sql-injection)
 
-# 🐌9. Refactoring cursors
+## 🐌9. Refactoring cursors
 The inefficiency of cursors is a classic pain point in SQL Server performance. Cursors allow you to iterate through rows one by one, similar to a loop in procedural languages. While this might feel intuitive for developers coming from imperative programming backgrounds, cursors are usually inefficient for several reasons: 
 
 - Row-by-row processing: SQL Server is optimized for set-based operations. Cursors break this model.
