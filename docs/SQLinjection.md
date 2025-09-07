@@ -124,9 +124,8 @@ END
 
 ## 🛠️ Solutions to Prevent SQL Injection
 
-When it comes to defending against SQL injection, not all solutions provide the same level of security.  
-Different techniques exist, each with its own strengths and limitations.  
-The following table compares the most common strategies, ranked by their safety level, to help you choose the right approach for your application.
+Not all solutions provide the same level of security. Different the techniques exposed above, each with its own strengths and limitations, to apply depending on the scenario.  
+The following table compares these strategies, ranked by their safety level, to help you choose the right approach for your application.
 
 
 | Solution              | Approach                  | Safety Level | When to Use |
