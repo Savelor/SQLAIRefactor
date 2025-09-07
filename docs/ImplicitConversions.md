@@ -76,6 +76,7 @@ The table below shows the great improvement of the query execution with the plan
 </small>
 
 
+## How to provide columns data types to the AI model 
 This scenario assumes that the AI model has complete knowledge of the data type of every column in each table. This allows the model to identify the correct data type for declaring the @Salesday variable or to apply the correct conversions to constant values. How can this information be ingested into the AI model via prompt? One possible solution is to use JSON format. JSON is an efficient, human-readable format that organizes data in a clear structure, making it easy for AI models to parse and interpret. Its flexibility, compactness, and widespread compatibility make it ideal for providing complex data in prompts. The following SQL query retrieves the columns data types in JSON format of all tables, preparing the information for inclusion in the AI prompt:
 ```sql
 --retrieves the columns data types in JSON format
