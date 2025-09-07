@@ -79,10 +79,7 @@ INNER JOIN Person.StateProvince SP
 ON A.StateProvinceID = SP.StateProvinceID
 WHERE A.City = @cityParam'
 
-
-EXEC sp_executesql @query,
-N'@CityParam VARCHAR(256)',
-@CityParam = @cityname
+EXEC sp_executesql @query, N'@CityParam VARCHAR(256)', @CityParam = @cityname
 END
 ```
 
@@ -125,5 +122,17 @@ EXEC (@query);
 END
 ```
 
+## 🛠️ Solutions to Prevent SQL Injection
+
+There are multiple strategies to prevent SQL injection. Below are some of the most widely used and effective approaches:
+
+| Solution              | Approach                  | Safety Level | When to Use |
+|-----------------------|---------------------------|--------------|-------------|
+| **Parameterized Queries** | Separate code & data       | ⭐⭐⭐⭐⭐ | ✅ Always preferred |
+| **Static SQL**        | No string concatenation   | ⭐⭐⭐⭐⭐ | ✅ Best when query structure is fixed |
+| **QUOTENAME()**       | Safely escape identifiers | ⭐⭐     | Only if parameterization isn’t possible |
+| **Input Validation**  | Restrict characters & patterns | ⭐     | Basic filtering, never rely on this alone |
+
+> 💡 **Best Practice:** Always use **parameterized queries** or **static SQL** when possible. Input validation and `QUOTENAME()` can be useful as additional safeguards, but they should never be the only line of defense.
 
 
