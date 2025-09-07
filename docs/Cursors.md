@@ -6,13 +6,11 @@ Resource intensive: They require memory and locks, and often spill to tempdb.
 Slow performance: For large result sets, performance degrades dramatically compared to set-based
 You can often refactor cursor-based code by rewriting it without explicitly defining a cursor, relying instead on standard T-SQL constructs. Below are some common approaches.
 
-**Set-Based Queries:** This approach is typically valid when the cursor is simple, meaning that it only reads rows from a query result, it performs operations that can be expressed as aggregations, joins, or window functions, it does not depend on row-by-row side effects and the logic for one row does not depend on the state of previous iterations.
+**📝 Set-Based Queries:** This approach is typically valid when the cursor is simple, meaning that it only reads rows from a query result, it performs operations that can be expressed as aggregations, joins, or window functions, it does not depend on row-by-row side effects and the logic for one row does not depend on the state of previous iterations.
 
 ```sql
 DECLARE @CustomerID INT, @OrderDate DATE, @TotalDue MONEY, @PrevCustomerID INT = NULL, @RunningTotal MONEY = 0;
-
 DECLARE @Results TABLE ( CustomerID INT, OrderDate DATE, TotalDue MONEY, RunningTotal MONEY);
-
 DECLARE order_cursor CURSOR FOR
     SELECT CustomerID, OrderDate, SubTotal AS TotalDue
     FROM Sales.SalesOrderHeader
@@ -38,7 +36,6 @@ END;
 
 CLOSE order_cursor;
 DEALLOCATE order_cursor;
-
 -- Return result set
 SELECT * FROM @Results;
 ```
@@ -55,13 +52,11 @@ WHERE SubTotal > 1000
 ORDER BY CustomerID, OrderDate;
 ```
 
-**CTE:** In general, a cursor can be rewritten as a CTE when the cursor’s purpose is primarily row sequencing, grouping, or computing derived columns rather than performing complex procedural operations per row.  The cursor should not perform row-by-row external actions, and the logic for each iteration should not depend on the results of previous iterations.
+**📝 CTE:** In general, a cursor can be rewritten as a CTE when the cursor’s purpose is primarily row sequencing, grouping, or computing derived columns rather than performing complex procedural operations per row.  The cursor should not perform row-by-row external actions, and the logic for each iteration should not depend on the results of previous iterations.
 
 ```sql
 DECLARE @CustomerID INT, @OrderDate DATE, @TotalDue MONEY, @PrevCustomerID INT = NULL, @PrevDate DATE = NULL, @RunningTotal MONEY = 0;
-
 DECLARE @Results TABLE ( CustomerID INT, OrderDate DATE, TotalDue MONEY, RunningTotal MONEY );
-
 DECLARE order_cursor CURSOR FOR
     SELECT CustomerID, OrderDate, TotalDue
     FROM Sales.SalesOrderHeader
@@ -69,7 +64,6 @@ DECLARE order_cursor CURSOR FOR
     ORDER BY CustomerID, OrderDate;
 
 OPEN order_cursor;
-
 FETCH NEXT FROM order_cursor INTO @CustomerID, @OrderDate, @TotalDue;
 
 WHILE @@FETCH_STATUS = 0
@@ -90,7 +84,6 @@ BEGIN
 
     FETCH NEXT FROM order_cursor INTO @CustomerID, @OrderDate, @TotalDue;
 END
-
 CLOSE order_cursor;
 DEALLOCATE order_cursor;
 
@@ -133,6 +126,6 @@ FROM RunningTotals;
 SELECT * FROM @Results;
 ```
 
-**WHILE loop:** a cursor can often be rewritten as a WHILE loop when the goal is to process a fixed set of rows row by row. This approach works best when the data can be stored in a temporary table or table variable, allowing the loop to iterate over each row using a key or sequential index. WHILE loops are particularly useful when you need procedural logic or the ability to exit early with a BREAK statement. 
+**📝 WHILE loop:** a cursor can often be rewritten as a WHILE loop when the goal is to process a fixed set of rows row by row. This approach works best when the data can be stored in a temporary table or table variable, allowing the loop to iterate over each row using a key or sequential index. WHILE loops are particularly useful when you need procedural logic or the ability to exit early with a BREAK statement. 
 
 
