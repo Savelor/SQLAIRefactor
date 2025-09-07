@@ -43,9 +43,10 @@ Simple arithmetic expressions can be written differently to force the execution 
 - [CAST()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#cast)
 - [OUTER APPLY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#outer-apply)
 
-## 7. Prevent implicit conversions
+## 🚫7. Prevent implicit conversions
 Implicit conversions occur when the engine automatically converts one data type to another without the user explicitly specifying it. This typically occurs when SQL Server compares two items having different data types, and needs to perform a type conversion before the comparison. When an implicit conversion occurs on an indexed column, SQL Server may not be able to use the index efficiently and may also produce poor cardinality estimates. 
 
+Analyze the details about how to avoid implicit conversione in you code here: [Avoiding implicit conversions](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#avoiding-implicit-conversions)
 
 
 ## 8. Replace deprecated Large Object Data Types
