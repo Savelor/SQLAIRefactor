@@ -33,6 +33,7 @@ Given the code above, we can implement two different solutions: both isolate the
 DECLARE @Salesday datetime 
 SET @Salesday = '20130731'
 
+
 SELECT SalesOrderID, ModifiedDate
 FROM Sales.SalesOrderDetail
 WHERE ModifiedDate >= @Salesday
