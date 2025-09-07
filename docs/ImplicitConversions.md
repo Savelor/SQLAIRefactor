@@ -22,8 +22,8 @@ Whether the conversion applies to the column or the value depends on data type p
   
 Given the code above, we can implement two different solutions: both isolate the column preventing functions or implicit conversions applied on it.
 
-- Solution1. Declare the @Salesday variable with the same data type as ModifiedDate. 
-- Solution2. Explicitly convert the @Salesday variable to the same data type as ModifiedDate. 
+- **Solution1.** Declare the @Salesday variable with the same data type as ModifiedDate. 
+- **Solution2.** Explicitly convert the @Salesday variable to the same data type as ModifiedDate. 
 
 <table>
   <tr>
