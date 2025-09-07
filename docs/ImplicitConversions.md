@@ -9,12 +9,8 @@ SELECT UnitPrice, LineTotal
 FROM Sales.SalesOrderDetail
 WHERE ModifiedDate >= @Salesday
 ```
-<div style="text-align: left;">
-  <img 
-    src="https://github.com/user-attachments/assets/bf65f224-3d43-4ea7-b5ff-ae72850a0125" 
-    alt="Convert_Implicit"
-    style="width: 60%;" />
-</div>
+<img width="1385" height="523" alt="Convert_Implicit" src="https://github.com/user-attachments/assets/2c226c32-d5d1-46b6-857f-75e8ba0af952" />
+
 Whether the conversion applies to the column or the value depends on data type precedence order, but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
 
 - If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
