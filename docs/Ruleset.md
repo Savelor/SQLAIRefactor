@@ -4,41 +4,41 @@ Read and analyze all the provided T-SQL batch and apply the following rules:
 Replace the “*” in the SELECT with only the columns you found as really used. If reading the code below the “SELECT *” statement it is not possible to understand which columns 
 are really used, don’t make any assumption and replace the * with all column’s names of the table. You have the list of columns of all tables provided to you in JSON format.`
 
-2. Identify the SELECT statements that uses old syntax implicit joins, meaning that multiple tables are specified in the FROM clause separated by commas and the join columns in the WHERE clause. Rewrite these statements and use explicit join syntax with proper ‘JOIN’ keyword and specify the join columns with keyword ‘ON’.
-Ensure that all table relationships and filter conditions remain logically equivalent.
+2. `Identify the SELECT statements that uses old syntax implicit joins, meaning that multiple tables are specified in the FROM clause separated by commas and the join columns in the WHERE clause. Rewrite these statements and use explicit join syntax with proper ‘JOIN’ keyword and specify the join columns with keyword ‘ON’.
+Ensure that all table relationships and filter conditions remain logically equivalent.`
 
-3. When an ORDER BY clause is written using the column numbers (for example: ORDER BY 1, 3, 5) rewrite the ORDER BY clause replacing the numbers with column names used in the SELECT clause.
+3. `When an ORDER BY clause is written using the column numbers (for example: ORDER BY 1, 3, 5) rewrite the ORDER BY clause replacing the numbers with column names used in the SELECT clause.`
 
-4. When you find WHERE expression containing functions on column such as: CEILING(column) = x, or FLOOR(column) = x, or ROUND(column) don’t apply any function on the column. Rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition on x modifying the right side of the comparison. Apply the following rules:
+4. `When you find WHERE expression containing functions on column such as: CEILING(column) = x, or FLOOR(column) = x, or ROUND(column) don’t apply any function on the column. Rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition on x modifying the right side of the comparison. Apply the following rules:
 a) “WHERE CEILING(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice > 713 AND UnitPrice <= 714”
 b) “WHERE FLOOR(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice >= 714 AND UnitPrice < 715”
-c) “WHERE ROUND(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice BETWEEN 714 – 0.5 AND UnitPrice < 714 + 0.5”
+c) “WHERE ROUND(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice BETWEEN 714 – 0.5 AND UnitPrice < 714 + 0.5”`
 
-5. If the provided code contains a WHERE condition with the SIGN(column) function applied to a column, rewrite the query avoiding to apply any function to the column, and make the condition SARGable. Apply the following rules:
+5. `If the provided code contains a WHERE condition with the SIGN(column) function applied to a column, rewrite the query avoiding to apply any function to the column, and make the condition SARGable. Apply the following rules:
 a) “WHERE SIGN(SalesOrderID) = 1” must be rewritten as  “WHERE SalesOrderID > 0”
 b) “WHERE SIGN(SalesOrderID) = -1” must be rewritten as “WHERE SalesOrderID < 0”
-c) “WHERE SIGN(SalesOrderID) = 0” must be rewritten as “WHERE SalesOrderID = 0”
+c) “WHERE SIGN(SalesOrderID) = 0” must be rewritten as “WHERE SalesOrderID = 0”`
 
-6. When the WHERE expression contains functions on column such as: ABS(column), SQRT(column) or POWER(column,2) having the column as parameter, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison as shown in the following examples. Apply the following rules:
+6. `When the WHERE expression contains functions on column such as: ABS(column), SQRT(column) or POWER(column,2) having the column as parameter, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison as shown in the following examples. Apply the following rules:
 a) “WHERE ABS(level) < value”  must be rewritten as “WHERE level < value AND level > -value”
 b) “WHERE SQRT(column) <  value” must be rewritten as: “WHERE column < POWER(value,2)”
 c) “WHERE POWER(column,2) <  value” must be rewritten as: “WHERE column < SQRT(value)”
-d) consider that SQRT(POWER(value,2)) = value
+d) consider that SQRT(POWER(value,2)) = value`
 
-7. In a WHERE comparison clause, if there are calculations or transformations on a column, then leave the column alone on left side and move the equivalent calculation on the right. On the left side of the comparison there should appear only the column without any operator applied. This ensures better performance, as it allows SQL Server to optimize index usage effectively.
+7. `In a WHERE comparison clause, if there are calculations or transformations on a column, then leave the column alone on left side and move the equivalent calculation on the right. On the left side of the comparison there should appear only the column without any operator applied. This ensures better performance, as it allows SQL Server to optimize index usage effectively.
 Examples:
 a) avoid “WHERE price * 12 = 550“ replace with “WHERE price = 550/12”
 b) avoid “WHERE price + 12 = 550“ replace with “WHERE price = 550-12”
 c) avoid “WHERE price / 12 = 550“ replace with “WHERE price = 550*12”
-d) avoid “WHERE price - 12 = 550“ replace with “WHERE price = 550+12”
+d) avoid “WHERE price - 12 = 550“ replace with “WHERE price = 550+12”`
 
-8. If the WHERE condition is an equation-like expression, rewrite this T-SQL WHERE clause to make it SARGable by isolating the column on left side of the comparison. Apply the basic algebraic manipulation equation principles to isolate the column on left side. Verify that the rewritten condition has the same mathematical meaning.
+8. `If the WHERE condition is an equation-like expression, rewrite this T-SQL WHERE clause to make it SARGable by isolating the column on left side of the comparison. Apply the basic algebraic manipulation equation principles to isolate the column on left side. Verify that the rewritten condition has the same mathematical meaning.`
 
-9. When you find WHERE conditions containing LIKE operator such as: LIKE ‘%text’ or LIKE ‘%text%’, apply the following rules:
+9. `When you find WHERE conditions containing LIKE operator such as: LIKE ‘%text’ or LIKE ‘%text%’, apply the following rules:
 a) If the string to search has ‘%’ at the beginning of the string to search, use the RIGHT function instead. For example replace: “WHERE AddressLine LIKE ‘%way’” with: “WHERE RIGHT(AddressLine,3) = ‘way’”
 b) If the string to search is between two wildcards‘%’, use the PATINDEX function instead. For example replace: “WHERE AddressLine LIKE '%way%'” with: “WHERE CHARINDEX(‘way’, AddressLine, 0) > 0”
 c) If the string to search has wildcard '%' at the end of the string, don’t modify this condition. For example: “WHERE AddressLine LIKE 'way%'” don’t modify that.
-d) If the WHERE condition contains both conditions: “column LIKE '%way'” AND “column LIKE 'way%'” then rewrite as “column = 'way'”
+d) If the WHERE condition contains both conditions: “column LIKE '%way'” AND “column LIKE 'way%'” then rewrite as “column = 'way'”`
 
 10. When you find WHERE expression containing function DATEADD(column) applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison. Apply the following rule:
 “WHERE DATEADD(DAY, 30, ModifiedDate) >= ‘2024-01-01′” must be rewritten as: “WHERE ModifiedDate >= DATEADD(DAY, -30, '2024-01-01')”
