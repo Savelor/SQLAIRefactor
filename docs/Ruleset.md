@@ -40,89 +40,89 @@ b) If the string to search is between two wildcards‘%’, use the PATINDEX fun
 c) If the string to search has wildcard '%' at the end of the string, don’t modify this condition. For example: “WHERE AddressLine LIKE 'way%'” don’t modify that.
 d) If the WHERE condition contains both conditions: “column LIKE '%way'” AND “column LIKE 'way%'” then rewrite as “column = 'way'”`
 
-10. When you find WHERE expression containing function DATEADD(column) applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison. Apply the following rule:
-“WHERE DATEADD(DAY, 30, ModifiedDate) >= ‘2024-01-01′” must be rewritten as: “WHERE ModifiedDate >= DATEADD(DAY, -30, '2024-01-01')”
+10. `When you find WHERE expression containing function DATEADD(column) applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison. Apply the following rule:
+“WHERE DATEADD(DAY, 30, ModifiedDate) >= ‘2024-01-01′” must be rewritten as: “WHERE ModifiedDate >= DATEADD(DAY, -30, '2024-01-01')”`
 
-11. When you find WHERE expression containing function DATEPART(column) applied tp a column together with 'YEAR' parameter, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison. Apply the following rule:
-“WHERE DATEPART(YEAR, ModifiedDate) = 2013” must be rewritten as: “WHERE ModifiedDate >= '2013-01-01' AND ModifiedDate < '2014-01-01'”.
+11. `When you find WHERE expression containing function DATEPART(column) applied tp a column together with 'YEAR' parameter, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison. Apply the following rule:
+“WHERE DATEPART(YEAR, ModifiedDate) = 2013” must be rewritten as: “WHERE ModifiedDate >= '2013-01-01' AND ModifiedDate < '2014-01-01'”.`
 
-12. When you find WHERE expression with comparisons containing DATEDIFF function applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison using DATEADD function. Apply the following rules:
+12. `When you find WHERE expression with comparisons containing DATEDIFF function applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison using DATEADD function. Apply the following rules:
 a) “WHERE DATEDIFF(day, ModifiedDate, '2011-05-31') <= 5” must be rewritten as: “WHERE ModifiedDate >= DATEADD(day, -5, '2011-05-31')”
 b) “WHERE DATEDIFF(month, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(month, 5, '2011-06-30')”.
-c) “WHERE DATEDIFF(year, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(year, 5, '2011-06-30')”.
+c) “WHERE DATEDIFF(year, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(year, 5, '2011-06-30')”.`
 
-13. If in the WHERE clause the YEAR function is applied to a column, rewrite the statement using range comparison according to the following example:
-“YEAR(OrderDate) = 2022” must be rewritten as: “OrderDate >= '2022-01-01' AND OrderDate < '2023-01-01'”.
+13. `If in the WHERE clause the YEAR function is applied to a column, rewrite the statement using range comparison according to the following example:
+“YEAR(OrderDate) = 2022” must be rewritten as: “OrderDate >= '2022-01-01' AND OrderDate < '2023-01-01'”.`
 
-14. If the provided code contains a WHERE condition with the ISNULL() function applied to a column rewrite the query to avoid the function and make the condition SARGable. Apply the following rule:
-"WHERE ISNULL(ColumnX, Value) > 23" If Value <> 23 then rewrite as "WHERE ColumnX > 23"
+14. `If the provided code contains a WHERE condition with the ISNULL() function applied to a column rewrite the query to avoid the function and make the condition SARGable. Apply the following rule:
+"WHERE ISNULL(ColumnX, Value) > 23" If Value <> 23 then rewrite as "WHERE ColumnX > 23"`
 
-15. Analyze the provided SQL batch code carefully to identify UNUSED elements such as variables or items that are declared in DECLARE statement and after such declaration they don’t appear in the code anymore. Before you decide something is unused, check that if it’s really not used after DECLARE declaration line. Return the query rewritten by removing all unused items that you identified from the code. Unused items can be:
+15. `Analyze the provided SQL batch code carefully to identify UNUSED elements such as variables or items that are declared in DECLARE statement and after such declaration they don’t appear in the code anymore. Before you decide something is unused, check that if it’s really not used after DECLARE declaration line. Return the query rewritten by removing all unused items that you identified from the code. Unused items can be:
 a) Remove variables or table variables never used after the creation. 
-b) Remove temporary tables created in the code and never used after the creation. 
+b) Remove temporary tables created in the code and never used after the creation. `
 
-16. Always analyze all input parameters of a stored procedure or function definition. If an input parameter is declared but never used within the body (i.e., it does not appear in any logic, condition, assignment, or query), it is considered redundant and must be removed. Refactor this exact procedure without adding or removing logic.
+16. `Always analyze all input parameters of a stored procedure or function definition. If an input parameter is declared but never used within the body (i.e., it does not appear in any logic, condition, assignment, or query), it is considered redundant and must be removed. Refactor this exact procedure without adding or removing logic.`
 
-17. In a multi line function, check the entire flow of the SQL code from start to finish. Determine which elements do not contribute to the final RETURN statement (redundant or irrelevant items). Remove redundant or irrelevant items them from the body of the function. So apply the following rules:
+17. `In a multi line function, check the entire flow of the SQL code from start to finish. Determine which elements do not contribute to the final RETURN statement (redundant or irrelevant items). Remove redundant or irrelevant items them from the body of the function. So apply the following rules:
 a) Remove unused or irrelevant function parameters from multi line function definition.
 b) Remove variables or table variables or temporary tables not related to the result.
-c) Remove irrelevant pieces of code not contributing to the Returned value. 
+c) Remove irrelevant pieces of code not contributing to the Returned value. `
 
-18. If the provided code contains the declaration of a temporary table or table variable having columns of data types: TEXT, NTEXT, or IMAGE, then replace those columns with the modern equivalent data types:
+18. `If the provided code contains the declaration of a temporary table or table variable having columns of data types: TEXT, NTEXT, or IMAGE, then replace those columns with the modern equivalent data types:
 a) Replace TEXT with VARCHAR(MAX)
 b) Replace NTEXT with NVARCHAR(MAX)
 c) Replace IMAGE with VARBINARY(MAX)
-Ensure the new version of batch uses either a temporary table or a table variable with the updated data types.
+Ensure the new version of batch uses either a temporary table or a table variable with the updated data types.`
 
-19. Identify all WHERE conditions containing comparisons between column and variable or parameter, using operators such as: =, >, >=, <, or <=. Determine the column’s data type based on the provided database schema information provided to you in JSON format and determine the variable’s or 
+19. `Identify all WHERE conditions containing comparisons between column and variable or parameter, using operators such as: =, >, >=, <, or <=. Determine the column’s data type based on the provided database schema information provided to you in JSON format and determine the variable’s or 
 parameter’s data type by analyzing the code. If the column and variable have different data types, rewrite the WHERE condition leaving the column alone on left side of the comparison without any conversion. 
 On the right side apply the CONVERT() function to the variable to match the column’s data type or declare the variable with the same data type as the column. 
-At the end, column and variable must have exactly the same data type.
+At the end, column and variable must have exactly the same data type.`
 
-20. Identify all WHERE conditions containing comparisons between column and constants or literals, using operators such as: =, >, >=, <, or <=. Determine the column’s data type based on the provided JSON data and determine the literal or constant data type. 
+20. `Identify all WHERE conditions containing comparisons between column and constants or literals, using operators such as: =, >, >=, <, or <=. Determine the column’s data type based on the provided JSON data and determine the literal or constant data type. 
 If the column and constant have different data types, rewrite the WHERE condition leaving the column alone on left side of the comparison without any conversion. 
-On the right side apply the CONVERT() function to the constant or literal to match the column’s data type. At the end, column and constant must have exactly the same data type.
+On the right side apply the CONVERT() function to the constant or literal to match the column’s data type. At the end, column and constant must have exactly the same data type.`
 
-21. Analyze the provided code and identify dynamic SQL executions such as:  "EXEC @query" or "EXEC sp_executesql @query" without parameters. Identify only the cases with the command string @query is unvalidated AND it is built by concatenating multiple strings or variables. In this cases rewrite the code using one of the following two alternative options:
+21. `Analyze the provided code and identify dynamic SQL executions such as:  "EXEC @query" or "EXEC sp_executesql @query" without parameters. Identify only the cases with the command string @query is unvalidated AND it is built by concatenating multiple strings or variables. In this cases rewrite the code using one of the following two alternative options:
 1. keep EXEC @query, and add to the code additional check validations on sql string. Add the verification that the command string @query doesn't contain suspicious keywords "DROP", "DELETE", ";", "UPDATE". In addition report a warning comment in the modified code.
 2. Replace EXEC with EXEC sp_executesql @query, passing parameters instead concatenating parameters in the @query command string.
-3. If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.
+3. If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
 
-22. Identify all WHERE conditions containing comparisons with COALESCE(column1, column2) function applied to 2 table columns.
+22. `Identify all WHERE conditions containing comparisons with COALESCE(column1, column2) function applied to 2 table columns.
 Rewrite the WHERE condition leaving the column alone on left side of the comparison. Apply according to the following example:
-""WHERE COALESCE(LastName, FirstName) = 'James'""  must be rewritten as "WHERE LastName = 'James' OR (LastName IS NULL AND FirstName = 'James')"
+""WHERE COALESCE(LastName, FirstName) = 'James'""  must be rewritten as "WHERE LastName = 'James' OR (LastName IS NULL AND FirstName = 'James')"`
 
-23. Analyze SQL code and identify dynamic SQL execution patterns such as EXEC @query_stmt or EXEC sp_executesql @query_stmt. Focus on cases where the query string is built using string concatenation and is not properly validated (SQL injection)
+23. `Analyze SQL code and identify dynamic SQL execution patterns such as EXEC @query_stmt or EXEC sp_executesql @query_stmt. Focus on cases where the query string is built using string concatenation and is not properly validated (SQL injection)
 Identify only the cases with the command string @query_stmt is unvalidated AND it is built by concatenating multiple strings or variables without checking the content. In this cases rewrite the code using one of the following alternative options:
 1) keep "EXEC @query", and add to to the code additional check validations on sql string. Add the verification that the command string @query doesn’t contain suspicious keywords “TRUNCATE”, “DROP”, “DELETE”, “;”, “UPDATE”. In addition report a warning comment in the modified code.
 2) Replace ‘EXEC @query’ with ‘EXEC sp_executesql @query’, passing parameters instead of concatenating parameters inside the @query string.
 3) If dynamic SQL includes user-supplied identifiers (e.g., table names, schemas), apply QUOTENAME() to each part individually before including them in the SQL string. This prevents injection by ensuring only valid SQL identifiers are accepted.
-4) If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.
+4) If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
 
-24. When you find a cursor then you can often rewrite the logic as a single SELECT or a CTE or a WHILE loop if ALL the following a) and b) conditions are true:
+24. `When you find a cursor then you can often rewrite the logic as a single SELECT or a CTE or a WHILE loop if ALL the following a) and b) conditions are true:
 a) No procedural or stateful logic is needed in the cursor, and the cursor is just iterating over rows to perform: Filtering or Aggregation or Ranking or Calculations based on other rows, 
-b) No procedural or stateful logic is needed: no Calling stored procedures per row, no Modifying data conditionally depending on prior rows, No Maintaining complex row-dependent state.
+b) No procedural or stateful logic is needed: no Calling stored procedures per row, no Modifying data conditionally depending on prior rows, No Maintaining complex row-dependent state.`
 
-25. When you find a cursor and it cannot be replaced with a simple query, verify that at the end the cursor is properly closed with both CLOSE and DEALLOCATE statements. If these instructions are missing, rewrite the cursor including them.
+25. `When you find a cursor and it cannot be replaced with a simple query, verify that at the end the cursor is properly closed with both CLOSE and DEALLOCATE statements. If these instructions are missing, rewrite the cursor including them.`
 
-26. When a variable or table variable is written with INSERT or UPDATE, verify that after that write statement the variable is really used in the code. If not drop the INSERT or UPDATE statement.
+26. `When a variable or table variable is written with INSERT or UPDATE, verify that after that write statement the variable is really used in the code. If not drop the INSERT or UPDATE statement.`
 
-27. When within a stored procedure a temporary table is created or loaded with data and then it is not used later in the code, rewrite the stored procedure without that temporary table.
+27. `When within a stored procedure a temporary table is created or loaded with data and then it is not used later in the code, rewrite the stored procedure without that temporary table.`
 
-28. When the WHERE condition contains a CONVERT on a column compared to a value (e.g., CONVERT(INT, ProductId) = 21222000), detect the column’s data type and rewrite the condition by placing the column alone on the left side and converting the value on the right side to the column’s data type.
+28. `When the WHERE condition contains a CONVERT on a column compared to a value (e.g., CONVERT(INT, ProductId) = 21222000), detect the column’s data type and rewrite the condition by placing the column alone on the left side and converting the value on the right side to the column’s data type.`
 
-29. When the WHERE condition contains a CAST on a column compared to a value (e.g., CAST(ProductId AS INT) = 21222000), detect the column’s data type and rewrite the condition by placing the column alone on the left side and casting the value on the right side to the column’s data type.
+29. `When the WHERE condition contains a CAST on a column compared to a value (e.g., CAST(ProductId AS INT) = 21222000), detect the column’s data type and rewrite the condition by placing the column alone on the left side and casting the value on the right side to the column’s data type.`
 
-30. If a query contains an OUTER APPLY with a subquery that returns zero or more rows per outer row, does not contain TOP, ORDER BY, aggregate functions, window functions, or nested subqueries, and whose WHERE clause consists solely of equality conditions correlating the outer and inner tables, 
-then rewrite the OUTER APPLY as a LEFT JOIN using the same correlation conditions in the ON clause, and update all references from the OUTER APPLY alias to the joined table alias.
+30. `If a query contains an OUTER APPLY with a subquery that returns zero or more rows per outer row, does not contain TOP, ORDER BY, aggregate functions, window functions, or nested subqueries, and whose WHERE clause consists solely of equality conditions correlating the outer and inner tables, 
+then rewrite the OUTER APPLY as a LEFT JOIN using the same correlation conditions in the ON clause, and update all references from the OUTER APPLY alias to the joined table alias.`
 
-31. If you find case like "IF (SELECT COUNT(*) > 0)" with a simple subquery verifying if rows returned > 0 then rewrite the case using EXISTS predicate with SELECT 1 in the subquery.
+31. `If you find case like "IF (SELECT COUNT(*) > 0)" with a simple subquery verifying if rows returned > 0 then rewrite the case using EXISTS predicate with SELECT 1 in the subquery.`
 
-32. If a local temporary table (i.e., a table whose name starts with #) is declared inside a stored procedure and is used exclusively for either Write operations 
+32. `If a local temporary table (i.e., a table whose name starts with #) is declared inside a stored procedure and is used exclusively for either Write operations 
 (such as INSERT, SELECT INTO, UPDATE, or DELETE) or read operations (such as SELECT, JOIN, or usage in expressions), but NOT both, then the table has no meaningful effect on 
 the procedure's logic. In such cases, the table must be considered unused and should be entirely removed from the procedure body, including its declaration and all associated references. 
 This rule does not apply if the temporary table is passed to dynamic SQL, referenced in nested stored procedures, or returned explicitly in the procedure's output. 
-A valid temporary table must have at least one write and one read operation within the procedure body to be considered purposeful.
+A valid temporary table must have at least one write and one read operation within the procedure body to be considered purposeful.`
 
-33. If in a SQL batch a table variable Es: DECLARE @t TABLE (col1 INT) is declared and is used exclusively for either Write operations (such as INSERT, SELECT INTO, UPDATE, or DELETE) or read operations (such as SELECT, JOIN, or usage in expressions), but NOT both, then the table variable has no meaningful effect on the batch logic. In such cases, the table must be considered unused and should be entirely removed from the batch, including its declaration and all associated references. A valid table variable must have at least one write and one read operation within the batch body to be considered purposeful.
+33. `If in a SQL batch a table variable Es: DECLARE @t TABLE (col1 INT) is declared and is used exclusively for either Write operations (such as INSERT, SELECT INTO, UPDATE, or DELETE) or read operations (such as SELECT, JOIN, or usage in expressions), but NOT both, then the table variable has no meaningful effect on the batch logic. In such cases, the table must be considered unused and should be entirely removed from the batch, including its declaration and all associated references. A valid table variable must have at least one write and one read operation within the batch body to be considered purposeful.`
 
