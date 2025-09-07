@@ -20,7 +20,10 @@ Whether the conversion applies to the column or the value depends on data type p
 - If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
 - If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
   
-Given the code above, we can implement two different solutions: the first is to declare the @Salesday variable with the same data type as ModifiedDate. The second is to explicitly convert the @Salesday variable to the same data type as ModifiedDate. Both solutions isolate the column preventing functions or implicit conversions applied on it.
+Given the code above, we can implement two different solutions: both isolate the column preventing functions or implicit conversions applied on it.
+
+-Solution1. Declare the @Salesday variable with the same data type as ModifiedDate. 
+-Solution2. Explicitly convert the @Salesday variable to the same data type as ModifiedDate. 
 
 <table>
   <tr>
