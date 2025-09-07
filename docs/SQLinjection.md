@@ -31,7 +31,7 @@ EXEC dbo.usp_testInj 'Bothell'''  --OK
 EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
 ```
 
-###🛠️ Solutions to Prevent SQL Injection
+**🛠️ Solutions to Prevent SQL Injection**
 There are multiple strategies to prevent SQL injection. Below are some of the most widely used and effective approaches.
 
 **Solution 1**: A safe option is to introduce input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
@@ -122,8 +122,7 @@ EXEC (@query);
 END
 ```
 
-## 🛠️ Solutions to Prevent SQL Injection
-
+**Summary and comparison**
 Not all solutions provide the same level of security. Different the techniques exposed above, each with its own strengths and limitations, to apply depending on the scenario. The following table compares these strategies, ranked by their safety level, to help you choose the right approach for your application.
 
 | Solution              | Approach                  | Safety Level | When to Use |
