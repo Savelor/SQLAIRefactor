@@ -21,7 +21,7 @@ WHERE A.City = ''' + @cityname + ''
 EXEC (@query)
 END
 ```
-**Attack Example**
+**🚨Attack Example**
 The second line below shows how it is possible to drop a table TabX, just passing an executable string as a malicious parameter value.
 ```sql
 -- Normal input (safe)
