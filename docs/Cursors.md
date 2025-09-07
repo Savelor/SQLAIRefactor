@@ -42,6 +42,18 @@ DEALLOCATE order_cursor;
 -- Return result set
 SELECT * FROM @Results;
 ```
+--Refactore version:
+```sql
+SELECT  CustomerID, OrderDate, SubTotal AS TotalDue,
+    SUM(SubTotal) OVER (
+        PARTITION BY CustomerID
+        ORDER BY OrderDate
+        ROWS UNBOUNDED PRECEDING
+    ) AS RunningTotal
+FROM Sales.SalesOrderHeader
+WHERE SubTotal > 1000
+ORDER BY CustomerID, OrderDate;
+```
 
 **CTE:** In general, a cursor can be rewritten as a CTE when the cursor’s purpose is primarily row sequencing, grouping, or computing derived columns rather than performing complex procedural operations per row.  The cursor should not perform row-by-row external actions, and the logic for each iteration should not depend on the results of previous iterations.
 
