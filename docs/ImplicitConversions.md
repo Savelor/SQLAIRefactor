@@ -4,6 +4,7 @@ In this example below, suppose to have an index on SalesOrderDetail.ModifiedDate
 ```sql
 --Create an index on the columns
 CREATE NONCLUSTERED INDEX AI_index ON [Sales].[SalesOrderDetail] ([ModifiedDate]) INCLUDE ([SalesOrderID])
+
 --Application code
 DECLARE @Salesday sql_variant 
 SET @Salesday = '20130731'
