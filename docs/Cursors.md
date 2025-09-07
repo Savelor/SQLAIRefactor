@@ -126,6 +126,5 @@ FROM RunningTotals;
 SELECT * FROM @Results;
 ```
 
-**📝 WHILE loop:** a cursor can often be rewritten as a WHILE loop when the goal is to process a fixed set of rows row by row. This approach works best when the data can be stored in a temporary table or table variable, allowing the loop to iterate over each row using a key or sequential index. WHILE loops are particularly useful when you need procedural logic or the ability to exit early with a BREAK statement. 
 
 
