@@ -1,15 +1,15 @@
 Read and analyze all the provided T-SQL batch and apply the following rules:
 
-1. When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
+1. `When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
 Replace the “*” in the SELECT with only the columns you found as really used. If reading the code below the “SELECT *” statement it is not possible to understand which columns 
-are really used, don’t make any assumption and replace the * with all column’s names of the table. You have the list of columns of all tables provided to you in JSON format.
+are really used, don’t make any assumption and replace the * with all column’s names of the table. You have the list of columns of all tables provided to you in JSON format.`
 
 2. Identify the SELECT statements that uses old syntax implicit joins, meaning that multiple tables are specified in the FROM clause separated by commas and the join columns in the WHERE clause. Rewrite these statements and use explicit join syntax with proper ‘JOIN’ keyword and specify the join columns with keyword ‘ON’.
 Ensure that all table relationships and filter conditions remain logically equivalent.
 
 3. When an ORDER BY clause is written using the column numbers (for example: ORDER BY 1, 3, 5) rewrite the ORDER BY clause replacing the numbers with column names used in the SELECT clause.
 
-4.When you find WHERE expression containing functions on column such as: CEILING(column) = x, or FLOOR(column) = x, or ROUND(column) don’t apply any function on the column. Rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition on x modifying the right side of the comparison. Apply the following rules:
+4. When you find WHERE expression containing functions on column such as: CEILING(column) = x, or FLOOR(column) = x, or ROUND(column) don’t apply any function on the column. Rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition on x modifying the right side of the comparison. Apply the following rules:
 a) “WHERE CEILING(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice > 713 AND UnitPrice <= 714”
 b) “WHERE FLOOR(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice >= 714 AND UnitPrice < 715”
 c) “WHERE ROUND(UnitPrice) = 714” must be rewritten as “WHERE UnitPrice BETWEEN 714 – 0.5 AND UnitPrice < 714 + 0.5”
