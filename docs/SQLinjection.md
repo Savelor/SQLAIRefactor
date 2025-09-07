@@ -21,12 +21,15 @@ WHERE A.City = ''' + @cityname + ''
 EXEC (@query)
 END
 ```
+**Attack Example**
 The second line below shows how it is possible to drop a table TabX, just passing an executable string as a malicious parameter value.
-
+```sql
+-- Normal input (safe)
 EXEC dbo.usp_testInj 'Bothell'''  --OK
 
+-- Malicious input (SQL Injection)
 EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
-
+```
 - **Solution 1**: A safe option is to introduce input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
 - **Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code.
 - **Solution 3**: Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
