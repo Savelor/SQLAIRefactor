@@ -1,3 +1,4 @@
+## Avoiding Implicit conversions
 In this example below, suppose to have an index on SalesOrderDetail.ModifiedDate column. Column ModifiedDate and variable @Salesday have different data types (datetime and sql_variant respectively). The comparison within the WHERE condition ( ModifiedDate >= @Salesday) triggers an implicit conversion of the column which prevents the use of index, leading to an index scan. 
 
 ```sql
