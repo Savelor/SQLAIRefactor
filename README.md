@@ -48,11 +48,19 @@ Implicit conversions occur when the engine automatically converts one data type 
 
 Analyze the details about how to avoid implicit conversione in you code here: [Avoiding implicit conversions](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#avoiding-implicit-conversions)
 
-## 8. Generating a more secure code (avoiding SQL injection)
+## 🛡️8. Generating a more secure code (avoiding SQL injection)
 SQL Injection is a security vulnerability that allows an attacker to modify the SQL queries an application makes to its database. It has been one of the OWASP Top 10 vulnerabilities for over a decade. By injecting malicious SQL code into input fields, an attacker can alter, retrieve, or even delete data, potentially compromising entire databases. It typically occurs when user input is not properly validated before being embedded in SQL statements. OpenAI models can assist in identifying risky coding patterns that lead to SQL injection vulnerabilities. These patterns often arise from insufficient input validation, lack of strict type enforcement, or the unsafe use of dynamic SQL execution methods such as EXEC with concatenated strings. In this stored procedure below, the @cityname parameter is directly concatenated into a SQL string and executed, making it vulnerable to injection.
 Look at the details of the problem and examine possible solutions which can be implemented automatically in [Avoiding SQL injection](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/SQLinjection.md#avoiding-sql-injection)
 
-## 9. Remove Unused and Irrelevant code
+# 🐌9. Refactoring cursors
+The inefficiency of cursors is a classic pain point in SQL Server performance. Cursors allow you to iterate through rows one by one, similar to a loop in procedural languages. While this might feel intuitive for developers coming from imperative programming backgrounds, cursors are usually inefficient for several reasons: 
+
+- Row-by-row processing: SQL Server is optimized for set-based operations. Cursors break this model.
+- Resource intensive: They require memory and locks, and often spill to tempdb.
+- Slow performance: For large result sets, performance degrades dramatically compared to set-based
+See the details about how to refactor cursors here: [Avoiding cursors](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
+
+## ✂️10. Remove Unused and Irrelevant code
 Unused code refers to portions of code that are written but never executed during the lifecycle of an application. This can include declared variables that are never utilized, temporary tables that are created but never populated, or entire logic blocks that remain unreachable. Irrelevant code (unuseful), on the other hand, may be executed but has no impact in the current context. It may have served a purpose in an earlier version of the application or been introduced as a placeholder during development without being finalized or removed. In the example below, the original function contains unused parameters, superfluous local variables, and irrelevant logic. With the right prompts and guidance, an OpenAI model can detect and eliminate these elements, resulting in cleaner, more efficient and maintainable code. 
 
 <div style="text-align: left;">
@@ -62,18 +70,10 @@ Unused code refers to portions of code that are written but never executed durin
     style="width: 70%;" />
 </div>
 
-# 10. Refactoring cursors
-The inefficiency of cursors is a classic pain point in SQL Server performance. Cursors allow you to iterate through rows one by one, similar to a loop in procedural languages. While this might feel intuitive for developers coming from imperative programming backgrounds, cursors are usually inefficient for several reasons: 
-
-- Row-by-row processing: SQL Server is optimized for set-based operations. Cursors break this model.
-- Resource intensive: They require memory and locks, and often spill to tempdb.
-- Slow performance: For large result sets, performance degrades dramatically compared to set-based
-See the details about how to refactor cursors here: [Avoiding cursors](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
-
-## 11. Replace deprecated Large Object Data Types
+## ♻️11. Replace deprecated Large Object Data Types
 TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features.
 
-## 11. Refactoring SQL with GPT-4o via Azure OpenAI and C#
+## 12. Refactoring SQL with GPT-4o via Azure OpenAI and C#
 To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with Azure AI Foundry and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
 
 Here is a simple example to start:
