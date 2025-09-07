@@ -42,7 +42,7 @@ DEALLOCATE order_cursor;
 -- Return result set
 SELECT * FROM @Results;
 ```
---Refactore version:
+**Refactored version:**
 ```sql
 SELECT  CustomerID, OrderDate, SubTotal AS TotalDue,
     SUM(SubTotal) OVER (
@@ -56,6 +56,82 @@ ORDER BY CustomerID, OrderDate;
 ```
 
 **CTE:** In general, a cursor can be rewritten as a CTE when the cursor’s purpose is primarily row sequencing, grouping, or computing derived columns rather than performing complex procedural operations per row.  The cursor should not perform row-by-row external actions, and the logic for each iteration should not depend on the results of previous iterations.
+
+```sql
+DECLARE @CustomerID INT, @OrderDate DATE, @TotalDue MONEY, @PrevCustomerID INT = NULL, @PrevDate DATE = NULL, @RunningTotal MONEY = 0;
+
+DECLARE @Results TABLE ( CustomerID INT, OrderDate DATE, TotalDue MONEY, RunningTotal MONEY );
+
+DECLARE order_cursor CURSOR FOR
+    SELECT CustomerID, OrderDate, TotalDue
+    FROM Sales.SalesOrderHeader
+    WHERE TotalDue > 1000
+    ORDER BY CustomerID, OrderDate;
+
+OPEN order_cursor;
+
+FETCH NEXT FROM order_cursor INTO @CustomerID, @OrderDate, @TotalDue;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    IF @CustomerID <> @PrevCustomerID OR DATEDIFF(DAY, @PrevDate, @OrderDate) > 30
+    BEGIN
+        SET @RunningTotal = 0;  -- Reset running total if customer changes or gap > 30 days
+    END
+
+    SET @RunningTotal += @TotalDue;
+
+    INSERT INTO @Results (CustomerID, OrderDate, TotalDue, RunningTotal)
+    VALUES (@CustomerID, @OrderDate, @TotalDue, @RunningTotal);
+
+    -- Save previous values for next row comparison
+    SET @PrevCustomerID = @CustomerID;
+    SET @PrevDate = @OrderDate;
+
+    FETCH NEXT FROM order_cursor INTO @CustomerID, @OrderDate, @TotalDue;
+END
+
+CLOSE order_cursor;
+DEALLOCATE order_cursor;
+
+-- Return result set
+SELECT * FROM @Results;
+```
+
+**Refactored version:**
+```sql
+-- Created by Copilot in SSMS - review carefully before executing
+DECLARE @Results TABLE ( CustomerID INT, OrderDate DATE, TotalDue MONEY, RunningTotal MONEY);
+
+-- Using a set-based approach with a window function to calculate running totals
+WITH OrderedData AS (
+    SELECT 
+        CustomerID,
+        OrderDate,
+        TotalDue,
+        LAG(CustomerID) OVER (PARTITION BY CustomerID ORDER BY OrderDate) AS PrevCustomerID,
+        LAG(OrderDate) OVER (PARTITION BY CustomerID ORDER BY OrderDate) AS PrevDate
+    FROM  Sales.SalesOrderHeader
+    WHERE TotalDue > 1000
+),
+RunningTotals AS (
+    SELECT 
+        CustomerID,
+        OrderDate,
+        TotalDue,
+        CASE 
+            WHEN CustomerID <> PrevCustomerID OR DATEDIFF(DAY, PrevDate, OrderDate) > 30 THEN TotalDue
+            ELSE SUM(TotalDue) OVER (PARTITION BY CustomerID ORDER BY OrderDate ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+        END AS RunningTotal
+    FROM  OrderedData
+)
+INSERT INTO @Results (CustomerID, OrderDate, TotalDue, RunningTotal)
+SELECT  CustomerID, OrderDate, TotalDue, RunningTotal
+FROM RunningTotals;
+
+-- Return result set
+SELECT * FROM @Results;
+```
 
 **WHILE loop:** a cursor can often be rewritten as a WHILE loop when the goal is to process a fixed set of rows row by row. This approach works best when the data can be stored in a temporary table or table variable, allowing the loop to iterate over each row using a key or sequential index. WHILE loops are particularly useful when you need procedural logic or the ability to exit early with a BREAK statement. 
 
