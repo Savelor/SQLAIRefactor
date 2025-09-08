@@ -32,9 +32,9 @@ The actual execution plan metrics show a great improvement replacing CEILING wit
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.45           | 0.00                | **✅ -100.00%** |
-| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 9              | 0                   | **-100.00%** |
-| Logical Reads     | 438            | 3                   | **-99.32%**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 9              | 0                   | **-100.00% ✅** |
+| Logical Reads     | 438            | 3                   | **-99.32% ✅**  |
 
 </small>
 
