@@ -1,13 +1,13 @@
 # SQLAIRefactor
 <img width="600" height="1003" alt="Introduction" src="https://github.com/user-attachments/assets/b3700808-abb5-407d-a7c8-24ec7a6ead5a" />
 
-SQLAIRefactor is a solution based on OpenAI which analyzes all SQL Server application code and identifies inefficiencies and anti-patterns, reporting evidence to the developer and proposing an alternative code, more efficient and aligned with T-SQL best practices. This repository is the accompanying code for the **"AI-based T-SQL Refactoring: an automatic intelligent code optimization with Azure OpenAI"** article. Make sure that check that out at https://devblogs.microsoft.com/azure-sql/?p=4778&preview=true.
+SQLAIRefactor is a solution based on OpenAI which analyzes all SQL Server application code and identifies inefficiencies and anti-patterns, reporting evidence to the developer and proposing an alternative code, more efficient and aligned with T-SQL best practices. This repository is the accompanying code for the **"AI-based T-SQL Refactoring: an automatic intelligent code optimization with Azure OpenAI"** article. Make sure that check that out at **https://devblogs.microsoft.com/azure-sql/?p=4778&preview=true**.
 
 # Refactoring use cases
 The following section showcases a collection of real-world SQL optimization use cases where AI can make a meaningful impact. Each scenario highlights common challenges in T-SQL development: from anti-patterns and performance bottlenecks to security flaws and inefficient code structures. In every case, the AI model can be guided using structured prompts to identify and refactor problematic code, improving performances, the execution plan, clarity and best practice alignment. This catalog can serve as a practical reference for developers to identify significant use cases where code can be refactored with great benefits.
 
 ## ⚙️1. Consistent Syntax
--  [SELECT *](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
+-  [**SELECT * **](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
 -  [Old join style](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#2-old-join-syntax)  
 -  [ORDER BY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#3-order-by--group-by)  
 
