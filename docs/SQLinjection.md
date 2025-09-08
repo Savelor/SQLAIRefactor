@@ -34,7 +34,7 @@ EXEC dbo.usp_testInj 'Bothell''; DROP TABLE dbo.TabX;'   --ATTACK!!
 **🛠️ Solutions to Prevent SQL Injection**
 There are multiple strategies to prevent SQL injection. Below are some of the most widely used and effective approaches.
 
-**Solution 1**: A safe option is to introduce input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
+**Solution 1: Input Validation** A safe option is to introduce input validation. This involves checking that user inputs conform to expected formats before using them in SQL queries. By restricting input to valid characters or patterns, and excluding specific keywords, you can significantly reduce the risk of injection attacks, though this alone could not be sufficient.
 ```sql
 
 CREATE PROCEDURE [dbo].[usp_testInj1]
@@ -65,7 +65,7 @@ EXEC (@query)
 END
 ```
 
-**Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code.
+**Solution 2: Parameterized Query** This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code.
 ```sql
 CREATE PROCEDURE [dbo].[usp_testInj2]
 @cityname [nvarchar](256)
@@ -83,7 +83,7 @@ EXEC sp_executesql @query, N'@CityParam VARCHAR(256)', @CityParam = @cityname
 END
 ```
 
-**Solution 3**: Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
+**Solution 3: QUOTENAME** Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
 ```sql
 CREATE PROCEDURE [dbo].[usp_testInj3]
 @cityname NVARCHAR(256)
@@ -102,7 +102,7 @@ EXEC (@query);
 END
 ```
 
-**Solution 4**: When the query structure does not change, use a static SQL statement with parameter binding. This approach completely avoids string concatenation and is the safest when applicable.
+**Solution 4: Static SQL** When the query structure does not change, use a static SQL statement with parameter binding. This approach completely avoids string concatenation and is the safest when applicable.
 ```sql
 CREATE PROCEDURE [dbo].[usp_testInj4]
 @cityname NVARCHAR(256)
