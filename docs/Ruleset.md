@@ -84,9 +84,9 @@ If the column and constant have different data types, rewrite the WHERE conditio
 On the right side apply the CONVERT() function to the constant or literal to match the column’s data type. At the end, column and constant must have exactly the same data type.`
 
 21. `Analyze the provided code and identify dynamic SQL executions such as:  "EXEC @query" or "EXEC sp_executesql @query" without parameters. Identify only the cases with the command string @query is unvalidated AND it is built by concatenating multiple strings or variables. In this cases rewrite the code using one of the following two alternative options:
-- keep EXEC @query, and add to the code additional check validations on sql string. Add the verification that the command string @query doesn't contain suspicious keywords "DROP", "DELETE", ";", "UPDATE". In addition report a warning comment in the modified code.
-- Replace EXEC with EXEC sp_executesql @query, passing parameters instead concatenating parameters in the @query command string.
-- If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
+a) keep EXEC @query, and add to the code additional check validations on sql string. Add the verification that the command string @query doesn't contain suspicious keywords "DROP", "DELETE", ";", "UPDATE". In addition report a warning comment in the modified code.
+b) Replace EXEC with EXEC sp_executesql @query, passing parameters instead concatenating parameters in the @query command string.
+c) If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
 
 22. `Identify all WHERE conditions containing comparisons with COALESCE(column1, column2) function applied to 2 table columns.
 Rewrite the WHERE condition leaving the column alone on left side of the comparison. Apply according to the following example:
