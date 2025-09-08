@@ -102,23 +102,17 @@ EXEC (@query);
 END
 ```
 
-**Solution 4**: When the query structure is fixed a static SQL statement can be a good option, since there's no string concatenation.
+**Solution 4**: When the query structure does not change, use a static SQL statement with parameter binding. This approach completely avoids string concatenation and is the safest when applicable.
 ```sql
-CREATE PROCEDURE [dbo].[usp_testInj_Quotename]
-@cityname VARCHAR(256)
+CREATE PROCEDURE [dbo].[usp_testInj_Static]
+@cityname NVARCHAR(256)
 AS
 BEGIN
-DECLARE @query NVARCHAR(MAX)
-
-
-SET @query = 
-'SELECT A.AddressID, A.AddressLine1, SP.Name 
- FROM Person.Address A
- INNER JOIN Person.StateProvince SP 
-   ON A.StateProvinceID = SP.StateProvinceID
- WHERE A.City = ' + QUOTENAME(@cityname, '''');
-
-EXEC (@query);
+    SELECT A.AddressID, A.AddressLine1, SP.Name
+    FROM Person.Address A
+    INNER JOIN Person.StateProvince SP 
+      ON A.StateProvinceID = SP.StateProvinceID
+    WHERE A.City = @cityname
 END
 ```
 
