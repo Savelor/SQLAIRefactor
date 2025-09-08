@@ -122,6 +122,12 @@ answer = answer.Replace("\n", "\r\n");
 
 ## 12. Prompt ruleset
 Below are some example prompt rules supplied to the model. These rules guide the AI in identifying specific cases described and refactoring the code according to the provided instructions. This content should be provided to the model through a prompt, encapsulated in the RuleSet variable as shown in the code example above.
+<div style="text-align: left;">
+  <img 
+    src="https://github.com/user-attachments/assets/e1bafd47-1832-410b-b15b-0f38fde37049"
+    alt="Convert_Implicit"
+    style="width: 60%;" />
+</div>
 
 ## 13. SQLAIRefactor as a Windows application
 SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
