@@ -5,7 +5,8 @@ SQL Injection (SQLi) is a type of security vulnerability that happens when an ap
 - Root cause: the application mixes code and data within a single SQL string.
 
 The following example illustrates code that may be vulnerable to a SQL injection attack:
-❌ Vulnerable code
+
+❌ **Vulnerable code**
 ```sql
  CREATE PROCEDURE [dbo].[usp_testInj]
 @cityname [nvarchar](256)
