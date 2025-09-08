@@ -90,7 +90,7 @@ See the details about how to refactor cursors here: [**Ruleset definition file**
 </div>
 
 ## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
-To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with Azure AI Foundry and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
+To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with [**Azure AI Foundry**](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
 
 Here is a simple example to start:
 
@@ -136,19 +136,11 @@ answer = answer.Replace("\n", "\r\n");
 ```
 
 ## 14. SQLAIRefactor as a Windows application
-SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
-This solution is an AI-powered application to automating SQL Server code analysis and refactoring. The system intelligently identifies inefficiencies and common T-SQL anti-patterns, applying best practices through a set of formalized coding rules, using prompt-driven instructions. It not only automatically rewrites problematic and inefficient code but also delivers contextual recommendations to improve quality, security, and maintainability.
+SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically. The system intelligently identifies inefficiencies and common T-SQL anti-patterns, applying best practices through a set of formalized coding rules, using prompt-driven instructions. It also delivers contextual recommendations to improve quality, security, and maintainability.
 Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRefactor/tree/master/SQLAIRefactor)
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="500"/>
-</div>
-
-<div style="text-align: center;">
-  <img 
-    src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7"
-    alt="GUI1"
-    style="width: 60%;" />
 </div>
 
 ### How to use the tool
