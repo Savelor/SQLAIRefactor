@@ -143,7 +143,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
   <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="500"/>
 </div>
 
-### How to use the tool
+### ▶️ How to use the tool
 
 - **1. Paste Your Code**  
   Insert the original T-SQL code you want to optimize into the left panel of the interface.
@@ -161,25 +161,20 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
 <img width="650" height="1801" alt="howtouse" src="https://github.com/user-attachments/assets/b27dd7a9-4466-4dcc-ba84-e566b16f285c" />
 </div>
 
-## 🚀 Features
+### 🚀 Features
 
 - AI-powered SQL refactoring using GPT-4.1 or GPT-4o (Azure OpenAI)
-- Retrieves and injects full table/column data types in JSON
-- Identifies inefficiencies (e.g., implicit conversions, index scan vs. seek)
+- Retrieves full table/column data types from database and injects this information into the model in JSON 
+- Identifies inefficiencies (e.g., implicit conversions, index scan vs. seek) defined from the Ruleset
 - Supports both Windows and SQL Authentication
 - Renders results in an HTML-based view with syntax highlighting
 
----
-## 📦 Theory
 
-## 📦 Prerequisites
+### 📦 Prerequisites
 
 - Windows OS
 - [.NET Framework 4.8+](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
 - Azure OpenAI Resource (with `gpt-4.1`, `gpt-4o`, or `o3-mini` deployments)
-- SQL Server with accessible schema
 
----
-
-## 📄 License
+### 📄 License
 This project is licensed under the MIT License.
