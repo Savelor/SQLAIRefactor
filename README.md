@@ -19,7 +19,7 @@ When used in a WHERE clause, these functions applied to an indexed column can pr
 -  [SIGN()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
 
 ## ⚙️ 3.  Arithmetic functions
-In this list in **AdventureWorks2022** database, these arithmetic functions used in the WHERE predicate have been replaced by equivalent algebraic condition, so that the existing index can be used. In this way the execution plan changes from running an Index SCAN to a more efficient Index SEEK. Tests show good improvements in cost and I/O.
+In this list in **AdventureWorks2022** database, these arithmetic functions used in the WHERE predicate have been replaced by equivalent algebraic condition, so that the existing index can be used and the execution plan changes from running an Index SCAN to a more efficient Index SEEK. Tests show good improvements in cost and I/O.
 -  [ABS()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
 -  [SQRT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
 -  [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
