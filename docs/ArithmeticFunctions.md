@@ -113,7 +113,7 @@ The actual plan comparison shows a great reduction in cost and I/O:
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 3.04           | 1.76                | **-42.11% ✅**  |
-| CPU Time [ms]     | 156            | 140                 | **-10.26%**  |
+| CPU Time [ms]     | 156            | 140                 | **-10.26% ✅**  |
 | Elapsed Time [ms] | 1525           | 1540                | **+0.98%**   |
 | Logical Reads     | 2650           | 1241                | **-53.17% ✅**  |
 
