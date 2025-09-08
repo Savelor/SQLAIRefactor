@@ -85,7 +85,7 @@ END
 
 **Solution 3**: Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
 ```sql
-CREATE PROCEDURE [dbo].[usp_testInj_Quotename]
+CREATE PROCEDURE [dbo].[usp_testInj3]
 @cityname NVARCHAR(256)
 AS
 BEGIN
@@ -104,7 +104,7 @@ END
 
 **Solution 4**: When the query structure does not change, use a static SQL statement with parameter binding. This approach completely avoids string concatenation and is the safest when applicable.
 ```sql
-CREATE PROCEDURE [dbo].[usp_testInj_Static]
+CREATE PROCEDURE [dbo].[usp_testInj4]
 @cityname NVARCHAR(256)
 AS
 BEGIN
