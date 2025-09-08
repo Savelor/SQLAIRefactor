@@ -1,4 +1,4 @@
-Read and analyze all the provided T-SQL batch and apply the following rules:
+## Prompt ruleset
 
 1. `When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
 Replace the “*” in the SELECT with only the columns you found as really used. If reading the code below the “SELECT *” statement it is not possible to understand which columns 
