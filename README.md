@@ -141,7 +141,7 @@ This solution is an AI-powered application to automating SQL Server code analysi
 Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRefactor/tree/master/SQLAIRefactor)
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="650"/>
+  <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="500"/>
 </div>
 
 <div style="text-align: center;">
