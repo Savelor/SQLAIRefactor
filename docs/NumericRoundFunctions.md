@@ -108,7 +108,7 @@ WHERE [City Key] >= 3.5 AND [City Key] < 4.5
 <img width="2447" height="484" alt="ROUND" src="https://github.com/user-attachments/assets/666cf420-96da-4512-b73e-8f9c28e05127" />
 </div>
 
-
+The actual execution plan metrics show a great improvement in this use case:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
@@ -149,7 +149,7 @@ WHERE [ActualCost] > 0
 <img width="2186" height="283" alt="SIGN" src="https://github.com/user-attachments/assets/e41b425a-02fe-4d54-a238-016af8976110" />
 </div>
 
-
+The actual execution plan metrics show a great improvement in query cost and I/O reduction:
 <small>
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
