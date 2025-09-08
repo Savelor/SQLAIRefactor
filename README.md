@@ -7,40 +7,40 @@ SQLAIRefactor is a solution based on OpenAI which analyzes all SQL Server applic
 The following section showcases a collection of real-world SQL optimization use cases where AI can make a meaningful impact. Each scenario highlights common challenges in T-SQL development: from anti-patterns and performance bottlenecks to security flaws and inefficient code structures. In every case, the AI model can be guided using structured prompts to identify and refactor problematic code, improving performances, the execution plan, clarity and best practice alignment. This catalog can serve as a practical reference for developers to identify significant use cases where code can be refactored with great benefits.
 
 ## ⚙️1. Consistent Syntax
--  [**SELECT *`**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
--  [Old join style](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#2-old-join-syntax)  
--  [ORDER BY](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#3-order-by--group-by)  
+-  [__SELECT **__](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#1-select-)  
+-  [**Old join style**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#2-old-join-syntax)  
+-  [**ORDER BY**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ConsistentSyntax.md#3-order-by--group-by)  
 
 ## ⚙️2. Numeric rounding functions: CEILING(), FLOOR() and ROUND(), SIGN() 
 When used in a WHERE clause, these functions applied to an indexed column can prevent the SQL Server engine from utilizing indexes effectively, often resulting in an Index Scan instead of a more efficient Index Seek. From a performance standpoint, these predicates should be rewritten using equivalent arithmetic conditions that preserve index usage and allow the optimizer to choose an Index Seek. The following examples are in **WorldWideImportersDW** database. Refactoring the WHERE condition shows a significant query cost decrease and performance improvement. 
--  [CEILING()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#ceiling)  
--  [FLOOR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#floor)  
--  [ROUND()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#round)  
--  [SIGN()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
+-  [**CEILING()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#ceiling)  
+-  [**FLOOR()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#floor)  
+-  [**ROUND()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#round)  
+-  [**SIGN()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/NumericRoundFunctions.md#sign)  
 
 ## ⚙️ 3.  Arithmetic functions
 In this list in **AdventureWorks2022** database, these arithmetic functions used in the WHERE predicate have been replaced by equivalent algebraic condition, so that the existing index can be used and the execution plan changes from running an Index SCAN to a more efficient Index SEEK. Tests show good improvements in cost and I/O.
--  [ABS()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
--  [SQRT()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
--  [POWER()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
+-  [**ABS()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#abs)  
+-  [**SQRT()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#sqrt)  
+-  [**POWER()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticFunctions.md#power)  
 
 ## ⚙️4. Time management functions 
 The following time functions can be replaced in WHERE predicate, avoiding applying the function to the column. In this scenario in **AdventureWorks2022** database suppose that there is an index IX1 ON [Sales].[SalesOrderDetail] ([ModifiedDate]), even without Include columns. The following tests show exceptional improvement in all execution metrics of the AI generated code: 
--  [DATEDIFF()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datediff) 
--  [DATEADD()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#dateadd)
--  [DATEPART()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datepart)
--  [YEAR()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#year)
+-  [**DATEDIFF()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datediff) 
+-  [**DATEADD()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#dateadd)
+-  [**DATEPART()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#datepart)
+-  [**YEAR()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/TimeFunctions.md#year)
 
 ## ⚙️5. Arithmetic Operators 
 Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following examples run on **AdventurWorks2022** database. 
--  [Arithmetic operators *, /, +, -](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#arithmetic-operators)
--  [Simple equations](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#simple-equations)
+-  [**Arithmetic operators *, /, +, -**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#arithmetic-operators)
+-  [**Simple equations**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#simple-equations)
 
 
 ## ⚙️6. Other functions
-- [LIKE](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#like)
-- [ISNULL()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#isnull)
-- [COALESCE()](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#coalesce)
+- [**LIKE**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#like)
+- [**ISNULL()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#isnull)
+- [**COALESCE()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#coalesce)
 - [**CONVERT()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#convert)
 - [**CAST()**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#cast)
 - [**OUTER APPLY**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/OtherFunctions.md#outer-apply)
