@@ -31,10 +31,10 @@ The comparison between the two actual execution plans shows exceptional improvem
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.422          | 0.003               | **-99.29%**  |
-| CPU Time [ms]     | 15             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 9              | 0                   | **-100.00%** |
-| Logical Reads     | 273            | 3                   | **-98.90%**  |
+| Cost              | 0.422          | 0.003               | **-99.29% ✅**  |
+| CPU Time [ms]     | 15             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 9              | 0                   | **-100.00% ✅** |
+| Logical Reads     | 273            | 3                   | **-98.90% ✅**  |
 
 </small>
 
@@ -78,10 +78,10 @@ The comparison between the two actual execution plans shows exceptional improvem
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.446          | 0.003               | **-99.33%**  |
-| CPU Time [ms]     | 31             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 22             | 0                   | **-100.00%** |
-| Logical Reads     | 273            | 3                   | **-98.90%**  |
+| Cost              | 0.446          | 0.003               | **-99.33% ✅**  |
+| CPU Time [ms]     | 31             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 22             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 273            | 3                   | **-98.90% ✅**  |
 
 </small>
 
