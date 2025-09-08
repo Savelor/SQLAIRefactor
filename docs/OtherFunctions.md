@@ -1,5 +1,5 @@
 ## LIKE
-WHERE predicates that include a LIKE clause often produce execution plans that are hard to improve. In many cases, this leads to higher I/O costs and slower performance as data volumes grow.
+WHERE predicates that include a LIKE clause often produce execution plans that are hard to improve. In many cases, these queries have high I/O and slow performance as data volumes grow.
 In some specific cases it is possible to rewrite the LIKE condition using functions such as RIGHT. This approach can result in significantly more efficient execution plans, reducing the number of I/O operations, especially as table sizes increase. The use of the LIKE operator generally falls into three main categories (all tests executed in **AdventureWorks2022** database): 
 
 **1. Wildcard on right:**, the plan is good enough, no need to rewrite it.
@@ -57,18 +57,14 @@ WHERE RIGHT(AddressLine1,3) = 'way'
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.18           | 0.18                | **0.00%**    |
-| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 122            | 94                  | **-22.95%**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 122            | 94                  | **-22.95% ✅**  |
 | Logical Reads     | 216            | 216                 | **0.00%**    |
 
 </small>
 
 
-
-<p>&nbsp;</p>
-
-
-**3. Wildcard on both sides:** it is possible to refactor using PATHINDEX function. Tests show the same execution plan in both versions, and the refactored code has almost the same performance values. In this case, no significant improvement.
+**3. Wildcard on both sides:** it is possible to refactor using PATHINDEX function. However, tests show the same execution plan in both versions, and the refactored code has almost the same performance values. In this case, no significant improvement.
    
 <table>
   <tr>
@@ -136,10 +132,10 @@ Tests show some improvements, especially in I/O.
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.60           | 0.05                | **-91.67%**  |
-| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 11             | 0                   | **-100.00%** |
-| Logical Reads     | 500            | 39                  | **-92.20%**  |
+| Cost              | 0.60           | 0.05                | **-91.67% ✅**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 11             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 500            | 39                  | **-92.20% ✅**  |
 
 </small>
 
@@ -174,15 +170,15 @@ WHERE LastName = 'James'
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 2.85           | 0.321               | **-88.72%**  |
+| Cost              | 2.85           | 0.321               | **-88.72% ✅**  |
 | CPU Time [ms]     | 0              | 0                   | **0.00%**    |
-| Elapsed Time [ms] | 10             | 0                   | **-100.00%** |
-| Logical Reads     | 4004           | 305                 | **-92.38%**  |
+| Elapsed Time [ms] | 10             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 4004           | 305                 | **-92.38% ✅**  |
 
 </small>
 
 ## CONVERT
-Applying CONVERT() to an indexed column inside a WHERE clause makes the predicate non-sargable, so indexes are often ignored and scans occur. The trick is to rewrite the predicate by applying CONVERT() to the comparison value instead of the column.
+Applying CONVERT() to an indexed column inside a WHERE clause makes the predicate non-sargable, so an eventual index on the column is ignored and scan occur. The trick is to rewrite the predicate by applying the CONVERT() to the comparison value instead of the column.
 To test this use case, let's create the table SalesOrderDetailX having two columns with nvarchar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
@@ -221,15 +217,15 @@ The AI optimized code generates a plan without Conversion Warning. Moreover, exe
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.517          | 0.006               | **-98.84%**  |
+| Cost              | 0.517          | 0.006               | **-98.84% ✅**  |
 | CPU Time [ms]     | 0              | 0                   | **0.00%**    |
-| Elapsed Time [ms] | 12             | 0                   | **-100.00%** |
-| Logical Reads     | 498            | 3                   | **-99.40%**  |
+| Elapsed Time [ms] | 12             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 498            | 3                   | **-99.40% ✅**  |
 
 </small>
 
 ## CAST
-Applying CAST to an indexed column inside a WHERE clause makes the predicate non-sargable, so indexes are often ignored and scans occur. One trick is to rewrite the predicate by applying the CONVERT() function to the comparison value instead of the column. To test this use case, let's create the table SalesOrderDetailX having two columns with nvarchar data type containing numeric values:
+Applying CAST to an indexed column inside a WHERE clause makes the predicate non-sargable, so an eventual index on the column is ignored and scan occur. One trick is to rewrite the predicate by applying the CONVERT() function to the comparison value, leaving the column alone. To properly test this use case, let's create the table SalesOrderDetailX having two columns with nvarchar data type containing numeric values:
 ```sql
   USE AdventureWorks2022
   CREATE TABLE dbo.SalesOrderDetailX (CarrierTrackingNumber nvarchar(25), ProductId NVARCHAR(8))
@@ -268,15 +264,15 @@ The AI optimized code generates a plan without Conversion Warning. Moreover, exe
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.517          | 0.006               | **-98.84%**  |
+| Cost              | 0.517          | 0.006               | **-98.84% ✅**  |
 | CPU Time [ms]     | 0              | 0                   | **0.00%**    |
-| Elapsed Time [ms] | 12             | 0                   | **-100.00%** |
-| Logical Reads     | 498            | 3                   | **-99.40%**  |
+| Elapsed Time [ms] | 12             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 498            | 3                   | **-99.40% ✅**  |
 
 </small>
 
 ## OUTER APPLY
-When an OUTER APPLY subquery is simple—returning zero or more rows per outer row, with no TOP, ORDER BY, aggregates, window functions, or nested subqueries, and using only equality conditions for correlation—it can be safely rewritten as a LEFT JOIN. Just move the correlation conditions into the ON clause and replace references to the OUTER APPLY alias with the new join alias.
+When an OUTER APPLY subquery is simple, returning zero or more rows per outer row, with no TOP, ORDER BY, aggregates, window functions, or nested subqueries, and using only equality conditions for correlation, it can be safely rewritten as a LEFT JOIN. Just move the correlation conditions into the ON clause and replace references to the OUTER APPLY alias with the new join alias.
 <table>
   <tr>
     <td style="vertical-align: top; padding: 10px;">
@@ -318,10 +314,10 @@ Tests show great improvements in all execution metrics, as shown below:
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 6.92           | 1.34                | **-80.64%**  |
-| CPU Time [ms]     | 94             | 16                  | **-82.98%**  |
-| Elapsed Time [ms] | 195            | 172                 | **-11.79%**  |
-| Logical Reads     | 104345         | 726                 | **-99.30%**  |
+| Cost              | 6.92           | 1.34                | **-80.64% ✅**  |
+| CPU Time [ms]     | 94             | 16                  | **-82.98% ✅**  |
+| Elapsed Time [ms] | 195            | 172                 | **-11.79% ✅**  |
+| Logical Reads     | 104345         | 726                 | **-99.30% ✅**  |
 
 </small>
 
