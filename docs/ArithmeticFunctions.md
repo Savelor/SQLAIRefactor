@@ -31,7 +31,7 @@ WHERE ReferenceOrderID > 50 OR ReferenceOrderID < -50
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
 | Cost              | 0.32           | 0.32                | **0.00%**    |
-| CPU Time [ms]     | 31             | 25                  | **-19.35%**  |
+| CPU Time [ms]     | 31             | 25                  | **-19.35% ✅**  |
 | Elapsed Time [ms] | 461            | 453                 | **-1.74%**   |
 | Logical Reads     | 255            | 258                 | **+1.18%**   |
 
@@ -71,10 +71,10 @@ The actual plan comparison shows a great improvement in this use case on all exe
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 3.00           | 0.32                | **-89.33%**  |
-| CPU Time [ms]     | 156            | 62                  | **-60.26%**  |
-| Elapsed Time [ms] | 2059           | 1822                | **-11.52%**  |
-| Logical Reads     | 2647           | 1549                | **-41.48%**  |
+| Cost              | 3.00           | 0.32                | **-89.33% ✅**  |
+| CPU Time [ms]     | 156            | 62                  | **-60.26% ✅**  |
+| Elapsed Time [ms] | 2059           | 1822                | **-11.52% ✅**  |
+| Logical Reads     | 2647           | 1549                | **-41.48% ✅**  |
 
 </small>
 
@@ -112,10 +112,10 @@ The actual plan comparison shows a great reduction in cost and I/O:
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 3.04           | 1.76                | **-42.11%**  |
+| Cost              | 3.04           | 1.76                | **-42.11% ✅**  |
 | CPU Time [ms]     | 156            | 140                 | **-10.26%**  |
 | Elapsed Time [ms] | 1525           | 1540                | **+0.98%**   |
-| Logical Reads     | 2650           | 1241                | **-53.17%**  |
+| Logical Reads     | 2650           | 1241                | **-53.17% ✅**  |
 
 </small>
 
