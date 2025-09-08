@@ -30,10 +30,10 @@ The comparison between the two actual execution plans shows exceptional reductio
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.496          | 0.006               | **-98.79%**  |
-| CPU Time [ms]     | 15             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 36             | 27                  | **-25.00%**  |
-| Logical Reads     | 358            | 3                   | **-99.16%**  |
+| Cost              | 0.496          | 0.006               | **-98.79% ✅**  |
+| CPU Time [ms]     | 15             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 36             | 27                  | **-25.00% ✅**  |
+| Logical Reads     | 358            | 3                   | **-99.16% ✅**  |
 
 </small>
 
@@ -70,10 +70,10 @@ The comparison between the two actual execution plans shows exceptional reductio
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.496          | 0.006               | **-98.79%**  |
-| CPU Time [ms]     | 15             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 11             | 0                   | **-100.00%** |
-| Logical Reads     | 358            | 3                   | **-99.16%**  |
+| Cost              | 0.496          | 0.006               | **-98.79% ✅**  |
+| CPU Time [ms]     | 15             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 11             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 358            | 3                   | **-99.16% ✅**  |
 
 </small>
 
@@ -110,10 +110,10 @@ The comparison between the two actual execution plans shows exceptional reductio
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.483          | 0.006               | **-98.76%**  |
-| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 12             | 0                   | **-100.00%** |
-| Logical Reads     | 358            | 3                   | **-99.16%**  |
+| Cost              | 0.483          | 0.006               | **-98.76% ✅**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 12             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 358            | 3                   | **-99.16% ✅**  |
 
 </small>
 
@@ -150,10 +150,10 @@ The comparison between the two actual execution plans shows exceptional reductio
 
 | Metric            | Original Query | AI Refactored Query | Variation (%) |
 |:------------------|---------------:|--------------------:|--------------:|
-| Cost              | 0.483          | 0.006               | **-98.76%**  |
-| CPU Time [ms]     | 16             | 0                   | **-100.00%** |
-| Elapsed Time [ms] | 13             | 0                   | **-100.00%** |
-| Logical Reads     | 358            | 3                   | **-99.16%**  |
+| Cost              | 0.483          | 0.006               | **-98.76% ✅**  |
+| CPU Time [ms]     | 16             | 0                   | **-100.00% ✅** |
+| Elapsed Time [ms] | 13             | 0                   | **-100.00% ✅** |
+| Logical Reads     | 358            | 3                   | **-99.16% ✅**  |
 
 </small>
 
