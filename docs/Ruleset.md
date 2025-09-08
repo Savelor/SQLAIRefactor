@@ -98,10 +98,10 @@ Rewrite the WHERE condition leaving the column alone on left side of the compari
 
 24. `Analyze SQL code and identify dynamic SQL execution patterns such as EXEC @query_stmt or EXEC sp_executesql @query_stmt. Focus on cases where the query string is built using string concatenation and is not properly validated (SQL injection)
 Identify only the cases with the command string @query_stmt is unvalidated AND it is built by concatenating multiple strings or variables without checking the content. In this cases rewrite the code using one of the following alternative options:
-1) keep "EXEC @query", and add to to the code additional check validations on sql string. Add the verification that the command string @query doesn’t contain suspicious keywords “TRUNCATE”, “DROP”, “DELETE”, “;”, “UPDATE”. In addition report a warning comment in the modified code.
-2) Replace ‘EXEC @query’ with ‘EXEC sp_executesql @query’, passing parameters instead of concatenating parameters inside the @query string.
-3) If dynamic SQL includes user-supplied identifiers (e.g., table names, schemas), apply QUOTENAME() to each part individually before including them in the SQL string. This prevents injection by ensuring only valid SQL identifiers are accepted.
-4) If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
+a) keep "EXEC @query", and add to to the code additional check validations on sql string. Add the verification that the command string @query doesn’t contain suspicious keywords “TRUNCATE”, “DROP”, “DELETE”, “;”, “UPDATE”. In addition report a warning comment in the modified code.
+b) Replace ‘EXEC @query’ with ‘EXEC sp_executesql @query’, passing parameters instead of concatenating parameters inside the @query string.
+c) If dynamic SQL includes user-supplied identifiers (e.g., table names, schemas), apply QUOTENAME() to each part individually before including them in the SQL string. This prevents injection by ensuring only valid SQL identifiers are accepted.
+d) If the argument of EXEC function is a fixed query not built concatenating any variable, just remove exec and execute the argument statement.`
 
 24. `When you find a cursor then you can often rewrite the logic as a single SELECT or a CTE or a WHILE loop if ALL the following a) and b) conditions are true:
 a) No procedural or stateful logic is needed in the cursor, and the cursor is just iterating over rows to perform: Filtering or Aggregation or Ranking or Calculations based on other rows, 
