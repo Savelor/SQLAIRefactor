@@ -49,7 +49,7 @@ d) If the WHERE condition contains both conditions: “column LIKE '%way'” AND
 12. `When you find WHERE expression with comparisons containing DATEDIFF function applied to a column, rewrite the WHERE expression leaving the column alone on left side of the comparison and rewrite an equivalent condition modifying the right side of the comparison using DATEADD function. Apply the following rules:
 a) “WHERE DATEDIFF(day, ModifiedDate, '2011-05-31') <= 5” must be rewritten as: “WHERE ModifiedDate >= DATEADD(day, -5, '2011-05-31')”
 b) “WHERE DATEDIFF(month, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(month, 5, '2011-06-30')”.
-c) “WHERE DATEDIFF(year, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(year, 5, '2011-06-30')”.`
+c) “WHERE DATEDIFF(year, '2011-06-30', ModifiedDate) > 5” must be rewritten as: “WHERE ModifiedDate > DATEADD(year, 5, '2011-06-30')”.` 
 
 13. `If in the WHERE clause the YEAR function is applied to a column, rewrite the statement using range comparison according to the following example:
 “YEAR(OrderDate) = 2022” must be rewritten as: “OrderDate >= '2022-01-01' AND OrderDate < '2023-01-01'”.`
