@@ -74,7 +74,22 @@ Unused code refers to portions of code that are written but never executed durin
 ## ♻️11. Replace deprecated Large Object Data Types
 TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features.
 
-## 12. Refactoring SQL with GPT-4o via Azure OpenAI and C#
+## 📜12. Prompt ruleset
+When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. They effectively define the scope of refactoring use cases we want to address.The process works as follows:
+
+- The model is given the original T-SQL code.
+- It is also provided with the refactoring rules.
+- Using both its training and the rules, the model identifies target cases (such as inefficient cursor usage or not sargable conditions) and rewrites the code according to the specified rules, producing an improved version.
+
+See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
+<div style="text-align: center;">
+  <img 
+    src="https://github.com/user-attachments/assets/e1bafd47-1832-410b-b15b-0f38fde37049"
+    alt="Convert_Implicit"
+    style="width: 50%;" />
+</div>
+
+## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
 To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with Azure AI Foundry and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
 
 Here is a simple example to start:
@@ -119,21 +134,6 @@ var response = await chatClient.CompleteChatAsync(messages, requestOptions);
 string answer = response.Value.Content[0].Text;
 answer = answer.Replace("\n", "\r\n");
 ```
-
-## 12. Prompt ruleset
-When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. They effectively define the scope of refactoring use cases we want to address.The process works as follows:
-
-- The model is given the original T-SQL code.
-- It is also provided with the refactoring rules.
-- Using both its training and the rules, the model identifies target cases (such as inefficient cursor usage or not sargable conditions) and rewrites the code according to the specified rules, producing an improved version.
-
-See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
-<div style="text-align: center;">
-  <img 
-    src="https://github.com/user-attachments/assets/e1bafd47-1832-410b-b15b-0f38fde37049"
-    alt="Convert_Implicit"
-    style="width: 60%;" />
-</div>
 
 ## 13. SQLAIRefactor as a Windows application
 SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically.
