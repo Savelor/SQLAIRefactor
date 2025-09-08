@@ -48,7 +48,7 @@ This use case also addresses the following conditions in WHERE clauses:
 
 
 ## Simple equations
-In cases where the WHERE predicate is a linear combination of an indexed column and numeric constants, the predicate can be rewritten by applying the basic principles of linear equations: isolating the column on the left-hand side and moving the constant terms to the right-hand side.
+In cases where the WHERE predicate is a linear combination of an indexed column and numeric constants, it can be rewritten by applying the basic principles of linear equations: isolating the column on the left-hand side and moving the constant terms to the right-hand side. If properly instructed, the AI model is perfectly able to do that.
 
 <table style="width: 100%;">
   <tr>
