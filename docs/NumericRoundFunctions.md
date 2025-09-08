@@ -23,7 +23,7 @@ WHERE [City Key] > 350-1 AND [City Key] <= 350
 </table>
 
 <div style="text-align: left;">
-<img width="2122" height="279" alt="CEILING" src="https://github.com/user-attachments/assets/207018fb-84a5-40a5-ae14-d23ff6de3def" />
+<img width="1800" height="279" alt="CEILING" src="https://github.com/user-attachments/assets/207018fb-84a5-40a5-ae14-d23ff6de3def" />
 </div>
 
 The actual execution plan metrics show a great improvement replacing CEILING with a proper expression:
