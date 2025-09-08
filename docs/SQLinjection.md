@@ -8,10 +8,10 @@ The following example illustrates code that may be vulnerable to a SQL injection
  
 ```sql
  CREATE PROCEDURE [dbo].[usp_testInj]
-@cityname [varchar](256)
+@cityname [nvarchar](256)
 AS
 BEGIN
-DECLARE @query varchar(1024)
+DECLARE @query nvarchar(1024)
 SET @query = 
 'SELECT A.AddressID, A.AddressLine1, SP.Name
 FROM Person.Address A INNER JOIN Person.StateProvince SP 
@@ -38,10 +38,10 @@ There are multiple strategies to prevent SQL injection. Below are some of the mo
 ```sql
 
 CREATE PROCEDURE [dbo].[usp_testInj1]
-@cityname [varchar](256)
+@cityname [nvarchar](256)
 AS
 BEGIN
-  DECLARE @query varchar(1024)
+  DECLARE @query nvarchar(1024)
   -- Check for dangerous keywords in @cityname 
   IF CHARINDEX('DROP', @cityname) > 0 OR 
   CHARINDEX('DELETE', @cityname) > 0 OR
@@ -68,7 +68,7 @@ END
 **Solution 2**: This solution uses the parameterized query executed by sp_executesql. The key protection comes from separating code (the SQL statement with parameter placeholders) from user input (the parameter value). This separation ensures the input is treated strictly as data, and not as executable code.
 ```sql
 CREATE PROCEDURE [dbo].[usp_testInj2]
-@cityname [varchar](256)
+@cityname [nvarchar](256)
 AS
 BEGIN
 DECLARE @query nvarchar(256)
@@ -86,7 +86,7 @@ END
 **Solution 3**: Use Quotename function. QUOTENAME safely wraps input in single quotes and escapes any embedded ones. This approach is not as safe as parameterization, and can be used only if parameterization isn’t possible.
 ```sql
 CREATE PROCEDURE [dbo].[usp_testInj_Quotename]
-@cityname VARCHAR(256)
+@cityname NVARCHAR(256)
 AS
 BEGIN
     DECLARE @query NVARCHAR(MAX)
