@@ -125,10 +125,9 @@ When refactoring T-SQL code, an OpenAI model can be guided not only by its train
 
 - The model is given the original T-SQL code.
 - It is also provided with the refactoring rules.
-- Using both its training and the rules, the model identifies target cases (such as unsafe dynamic SQL, inefficient cursor usage, or string concatenation issues).
-- The model then rewrites the code according to the specified rules, producing an improved version.
+- Using both its training and the rules, the model identifies target cases (such as inefficient cursor usage or not sargable conditions) and rewrites the code according to the specified rules, producing an improved version.
 
-See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
+See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
 <div style="text-align: center;">
   <img 
     src="https://github.com/user-attachments/assets/e1bafd47-1832-410b-b15b-0f38fde37049"
