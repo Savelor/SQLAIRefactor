@@ -77,7 +77,7 @@ Unused code refers to portions of code that are written but never executed durin
 TEXT, NTEXT, and IMAGE data types are deprecated in SQL Server because they are legacy types with limited functionality and compatibility in modern T-SQL. They do not support common string or binary functions, cannot be used easily in expressions and are inefficient. To improve performance, maintainability, and compatibility with current and future SQL versions, Microsoft recommends replacing them with their modern counterparts: TEXT should be replaced with VARCHAR(MAX), NTEXT with NVARCHAR(MAX), and IMAGE with VARBINARY(MAX). These newer types support full string and binary operations, work more efficiently with indexes and memory, and are fully supported in all SQL Server features.
 
 ## 📜12. Prompt ruleset
-When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. They effectively define the scope of refactoring use cases we want to address.The process works as follows:
+When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. They effectively define the scope of refactoring use cases we want to address. The process works as follows:
 
 - The model is given the original T-SQL code.
 - It is also provided with the refactoring rules.
