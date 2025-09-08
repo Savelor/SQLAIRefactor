@@ -121,7 +121,14 @@ answer = answer.Replace("\n", "\r\n");
 ```
 
 ## 12. Prompt ruleset
-When refactoring a T-SQL code, OpenAI model is provided with the original code and also with a set of refactoring rules. These rules instruct the model about how to identify specific bad practices cases and how to transform the syntax, producing a new optimized code. The model applies such rules in addition to its default training and returns the new version of the code. These rules define the set of use cases we want to address. See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
+When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. The process works as follows:
+
+- The model is given the original T-SQL code.
+- It is also provided with the refactoring rules.
+- Using both its training and the rules, the model identifies target cases (such as unsafe dynamic SQL, inefficient cursor usage, or string concatenation issues).
+- The model then rewrites the code according to the specified rules, producing an improved version.
+
+These rules effectively define the scope of refactoring use cases we want to address. See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Cursors.md#avoiding-cursors)
 <div style="text-align: center;">
   <img 
     src="https://github.com/user-attachments/assets/e1bafd47-1832-410b-b15b-0f38fde37049"
