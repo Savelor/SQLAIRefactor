@@ -33,7 +33,7 @@ The following time functions can be replaced in WHERE predicate, avoiding applyi
 
 ## ⚙️5. Arithmetic Operators 
 Simple arithmetic expressions can be written differently to force the execution plan to change from using a table or index Scan to Index Seek. The following examples run on **AdventurWorks2022** database. 
--  [*, /, +, -](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#arithmetic-operators)
+-  [Arithmetic operators *, /, +, -](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#arithmetic-operators)
 -  [Simple equations](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ArithmeticOperators.md#simple-equations)
 
 
