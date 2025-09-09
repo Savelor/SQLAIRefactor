@@ -19,7 +19,7 @@ WHERE ModifiedDate >= @Salesday
     alt="Convert_Implicit"
     style="width: 60%;" />
 </div>
-Whether the conversion applies to the column or the value depends on [data type precedence order](https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-ver17), but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
+Whether the conversion applies to the column or the value depends on data type precedence order (https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-ver17), but our goal is to avoid relying on these rules and ensuring data type consistency in all scenarios. The best way to avoid these conversion-related issues is to ensure that data types involved in comparisons match. So, we can face two cases:
 
 - If we compare two table columns, we cannot change their data type, so we can use CONVERT function to explicitly force the data type to be the same in the comparison.
 - If we compare a variable or parameter, we can instruct the AI model to force a different variable or parameter declaration to match the column data type.
