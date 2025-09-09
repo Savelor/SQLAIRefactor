@@ -86,9 +86,9 @@ When refactoring T-SQL code, an OpenAI model can be guided not only by its train
 See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
 <div style="text-align: center;">
   <img 
-    src="https://github.com/user-attachments/assets/bfb9d63d-2f52-44c8-9be8-f1725600e514"
+    src="https://github.com/user-attachments/assets/6651b062-b3f5-4c93-93ce-6979fb5eb54c"
     alt="Convert_Implicit"
-    style="width: 50%;" />
+    style="width: 55%;" />
 </div>
 
 
