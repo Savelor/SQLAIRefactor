@@ -1,4 +1,5 @@
 ## Prompt ruleset
+The following are the rules that are provided to the AI model as a prompt, together with all other information, such as the original code to refactor and column data types to guide the refactoring. These rules act like a checklist: they tell the model the specific use cases to look for and defines the guidelines about how to rewrite the code. It applies the rules and combines these rules with its built-in knowledge and returns a refactored version of the code that follows the specified guidelines.
 
 1. `When you find a statement such as “SELECT * FROM Expression”, read all the batch, and identify which columns of that Expression are really used in the batch after that SELECT statement. 
 Replace the “*” in the SELECT with only the columns you found as really used. If reading the code below the “SELECT *” statement it is not possible to understand which columns 
