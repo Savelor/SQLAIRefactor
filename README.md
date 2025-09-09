@@ -86,11 +86,10 @@ When refactoring T-SQL code, an OpenAI model can be guided not only by its train
 See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
 <div style="text-align: center;">
   <img 
-    src="https://github.com/user-attachments/assets/6651b062-b3f5-4c93-93ce-6979fb5eb54c"
+    src="https://github.com/user-attachments/assets/03f32643-5a98-429d-8180-87106806a727" />
     alt="Convert_Implicit"
     style="width: 55%;" />
 </div>
-
 
 ## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
 To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with [**Azure AI Foundry**](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
