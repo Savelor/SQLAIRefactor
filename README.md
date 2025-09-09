@@ -78,7 +78,7 @@ TEXT, NTEXT, and IMAGE data types are [**deprecated**](https://learn.microsoft.c
 
 This solution instructs the AI model (**rule 18, see next paragraph**) to detect and modify code that uses table variables or temporary tables with deprecated data types. These data types are then automatically replaced with the recommended ones from Best Practices, ensuring greater maintainability and alignment with modern standards.
 
-## 📜12. Prompt ruleset
+# Prompt ruleset
 When refactoring T-SQL code, an OpenAI model can be guided not only by its training but also by a custom set of refactoring rules. These rules describe which patterns are considered bad practices and how they should be transformed into more optimized, secure, or maintainable alternatives. They effectively define the scope of refactoring use cases we want to address. The process works as follows:
 
 - The model is given the original T-SQL code.
@@ -94,7 +94,7 @@ See the details about how to refactor cursors here: [**Ruleset definition file**
     style="width: 60%;" />
 </div>
 
-## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
+# Refactoring SQL with GPT-4o via Azure OpenAI and C#
 To automate and improve SQL query refactoring using Azure OpenAI, for example, you can start deploying an AI model with [**Azure AI Foundry**](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) and integrating the Azure OpenAI .NET SDK into a C# application. The application interacts with a deployed GPT model (e.g., gpt-4o) through a structured sequence of chat messages. These messages include a system prompt that clearly defines the task, the SQL query to be optimized and the refactoring ‘rules’. The language model then analyzes the input, detects potential anti-patterns, and returns a refactored query by applying the rules provided. Prerequisites for this implementation include an active Azure OpenAI resource, a valid API key, a properly configured model deployment (e.g., gpt-4o), and the Azure.AI.OpenAI NuGet package.
 
 Here is a simple example to start:
@@ -140,7 +140,7 @@ string answer = response.Value.Content[0].Text;
 answer = answer.Replace("\n", "\r\n");
 ```
 
-## 14. SQLAIRefactor as a Windows application
+# SQLAIRefactor as a Windows application
 SQLAIRefactor is a Windows Forms application that leverages Azure OpenAI to analyze and optimize T-SQL queries. It connects to your SQL Server database, extracts schema metadata in JSON format, and uses prompt engineering and large language models to refactor queries and apply SQL Server best practices automatically. The system intelligently identifies inefficiencies and common T-SQL anti-patterns, applying best practices through a set of formalized coding rules, using prompt-driven instructions. It also delivers contextual recommendations to improve quality, security, and maintainability.
 Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRefactor/tree/master/SQLAIRefactor)
 
@@ -148,7 +148,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
   <img src="https://github.com/user-attachments/assets/a29fac2d-d02e-4257-a2fe-d4cad9d7d4d7" alt="GUI1" width="500"/>
 </div>
 
-### ▶️ How to use the tool
+## ▶️ How to use the tool
 
 - **1. Paste Your Code**  
   Insert the original T-SQL code you want to optimize into the left panel of the interface.
@@ -166,7 +166,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
 <img width="650" height="1801" alt="howtouse" src="https://github.com/user-attachments/assets/b27dd7a9-4466-4dcc-ba84-e566b16f285c" />
 </div>
 
-### 🚀 Features
+## 🚀 Features
 
 - AI-powered SQL refactoring using GPT-4.1 or GPT-4o (Azure OpenAI)
 - Retrieves full table/column data types from database and injects this information into the model in JSON 
@@ -175,11 +175,11 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
 - Renders results in an HTML-based view with syntax highlighting
 
 
-### 📦 Prerequisites
+## 📦 Prerequisites
 
 - Windows OS
 - [.NET Framework 4.8+](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
 - Azure OpenAI Resource (with `gpt-4.1`, `gpt-4o`, or `o3-mini` deployments)
 
-### 📄 License
+## 📄 License
 This project is licensed under the MIT License.
