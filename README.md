@@ -179,7 +179,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
 ## 📦 Prerequisites
 
 - Windows OS
-- [.NET Framework 4.8+](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
+- [**.NET Framework 4.8+**](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
 - [**Azure.AI.OpenAI NuGet package**](https://www.nuget.org/packages/Azure.AI.OpenAI/2.1.0)
 - Azure OpenAI Resource (with `gpt-4.1`, `gpt-4o`, or `o3-mini` deployments)
 
