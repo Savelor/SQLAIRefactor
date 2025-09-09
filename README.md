@@ -84,12 +84,12 @@ When refactoring T-SQL code, an OpenAI model can be guided not only by its train
 - Using both its training and the rules, the model identifies target cases (such as inefficient cursor usage or not sargable conditions) and rewrites the code according to the specified rules, producing an improved version.
 
 See the details about how to refactor cursors here: [**Ruleset definition file**](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/Ruleset.md#prompt-ruleset)
+
 <div style="text-align: center;">
   <img 
-    src="https://github.com/user-attachments/assets/03f32643-5a98-429d-8180-87106806a727" />
+    src="https://github.com/user-attachments/assets/03f32643-5a98-429d-8180-87106806a727"
     alt="Convert_Implicit"
-    style="width: 55%;" 
-  />
+    style="width: 55%;" />
 </div>
 
 ## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
