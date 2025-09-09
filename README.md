@@ -154,7 +154,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
   Insert the original T-SQL code you want to optimize into the left panel of the interface.
 
 - **2. (Optional) Connect to a Database**  
-  For more accurate optimization, especially when metadata is required, connect to the relevant database. This allows the tool to retrieve metadata and pass it to OpenAI for better results. More in detail, the database connection allows to get [all columns data types](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#how-to-provide-columns-data-types-to-the-ai-model) in order to refactor the code to avoid implicit conversions.
+  For more accurate optimization, especially when metadata is required, connect to the relevant database. This allows the tool to retrieve metadata and pass it to OpenAI for better results. More in detail, the database connection allows to get [*all columns data types*](https://github.com/Savelor/SQLAIRefactor/blob/master/docs/ImplicitConversions.md#how-to-provide-columns-data-types-to-the-ai-model) in order to refactor the code to avoid implicit conversions.
 
 - **3. Generate Optimization**  
   Click the button to submit your code. The tool sends the input from the left panel as a prompt to the AI.
