@@ -88,7 +88,8 @@ See the details about how to refactor cursors here: [**Ruleset definition file**
   <img 
     src="https://github.com/user-attachments/assets/03f32643-5a98-429d-8180-87106806a727" />
     alt="Convert_Implicit"
-    style="width: 55%;" />
+    style="width: 55%;" 
+  />
 </div>
 
 ## 13. Refactoring SQL with GPT-4o via Azure OpenAI and C#
