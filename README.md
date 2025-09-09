@@ -180,6 +180,7 @@ Here you can find [**The Complete Solution**](https://github.com/Savelor/SQLAIRe
 
 - Windows OS
 - [.NET Framework 4.8+](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
+- Azure.AI.OpenAI NuGet package
 - Azure OpenAI Resource (with `gpt-4.1`, `gpt-4o`, or `o3-mini` deployments)
 
 ## 📄 License
