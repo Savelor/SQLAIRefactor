@@ -1,5 +1,5 @@
 # SQLAIRefactor
-<img width="600" height="300" alt="Introduction" src="https://github.com/user-attachments/assets/b3700808-abb5-407d-a7c8-24ec7a6ead5a" />
+<img width="600" height="250" alt="Introduction" src="https://github.com/user-attachments/assets/b3700808-abb5-407d-a7c8-24ec7a6ead5a" />
 
 SQLAIRefactor is a solution based on OpenAI which analyzes all SQL Server application code and identifies inefficiencies and anti-patterns, reporting evidence to the developer and proposing an alternative code, more efficient and aligned with T-SQL best practices. This repository is the accompanying code for the **"AI-based T-SQL Refactoring: an automatic intelligent code optimization with Azure OpenAI"** article. Make sure that check that out at **[https://devblogs.microsoft.com/azure-sql/?p=4778&preview=true](https://devblogs.microsoft.com/azure-sql/ai-based-t-sql-refactoring-an-automatic-intelligent-code-optimization-with-azure-openai/)**.
 
